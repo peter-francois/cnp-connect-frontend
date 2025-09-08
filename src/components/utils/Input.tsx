@@ -1,15 +1,15 @@
 interface InputInterface {
   id: string;
   type: string;
-  placeholder: string;
+  placeholder?: any;
   label: string;
-  errors: any; //change the any to right type
+  errors?: any; //change the any to right type
 }
 
 const Input = ({ id, type, placeholder, label, errors }: InputInterface) => {
   return (
-    <div className="flex flex-col items-start gap-2 my-5">
-      <label htmlFor={id} className="block">
+    <div className="flex flex-col items-start gap-2 my-5 w-full">
+      <label htmlFor={id} className="block font-bold">
         {label}
       </label>
       <input

@@ -1,15 +1,21 @@
+import type { ReactNode } from "react";
+
 interface InputInterface {
   id: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   label: string;
-  errors: any; //change the any to right type
+  errors?: any; //change the any to right type
+  customClass?: string;
+  icon?: ReactNode
 }
 
-const Input = ({ id, type, placeholder, label, errors }: InputInterface) => {
+const Input = ({ id, type, placeholder, label, errors, customClass ,icon}: InputInterface) => {
   return (
-    <div className="flex flex-col items-start gap-2 my-5">
-      <label htmlFor={id} className="block">
+    <div className={`flex flex-col items-start gap-2 my-5 ${customClass} ${icon && "relative"}`}>
+      {icon && 
+      <span className="absolute top-5">{icon}</span>}
+      <label htmlFor={id} className="block font-bold">
         {label}
       </label>
       <input

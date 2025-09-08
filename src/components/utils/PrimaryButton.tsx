@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 interface PrimaryButtonInterface {
   children: ReactNode;
   handleOnCLick?: () => void;
-  customClass: string;
+  customClass?: string;
 }
 
 const PrimaryButton = ({ handleOnCLick, children, customClass }: PrimaryButtonInterface) => {

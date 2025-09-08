@@ -1,6 +1,6 @@
 import axios from "axios";
-import { type UserInterface } from "../../interfaces/UsersInterface";
-import { UserRolesEnum } from "../../enum/UserEnum";
+import { type UserInterface } from "../interfaces/UsersInterface";
+import { UserRolesEnum } from "../enum/UserEnum";
 
 const url = "./data/user.json";
 

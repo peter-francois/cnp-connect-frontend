@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "email": "supervisor1@example.com",
     "password": "Password123!",
     "firstName": "Alice",
@@ -14,6 +15,7 @@
     "trainsId": null
   },
   {
+    "id": 2,
     "email": "supervisor2@example.com",
     "password": "Password123!",
     "firstName": "Julien",
@@ -28,6 +30,7 @@
     "trainsId": null
   },
   {
+    "id": 3,
     "email": "coordinator1@example.com",
     "password": "Password123!",
     "firstName": "Laura",
@@ -42,6 +45,7 @@
     "trainsId": null
   },
   {
+    "id": 4,
     "email": "coordinator2@example.com",
     "password": "Password123!",
     "firstName": "Marc",
@@ -56,6 +60,7 @@
     "trainsId": null
   },
   {
+    "id": 5,
     "email": "coordinator3@example.com",
     "password": "Password123!",
     "firstName": "Sophie",
@@ -70,6 +75,7 @@
     "trainsId": null
   },
   {
+    "id": 6,
     "email": "coordinator4@example.com",
     "password": "Password123!",
     "firstName": "Hugo",
@@ -84,6 +90,7 @@
     "trainsId": null
   },
   {
+    "id": 7,
     "email": "coordinator5@example.com",
     "password": "Password123!",
     "firstName": "Emma",
@@ -98,6 +105,7 @@
     "trainsId": null
   },
   {
+    "id": 8,
     "email": "conductor1@example.com",
     "password": "Password123!",
     "firstName": "Nicolas",
@@ -112,6 +120,7 @@
     "trainsId": 101
   },
   {
+    "id": 9,
     "email": "conductor2@example.com",
     "password": "Password123!",
     "firstName": "Claire",
@@ -126,6 +135,7 @@
     "trainsId": 102
   },
   {
+    "id": 10,
     "email": "conductor3@example.com",
     "password": "Password123!",
     "firstName": "Antoine",
@@ -140,34 +150,7 @@
     "trainsId": 103
   },
   {
-    "email": "conductor4@example.com",
-    "password": "Password123!",
-    "firstName": "Isabelle",
-    "lastName": "Lemoine",
-    "avatar_url": "https://randomuser.me/api/portraits/women/11.jpg",
-    "hiringAt": "2018-03-08T00:00:00.000Z",
-    "isConnected": false,
-    "isAvailable": true,
-    "isActif": true,
-    "role": "conductor",
-    "lignesId": null,
-    "trainsId": 104
-  },
-  {
-    "email": "conductor5@example.com",
-    "password": "Password123!",
-    "firstName": "Damien",
-    "lastName": "Lopez",
-    "avatar_url": "https://randomuser.me/api/portraits/men/12.jpg",
-    "hiringAt": "2020-09-16T00:00:00.000Z",
-    "isConnected": true,
-    "isAvailable": false,
-    "isActif": true,
-    "role": "conductor",
-    "lignesId": null,
-    "trainsId": 105
-  },
-  {
+    "id": 11,
     "email": "conductor6@example.com",
     "password": "Password123!",
     "firstName": "Julie",
@@ -182,6 +165,7 @@
     "trainsId": 106
   },
   {
+    "id": 12,
     "email": "conductor7@example.com",
     "password": "Password123!",
     "firstName": "Mathieu",
@@ -196,6 +180,7 @@
     "trainsId": 107
   },
   {
+    "id": 13,
     "email": "conductor8@example.com",
     "password": "Password123!",
     "firstName": "Camille",
@@ -210,6 +195,7 @@
     "trainsId": 108
   },
   {
+    "id": 14,
     "email": "conductor9@example.com",
     "password": "Password123!",
     "firstName": "Thomas",
@@ -224,6 +210,7 @@
     "trainsId": 109
   },
   {
+    "id": 15,
     "email": "conductor10@example.com",
     "password": "Password123!",
     "firstName": "Elodie",
@@ -238,6 +225,7 @@
     "trainsId": 110
   },
   {
+    "id": 16,
     "email": "conductor11@example.com",
     "password": "Password123!",
     "firstName": "Alexandre",
@@ -252,6 +240,7 @@
     "trainsId": 111
   },
   {
+    "id": 17,
     "email": "conductor12@example.com",
     "password": "Password123!",
     "firstName": "Lucie",
@@ -266,6 +255,7 @@
     "trainsId": 112
   },
   {
+    "id": 18,
     "email": "conductor13@example.com",
     "password": "Password123!",
     "firstName": "Pierre",
@@ -280,6 +270,7 @@
     "trainsId": 113
   },
   {
+    "id": 19,
     "email": "conductor14@example.com",
     "password": "Password123!",
     "firstName": "Charlotte",
@@ -294,6 +285,7 @@
     "trainsId": 114
   },
   {
+    "id": 20,
     "email": "conductor15@example.com",
     "password": "Password123!",
     "firstName": "Louis",
@@ -306,5 +298,35 @@
     "role": "conductor",
     "lignesId": null,
     "trainsId": 115
+  },
+  {
+    "id": 21,
+    "email": "conductor4@example.com",
+    "password": "Password123!",
+    "firstName": "Isabelle",
+    "lastName": "Lemoine",
+    "avatar_url": "https://randomuser.me/api/portraits/women/11.jpg",
+    "hiringAt": "2018-03-08T00:00:00.000Z",
+    "isConnected": false,
+    "isAvailable": true,
+    "isActif": true,
+    "role": "conductor",
+    "lignesId": null,
+    "trainsId": 104
+  },
+  {
+    "id": 22,
+    "email": "conductor5@example.com",
+    "password": "Password123!",
+    "firstName": "Damien",
+    "lastName": "Lopez",
+    "avatar_url": "https://randomuser.me/api/portraits/men/12.jpg",
+    "hiringAt": "2020-09-16T00:00:00.000Z",
+    "isConnected": true,
+    "isAvailable": false,
+    "isActif": true,
+    "role": "conductor",
+    "lignesId": null,
+    "trainsId": 105
   }
 ]

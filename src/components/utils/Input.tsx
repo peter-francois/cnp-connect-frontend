@@ -22,9 +22,9 @@ const Input = ({ id, type, placeholder, label, errors, customClass, icon }: Inpu
         id={id}
         type={type}
         placeholder={placeholder}
-        className="block w-full rounded-md px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-200/50 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 pl-10"
+        className="block w-full rounded-md px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-200/50 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
       />
-      {/* {errors[id] && <p>{errors[id].message}</p>} */}
+      {errors[id] && <p>{errors[id].message}</p>}
     </div>
   );
 };

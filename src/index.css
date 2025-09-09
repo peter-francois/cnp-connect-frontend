@@ -1,5 +1,6 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
 :root {
   font-family: "Poppins", system-ui, Helvetica, Arial, sans-serif;
   /* 
@@ -15,9 +16,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
 
-  @apply bg-gray-950 text-gray-100 box-border;
+  @apply bg-slate-900 text-gray-100 box-border;
 }
 
 .card-border {
-  @apply border border-indigo-600 rounded-2xl w-9/10 px-7 py-5;
+  @apply border border-indigo-600 rounded-2xl px-7 py-5;
+}
+
+.form {
+  @apply flex flex-col max-h-96 max-w-96 w-full px-5 gap-20
 }

@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Home from "./pages/Home";
 import DisconnectedLayout from "./layouts/DisconnectedLayout";
-import ChangePassword from "./pages/ChangePassword.page.";
+import ChangePassword from "./pages/ChangePassword";
 import ResetPassword from "./pages/ResetPassword";
 import Users from "./pages/Users";
 import ConnectionPage from "./pages/Connection.page";

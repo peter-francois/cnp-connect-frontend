@@ -1,32 +1,54 @@
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../components/utils/Input";
 import PrimaryButton from "../components/utils/PrimaryButton";
 import PrimaryTitle from "../components/utils/PrimaryTitle";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router";
+import { schema, type UseForm } from "../types/formData";
 
 const ChangePassword = () => {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  const onValidate: SubmitHandler<UseForm> = (data) => {
+    if (data.newPassword === data.confirmPassword) navigate("/signin");
+  };
+
   return (
     <>
       <PrimaryTitle>Changer le mot de passe</PrimaryTitle>
 
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit(onValidate)}>
         <div className="card-border">
           <Input
-            id="new-password"
+            id="newPassword"
             label="Nouveau mot de passe"
             type="password"
             placeholder="Nouveau mot de passe"
+            register={register}
+            errors={errors}
             icon={<LockClosedIcon width={20} />}
           />
+
           <Input
-            id="confirm-password"
+            id="confirmPassword"
             label="Confirmer mot de passe"
             type="password"
             placeholder="Confirmer mot de passe"
+            register={register}
+            errors={errors}
             icon={<LockClosedIcon width={20} />}
           />
         </div>
 
-        <PrimaryButton>Confirmer</PrimaryButton>
+        <PrimaryButton type="submit">Confirmer</PrimaryButton>
       </form>
     </>
   );

@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import SearchBar from "./utils/SearchBar";
+import SearchBar from "./SearchBar";
 import { useState } from "react";
 import { Link } from "react-router";
 
@@ -16,13 +16,13 @@ const HeaderUsers = ({ search, setSearch }: HeaderUsersInterface) => {
         <MagnifyingGlassIcon width={20} />
       </span>
       <SearchBar value={search} onChange={setSearch} />
-      <div className= "w-full">
+      <div className="w-full">
         {appUser && (
           <Link
             to="/"
-            className= "w-full mb-6 text-center block bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-2 px-5 text-indigo-100 rounded-lg cursor-pointer"
+            className="w-full mb-6 text-center block bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-2 px-5 text-indigo-100 rounded-lg cursor-pointer"
           >
-           + Ajouter un utilisateur
+            + Ajouter un utilisateur
           </Link>
         )}
       </div>

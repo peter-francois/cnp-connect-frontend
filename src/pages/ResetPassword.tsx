@@ -14,7 +14,7 @@ import type { UserInterface } from "../interfaces/UsersInterface";
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [isValided, setIsValided] = useState(false);
-  const [user, setUser] = useState<UserInterface | []>([]);
+  const [user, setUser] = useState<UserInterface | null>(null);
 
   const {
     register,
@@ -57,7 +57,7 @@ const ResetPassword = () => {
         </div>
         {isValided && (
           <PopUp customClass="flex-col">
-            <p className="w-full">Merci {user.firstName} !</p>
+            <p className="w-full">Merci {user && user.firstName} !</p>
             <p className="w-full">Tu vas recevoir un email afin que tu puisse changer ton mot de passe.</p>
           </PopUp>
         )}

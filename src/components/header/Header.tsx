@@ -4,7 +4,7 @@ import AlertsIem from "./AlertsIem";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center h-20 border-b border-gray-400 w-full px-4 py-5 fixed">
+    <div className="flex justify-between items-center h-20 border-b border-gray-400 w-full px-4 py-5 fixed z-30 bg-slate-900/90">
       <nav>
         <Bars3Icon width={38} />
       </nav>

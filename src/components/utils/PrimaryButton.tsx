@@ -12,7 +12,7 @@ const PrimaryButton = ({ handleOnCLick, children, customClass, type }: PrimaryBu
     <button
       onClick={handleOnCLick}
       type={type}
-      className={`bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-3 text-indigo-100 rounded-lg cursor-pointer ${customClass}`}
+      className={`bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-3 text-indigo-100 rounded-lg cursor-pointer border-box ${customClass}`}
     >
       {children}
     </button>

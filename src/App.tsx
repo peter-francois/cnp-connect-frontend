@@ -4,7 +4,7 @@ import DisconnectedLayout from "./layouts/DisconnectedLayout";
 import ChangePassword from "./pages/ChangePassword";
 import ResetPassword from "./pages/ResetPassword";
 import Users from "./pages/Users";
-import ConnectionPage from "./pages/Connection.page";
+import ConnectionPage from "./pages/Connection";
 
 const App = () => {
   return (

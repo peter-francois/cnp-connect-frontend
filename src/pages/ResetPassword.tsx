@@ -5,7 +5,7 @@ import PrimaryTitle from "../components/utils/PrimaryTitle";
 import Input from "../components/utils/Input";
 import PrimaryButton from "../components/utils/PrimaryButton";
 import { useNavigate } from "react-router";
-import { schemaResetPassword, type UseFormResetPassword } from "../types/formDataResetPassword";
+import { schemaResetPassword, type UseFormResetPassword } from "../types/formData/resetPassword";
 import { getUsers } from "../api/user";
 import { useState } from "react";
 import PopUp from "../components/utils/PopUp";

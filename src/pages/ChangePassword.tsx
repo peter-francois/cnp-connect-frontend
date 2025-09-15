@@ -5,7 +5,7 @@ import PrimaryButton from "../components/utils/PrimaryButton";
 import PrimaryTitle from "../components/utils/PrimaryTitle";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router";
-import { schema, type UseForm } from "../types/formData";
+import { schema, type UseForm } from "../types/formData/changePassword";
 
 const ChangePassword = () => {
   const navigate = useNavigate();

@@ -6,7 +6,7 @@ import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useForm } from "react-hook-form";
 import PopUp from "../components/utils/PopUp";
 import { Connection } from "../api/auth";
-import { schema } from "../types/connection.formData";
+import { schema } from "../types/formData/connection";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 

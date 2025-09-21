@@ -6,6 +6,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Users from "./pages/Users";
 import ConnectionPage from "./pages/Connection";
 import ConnectedLayout from "./layouts/ConnectedLayout";
+import NouvelleAlerte from "./pages/alertes/NouvelleAlerte";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         </Route>
         <Route element={<ConnectedLayout />}>
           <Route path="/utilisateurs" element={<Users />} />
+          <Route path="/nouvelle-alert" element={<NouvelleAlerte />} />
         </Route>
       </Routes>
       <ReactQueryDevtools />

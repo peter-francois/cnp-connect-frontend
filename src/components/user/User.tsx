@@ -35,7 +35,7 @@ const User = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => 
             <StatusIsConnect status={userData.isConnected} />
             <UserLign lignesId={userData.lignesId} />
             <UserTrain train={userData.trainsId} />
-            <Link to={`/users/${userData.id}`}>
+            <Link to={`/utilisateurs/${userData.id}`}>
               <EllipsisVerticalIcon width={20} className=" text-white" />
             </Link>
           </div>

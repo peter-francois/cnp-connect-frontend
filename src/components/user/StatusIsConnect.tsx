@@ -1,9 +1,9 @@
-import React from "react";
+
 
 interface StatusIsConnectInterface {
     status: boolean;
 }
-const statusIsConnect = ({status}: StatusIsConnectInterface) => {
+const StatusIsConnect = ({status}: StatusIsConnectInterface) => {
   return (
     <div className="flex">
       status :{" "}
@@ -16,4 +16,4 @@ const statusIsConnect = ({status}: StatusIsConnectInterface) => {
   );
 };
 
-export default statusIsConnect;
+export default StatusIsConnect;

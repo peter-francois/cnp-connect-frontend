@@ -13,12 +13,12 @@ const UserLi = ({ label, value, icon }: UserLiInterface) => {
       <div className="flex justify-between">
         <p className="font-bold mb-1">{label}: </p>
         {icon && (
-          <PrimaryButton type="button" customClass="px-1">
+          <PrimaryButton type="button" customClass="px-2 relative right-0">
             {icon}
           </PrimaryButton>
         )}
       </div>
-      <p>{value}</p>
+      <p className="pl-2">{value}</p>
     </li>
   );
 };

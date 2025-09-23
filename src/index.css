@@ -30,3 +30,7 @@
 .center {
   @apply flex justify-center items-center
 }
+
+.height{
+  height: calc(100vh - 80px);
+}

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { NavLink } from "react-router";
-import type { LinkInterface } from "../../interfaces/LinkInterface";
+import type { LinkInterface } from "../../types/interfaces/LinkInterface";
 
 interface LinkComponentInterface {
   link: LinkInterface;

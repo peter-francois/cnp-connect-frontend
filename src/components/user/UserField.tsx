@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import PrimaryButton from "../utils/PrimaryButton";
 
 interface UserLiInterface {
   label: string;
-  value: string | boolean;
+  value: string | boolean | JSX.Element;
   icon?: ReactNode;
 }
 
-const UserLi = ({ label, value, icon }: UserLiInterface) => {
+const UserField = ({ label, value, icon }: UserLiInterface) => {
   return (
     <li className="my-2.5">
       <div className="flex justify-between">
@@ -23,4 +23,4 @@ const UserLi = ({ label, value, icon }: UserLiInterface) => {
   );
 };
 
-export default UserLi;
+export default UserField;

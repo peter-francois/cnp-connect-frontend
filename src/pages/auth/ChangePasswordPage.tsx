@@ -1,20 +1,20 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "../components/utils/Input";
-import PrimaryButton from "../components/utils/PrimaryButton";
-import PrimaryTitle from "../components/utils/PrimaryTitle";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { schema, type UseForm } from "../types/formData/changePassword";
+import Input from "../../components/utils/Input";
+import PrimaryButton from "../../components/utils/PrimaryButton";
+import PrimaryTitle from "../../components/utils/PrimaryTitle";
+import { changePasswordSchema, type UseForm } from "../../types/formData/changePasswordSchema";
 
-const ChangePassword = () => {
+const ChangePasswordPage = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(changePasswordSchema),
   });
 
   const onValidate: SubmitHandler<UseForm> = (data) => {
@@ -54,4 +54,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default ChangePasswordPage;

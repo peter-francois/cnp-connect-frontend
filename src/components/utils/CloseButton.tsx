@@ -9,6 +9,7 @@ const CloseButton = ({ onClose }: CloseButtonInterface) => {
     e.stopPropagation();
     onClose();
   };
+  
   return (
     <>
       <button onClick={handleClose} aria-label="Fermer">

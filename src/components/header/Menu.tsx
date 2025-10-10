@@ -1,6 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import ItemLink from "./ItemLink";
-import type { LinkInterface } from "../../interfaces/LinkInterface";
+import type { LinkInterface } from "../../types/interfaces/LinkInterface";
 
 interface MenuComponentInterface {
   links: LinkInterface[];

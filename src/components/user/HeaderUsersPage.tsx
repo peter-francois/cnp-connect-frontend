@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import SearchBar from "./SearchBar";
+import SearchBar from "../utils/SearchBar";
 import { useState } from "react";
 import { Link } from "react-router";
 
@@ -8,7 +8,7 @@ interface HeaderUsersInterface {
   setSearch: (value: string) => void;
 }
 
-const HeaderUsers = ({ search, setSearch }: HeaderUsersInterface) => {
+const HeaderUsersPage = ({ search, setSearch }: HeaderUsersInterface) => {
   const [appUser] = useState(true);
   return (
     <div className="flex flex-col items-center relative">
@@ -30,4 +30,4 @@ const HeaderUsers = ({ search, setSearch }: HeaderUsersInterface) => {
   );
 };
 
-export default HeaderUsers;
+export default HeaderUsersPage;

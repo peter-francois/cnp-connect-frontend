@@ -1,4 +1,4 @@
-import type { LinkInterface } from "../interfaces/LinkInterface";
+import type { LinkInterface } from "../types/interfaces/LinkInterface";
 
 export const links: LinkInterface[] = [
   {

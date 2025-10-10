@@ -3,8 +3,8 @@ interface AlerteItemInterface {
   notificationNumber: number;
 }
 
-const AlertsIem = ({ customClass, notificationNumber }: AlerteItemInterface) => {
+const AlertsItem = ({ customClass, notificationNumber }: AlerteItemInterface) => {
   return <li className={`${customClass} rounded-full size-7 center`}>{notificationNumber}</li>;
 };
 
-export default AlertsIem;
+export default AlertsItem;

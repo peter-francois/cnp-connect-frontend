@@ -1,5 +1,5 @@
-import type { UserInterface } from "../interfaces/UsersInterface";
-import { addUser, getUsers, getUsersById } from "../api/user";
+import type { UserInterface } from "../types/interfaces/UserInterface";
+import { addUser, getUsers, getUsersById } from "../api/user.api";
 import { useEffect, useState } from "react";
 
 const Home = () => {

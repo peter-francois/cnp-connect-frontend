@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getLines } from "../../api/line";
+import { getLines } from "../../api/line.api";
 import Line from "./Line";
 import { useState } from "react";
-import type { LineInterface } from "../../interfaces/LinesInterface";
+import type { LineInterface } from "../../types/interfaces/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface LinesListInterface {

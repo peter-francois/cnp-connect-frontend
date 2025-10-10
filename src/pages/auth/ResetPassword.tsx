@@ -1,15 +1,15 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import PrimaryTitle from "../components/utils/PrimaryTitle";
-import Input from "../components/utils/Input";
-import PrimaryButton from "../components/utils/PrimaryButton";
+import PrimaryTitle from "../../components/utils/PrimaryTitle";
+import Input from "../../components/utils/Input";
+import PrimaryButton from "../../components/utils/PrimaryButton";
 import { useNavigate } from "react-router";
-import { schemaResetPassword, type UseFormResetPassword } from "../types/formData/resetPassword";
-import { getUsers } from "../api/user";
+import { resetPasswordSchema, type UseFormResetPassword } from "../../types/formData/resetPasswordSchema";
+import { getUsers } from "../../api/user.api";
 import { useState } from "react";
-import PopUp from "../components/utils/PopUp";
-import type { UserInterface } from "../interfaces/UsersInterface";
+import PopUp from "../../components/utils/PopUp";
+import type { UserInterface } from "../../types/interfaces/UserInterface";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schemaResetPassword),
+    resolver: zodResolver(resetPasswordSchema),
   });
   const onValidate: SubmitHandler<UseFormResetPassword> = async (data) => {
     const users = await getUsers();

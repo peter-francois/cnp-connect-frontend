@@ -1,11 +1,10 @@
-import { Link } from "react-router";
-import PrimaryButton from "../components/utils/PrimaryButton";
-import UserLi from "../components/user/UserLi";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import { XCircleIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import SecondaryTitle from "../components/utils/Secondarytitle";
-import StatusIsConnect from "../components/user/StatusIsConnect";
+import { Link } from "react-router";
+import StatusIsConnected from "../../components/user/StatusIsConnected";
+import UserField from "../../components/user/UserField";
+import PrimaryButton from "../../components/utils/PrimaryButton";
+import SecondaryTitle from "../../components/utils/SecondaryTitle";
 
 // method => PATH
 // path => api/v1/users/:userId
@@ -19,7 +18,7 @@ import StatusIsConnect from "../components/user/StatusIsConnect";
 // Coordinateur : peut sélectionner une ligne et attribuer un train disponible sur cette ligne à un conducteur.
 // Conducteur : peut voir la ligne et le train qui lui sont affectés.
 // Utilisateur connecté voir son profil et peut changer sa photo et son statut
-const User = () => {
+const UserDetailsPage = () => {
   const user = {
     name: "Peter",
     role: "sup",
@@ -45,29 +44,27 @@ const User = () => {
           </Link>
         </div>
         <ul>
-          <UserLi label="Nom" value={user.name} />
-          <UserLi label="Rôle" value={user.role} />
-          <UserLi label="Embauché depuis le" value={user.hiredAt} />
+          <UserField label="Nom" value={user.name} />
+          <UserField label="Rôle" value={user.role} />
+          <UserField label="Embauché depuis le" value={user.hiredAt} />
         </ul>
       </section>
       <section>
         <ul>
-          <UserLi label="Email" value={user.email} icon={<EnvelopeIcon width={20}></EnvelopeIcon>} />
-          <UserLi
+          <UserField label="Email" value={user.email} icon={<EnvelopeIcon width={20}></EnvelopeIcon>} />
+          <UserField
             label="Statut"
             value={
               <div className="flex gap-3">
                 <p>Connecté</p>
-                <StatusIsConnect status={user.status}></StatusIsConnect>
+                <StatusIsConnected status={user.status}></StatusIsConnected>
               </div>
             }
           />
-          <UserLi
+          <UserField
             label="Affectation"
             value={
-              user.lignes
-                ? `Ligne${user.lignes.length !== 1 && "s"} ${user.lignes.join(", ")}`
-                : `Train ${user.train}`
+              user.lignes ? `Ligne${user.lignes.length !== 1 && "s"} ${user.lignes.join(", ")}` : `Train ${user.train}`
             }
           />
         </ul>
@@ -110,4 +107,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default UserDetailsPage;

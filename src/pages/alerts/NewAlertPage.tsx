@@ -1,16 +1,16 @@
 import LinesList from "../../components/alert/LinesList";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import Textarea from "../../components/alert/Textarea";
+import Textarea from "../../components/utils/Textarea";
 import PrimaryButton from "../../components/utils/PrimaryButton";
 import { useNavigate } from "react-router";
-import { type UseFormNewAlert, schemaNewAlert } from "../../types/formData/newAlert";
+import { type UseFormNewAlert, newAlertSchema } from "../../types/formData/newAlertSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Priority from "../../components/alert/Priority";
 import { useMutation } from "@tanstack/react-query";
-import type { AlertInterface } from "../../interfaces/AlertInterface";
-import { addAlert } from "../../api/alert";
+import type { AlertInterface } from "../../types/interfaces/AlertInterface";
+import { addAlert } from "../../api/alert.api";
 
-const NouvelleAlerte = () => {
+const NewAlertPage = () => {
   const navigate = useNavigate();
 
   const {
@@ -19,7 +19,7 @@ const NouvelleAlerte = () => {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schemaNewAlert),
+    resolver: zodResolver(newAlertSchema),
   });
 
   const selectedPriority = watch("priority");
@@ -76,4 +76,4 @@ const NouvelleAlerte = () => {
   );
 };
 
-export default NouvelleAlerte;
+export default NewAlertPage;

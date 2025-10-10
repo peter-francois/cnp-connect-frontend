@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { links } from "../../utils/links";
 import PrimaryButton from "../utils/PrimaryButton";
-import AlertsIem from "./AlertsIem";
+import AlertsItem from "./AlertsItem";
 import Menu from "./Menu";
 
 const Header = () => {
@@ -38,9 +38,9 @@ const Header = () => {
       </PrimaryButton>
 
       <ul className="center gap-2.5">
-        <AlertsIem notificationNumber={5} customClass="bg-green-600" />
-        <AlertsIem notificationNumber={3} customClass="bg-yellow-600" />
-        <AlertsIem notificationNumber={1} customClass="bg-rose-800" />
+        <AlertsItem notificationNumber={5} customClass="bg-green-600" />
+        <AlertsItem notificationNumber={3} customClass="bg-yellow-600" />
+        <AlertsItem notificationNumber={1} customClass="bg-rose-800" />
       </ul>
     </div>
   );

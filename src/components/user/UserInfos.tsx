@@ -1,11 +1,11 @@
-import type { UserInterface } from "../../interfaces/UsersInterface";
+import type { UserInterface } from "../../types/interfaces/UserInterface";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router";
-import StatusIsConnect from "./StatusIsConnect";
-import UserLign from "./UserLign";
-import CloseButton from "./CloseButton";
+import StatusIsConnected from "./StatusIsConnected";
+import UserLines from "./UserLines";
+import CloseButton from "../utils/CloseButton";
 import UserTrain from "./UserTrain";
-import SecondaryTitle from "../utils/Secondarytitle";
+import SecondaryTitle from "../utils/SecondaryTitle";
 
 interface UserPropsInterface {
   userData: UserInterface;
@@ -13,7 +13,7 @@ interface UserPropsInterface {
   setCurrentUser: (id: number | null) => void;
 }
 
-const User = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => {
+const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => {
   return (
     <>
       <li
@@ -35,11 +35,11 @@ const User = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => 
             <CloseButton onClose={() => setCurrentUser(null)} />
             <div className="flex">
               <SecondaryTitle>Statut:</SecondaryTitle>
-              <StatusIsConnect status={userData.isConnected} />
+              <StatusIsConnected status={userData.isConnected} />
             </div>
             <div className="flex">
               <SecondaryTitle>Ligne{userData.lignesId && userData.lignesId.length >= 2 && "s"}:</SecondaryTitle>
-              <UserLign lignesId={userData.lignesId} />
+              <UserLines lignesId={userData.lignesId} />
             </div>
             <div className="flex">
               <SecondaryTitle>Train:</SecondaryTitle>
@@ -55,4 +55,4 @@ const User = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => 
   );
 };
 
-export default User;
+export default UserInfos;

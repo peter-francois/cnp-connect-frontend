@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { LineInterface } from "../interfaces/LinesInterface";
-const url = "./data/line.json";
+import type { LineInterface } from "../types/interfaces/LineInterface";
+const url = "/data/line.json";
 
 export const getLines = async (): Promise<LineInterface[]> => {
   try {

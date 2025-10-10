@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const schema = z
+export const changePasswordSchema = z
   .object({
     newPassword: z
       .string()
@@ -13,4 +13,4 @@ export const schema = z
     path: ["confirmPassword"],
   });
 
-export type UseForm = z.infer<typeof schema>;
+export type UseForm = z.infer<typeof changePasswordSchema>;

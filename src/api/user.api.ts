@@ -1,8 +1,8 @@
 import axios from "axios";
-import { type UserInterface } from "../interfaces/UsersInterface";
-import { UserRolesEnum } from "../enum/UserEnum";
+import { type UserInterface } from "../types/interfaces/UserInterface";
+import { UserRolesEnum } from "../types/enum/UserEnum";
 
-const url = "./data/user.json";
+const url = "/data/user.json";
 
 export const getUsers = async (): Promise<UserInterface[]> => {
   try {

@@ -1,4 +1,4 @@
-import { getUsers } from "./user";
+import { getUsers } from "./user.api";
 
 interface LoginResponceInterface {
   status: boolean;

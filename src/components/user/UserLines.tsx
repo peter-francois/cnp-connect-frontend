@@ -2,7 +2,7 @@ interface UserLignInterface {
   lignesId: number[] | null | undefined;
 }
 
-const UserLign = ({ lignesId }: UserLignInterface) => {
+const UserLines = ({ lignesId }: UserLignInterface) => {
   return (
     <>
       {lignesId && (
@@ -18,4 +18,4 @@ const UserLign = ({ lignesId }: UserLignInterface) => {
   );
 };
 
-export default UserLign;
+export default UserLines;

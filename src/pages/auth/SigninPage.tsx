@@ -1,29 +1,30 @@
-import PrimaryTitle from "../components/utils/PrimaryTitle";
-import Input from "../components/utils/Input";
-import PrimaryButton from "../components/utils/PrimaryButton";
+import PrimaryTitle from "../../components/utils/PrimaryTitle";
+import Input from "../../components/utils/Input";
+import PrimaryButton from "../../components/utils/PrimaryButton";
 import { NavLink, useNavigate } from "react-router";
 import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useForm } from "react-hook-form";
-import PopUp from "../components/utils/PopUp";
-import { Connection } from "../api/auth";
-import { schema } from "../types/formData/connection";
+import PopUp from "../../components/utils/PopUp";
+import { Connection } from "../../api/auth.api";
+import { signinSchema } from "../../types/formData/signinSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 
-export interface ConnectionInterface {
+export interface SigninInterface {
   email: string;
   password: string;
 }
 
-const ConnectionPage = () => {
+const SigninPage = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ConnectionInterface>({ resolver: zodResolver(schema) });
+  } = useForm<SigninInterface>({ resolver: zodResolver(signinSchema) });
 
   const { isError, isPending, mutate } = useMutation({
-    mutationFn: ({ email, password }: ConnectionInterface) => Connection(email, password),
+    mutationFn: ({ email, password }: SigninInterface) => Connection(email, password),
     onSuccess: (data) => {
       if (data.status && data.authtoken) {
         localStorage.setItem("token", data.authtoken);
@@ -34,9 +35,8 @@ const ConnectionPage = () => {
       console.log(data.message);
     },
   });
-  const navigate = useNavigate();
 
-  const sendDataToBack = (data: ConnectionInterface): void => {
+  const sendDataToBack = (data: SigninInterface): void => {
     const email = data.email;
     const password = data.password;
     mutate({ email, password });
@@ -79,4 +79,4 @@ const ConnectionPage = () => {
   );
 };
 
-export default ConnectionPage;
+export default SigninPage;

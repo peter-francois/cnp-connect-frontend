@@ -2,7 +2,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Route, Routes } from "react-router";
 import ConnectedLayout from "./layouts/ConnectedLayout";
 import DisconnectedLayout from "./layouts/DisconnectedLayout";
-import NewAlertPage from "./pages/alerts/NewAlertPage";
+import NewAlertPage from "./pages/alert/NewAlertPage";
 import ChangePassword from "./pages/auth/ChangePassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import SigninPage from "./pages/auth/SigninPage";

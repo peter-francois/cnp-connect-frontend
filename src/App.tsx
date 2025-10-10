@@ -5,7 +5,7 @@ import DisconnectedLayout from "./layouts/DisconnectedLayout";
 import NewAlertPage from "./pages/alerts/NewAlertPage";
 import ChangePassword from "./pages/auth/ChangePassword";
 import ResetPassword from "./pages/auth/ResetPassword";
-import SigninPage from "./pages/auth/SignInPage";
+import SigninPage from "./pages/auth/SigninPage";
 import UsersPage from "./pages/user/UsersPage";
 import UserDetailsPage from "./pages/user/UserDetailsPage";
 

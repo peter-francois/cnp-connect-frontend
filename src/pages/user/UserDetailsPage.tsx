@@ -27,7 +27,7 @@ const UserDetailsPage = () => {
   const { id } = useParams();
   const [currentUser, setCurrentUser] = useState<UserInterface>();
   const [lines, setLines] = useState<LineInterface[]>([]);
-  const roleUserFromToken = UserRolesEnum.supervisor;
+  const roleUserFromToken: UserRolesEnum = UserRolesEnum.supervisor;
 
   useEffect(() => {
     const getData = async () => {
@@ -35,7 +35,7 @@ const UserDetailsPage = () => {
       setLines(data);
     };
     getData();
-  });
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -90,7 +90,9 @@ const UserDetailsPage = () => {
         </ul>
       </section>
       <div className="flex flex-col gap-6 my-4 mx-auto">
-        {roleUserFromToken !== UserRolesEnum.conductor && <Assignment userRole={currentUser.role} lines={lines} />}
+        {roleUserFromToken != UserRolesEnum.conductor && (
+          <Assignment currentUserRole={currentUser.role} lines={lines} />
+        )}
 
         <PrimaryButton type="submit">Nouveau message</PrimaryButton>
       </div>

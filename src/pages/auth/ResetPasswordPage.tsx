@@ -11,7 +11,7 @@ import { useState } from "react";
 import PopUp from "../../components/utils/PopUp";
 import type { UserInterface } from "../../types/interfaces/UserInterface";
 
-const ResetPassword = () => {
+const ResetPasswordPage = () => {
   const navigate = useNavigate();
   const [isValided, setIsValided] = useState(false);
   const [user, setUser] = useState<UserInterface | null>(null);
@@ -67,4 +67,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ResetPasswordPage;

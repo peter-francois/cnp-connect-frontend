@@ -1,16 +1,16 @@
 import LinesList from "../../components/alert/LinesList";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import Textarea from "../../components/utils/Textarea";
-import PrimaryButton from "../../components/utils/PrimaryButton";
+import Textarea from "../../components/ui/Textarea";
+import PrimaryButton from "../../components/ui/PrimaryButton";
 import { useNavigate } from "react-router";
-import { type UseFormNewAlert, newAlertSchema } from "../../types/formData/newAlertSchema";
+import { type UseFormNewAlert, newAlertSchema } from "../../types/formSchema/newAlertSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Priority from "../../components/alert/Priority";
 import { useMutation } from "@tanstack/react-query";
 import type { AlertInterface } from "../../types/interfaces/AlertInterface";
 import { addAlert } from "../../api/alert.api";
 
-const NewAlertPage = () => {
+const AlerCreatetPage = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -46,7 +46,6 @@ const NewAlertPage = () => {
         rows={5}
         textAreaCustomClass="px-5 py-3"
       />
-
       <div className="w-full flex justify-between my-5">
         <Priority
           name="priority"
@@ -80,4 +79,4 @@ const NewAlertPage = () => {
   );
 };
 
-export default NewAlertPage;
+export default AlerCreatetPage;

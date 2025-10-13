@@ -5,7 +5,7 @@ interface LineDataInterface {
   lineData: LineInterface;
   onClick: () => void;
   isSelected: boolean;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<any>; // @dev find right type '--'
 }
 
 const Line = ({ lineData, onClick, isSelected, register }: LineDataInterface) => {

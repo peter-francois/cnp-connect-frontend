@@ -1,12 +1,12 @@
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
-import type { UseFormNewAlert } from "../../types/formData/newAlertSchema";
+import type { UseFormNewAlert } from "../../types/formSchema/newAlertSchema";
 
 interface PriorityInterface {
   priority: string;
   label: string;
   name: keyof UseFormNewAlert;
   errors?: FieldErrors;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<any>; // @dev find right type '--'
   isSelected: boolean;
 }
 const Priority = ({ label, priority, name, register, errors, isSelected }: PriorityInterface) => {

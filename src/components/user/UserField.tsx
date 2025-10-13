@@ -1,5 +1,5 @@
 import type { JSX, ReactNode } from "react";
-import PrimaryButton from "../utils/PrimaryButton";
+import PrimaryButton from "../ui/PrimaryButton";
 
 interface UserLiInterface {
   label: string;

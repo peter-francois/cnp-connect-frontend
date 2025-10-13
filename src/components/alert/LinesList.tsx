@@ -6,7 +6,7 @@ import type { LineInterface } from "../../types/interfaces/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface LinesListInterface {
-  register: UseFormRegister<any>;
+  register: UseFormRegister<any>; // @dev find right type '--'
   errors?: FieldErrors;
 }
 

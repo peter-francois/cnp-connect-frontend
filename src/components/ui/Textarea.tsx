@@ -8,7 +8,7 @@ interface TextareaInterface {
   customClass?: string;
   errorCustomClass?: string;
   textAreaCustomClass?: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<any>; // @dev find right type '--'
 }
 
 const Textarea = ({

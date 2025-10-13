@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router";
 import StatusIsConnected from "../../components/user/StatusIsConnected";
 import UserField from "../../components/user/UserField";
-import PrimaryButton from "../../components/utils/PrimaryButton";
-import SecondaryTitle from "../../components/utils/SecondaryTitle";
+import PrimaryButton from "../../components/ui/PrimaryButton";
+import SecondaryTitle from "../../components/ui/SecondaryTitle";
 
 // method => PATH
 // path => api/v1/users/:userId

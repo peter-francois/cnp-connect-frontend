@@ -3,9 +3,9 @@ import { useState } from "react";
 import { getUsers } from "../../api/user.api";
 import HeaderUsersPage from "../../components/user/HeaderUsersPage";
 import UserInfos from "../../components/user/UserInfos";
-import PrimaryTitle from "../../components/utils/PrimaryTitle";
+import PrimaryTitle from "../../components/ui/PrimaryTitle";
 
-const UsersPage = () => {
+const UsersListPage = () => {
   const [search, setSearch] = useState("");
   const [currentUser, setCurrentUser] = useState<number | null>(null);
 
@@ -50,4 +50,4 @@ const UsersPage = () => {
   );
 };
 
-export default UsersPage;
+export default UsersListPage;

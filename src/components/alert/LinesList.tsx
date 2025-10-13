@@ -12,7 +12,6 @@ interface LinesListInterface {
 
 const LinesList = ({ register, errors }: LinesListInterface) => {
   const [selectLines, setSelectLines] = useState<LineInterface[]>([]);
-
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["lines"],
     queryFn: getLines,
@@ -45,7 +44,8 @@ const LinesList = ({ register, errors }: LinesListInterface) => {
           {selectLines.length === data.length ? "Tout désélectionner" : "Tout sélectionner"}
         </button>
       </div>
-      <div className="card-border py-3 relative grid grid-flow-col grid-rows-3 gap-4">
+
+      <div className="card-border justify-around relative grid grid-flow-col grid-rows-3 gap-y-7 gap-x-2 p-5">
         {data.map((line) => (
           <Line
             key={line.id}

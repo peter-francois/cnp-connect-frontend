@@ -20,8 +20,13 @@
 }
 
 .card-border {
-  @apply border border-indigo-600 rounded-2xl px-7 py-5;
+  @apply border border-indigo-600 rounded-2xl ;
 }
+
+/* .card-border {
+  @apply border border-indigo-600 rounded-2xl px-7 py-5;
+} */
+
 
 .form {
   @apply flex flex-col max-h-96 max-w-96 w-full px-5 gap-20

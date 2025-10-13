@@ -1,27 +1,39 @@
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 
-
-
 interface TextareaInterface {
   id: string;
+  rows: number;
   placeholder?: string;
-  errors?: FieldErrors; //change the any to right type
+  errors?: FieldErrors;
   customClass?: string;
+  errorCustomClass?: string;
+  textAreaCustomClass?: string;
   register: UseFormRegister<any>;
 }
 
-const Textarea = ({ id, placeholder, errors, customClass, register }: TextareaInterface) => {
+const Textarea = ({
+  id,
+  placeholder,
+  errors,
+  customClass,
+  register,
+  rows,
+  textAreaCustomClass,
+  errorCustomClass,
+}: TextareaInterface) => {
   return (
     <div className={`flex flex-col items-start gap-2 my-5 ${customClass}`}>
+      <label htmlFor={id}></label>
       <textarea
         id={id}
-        rows={5}
+        rows={rows}
         placeholder={placeholder}
         {...register(id)}
-        className="block w-full rounded-md pl-9 pr-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-200/50 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 "
+        className={`block w-full rounded-md text-base outline-1 -outline-offset-1 outline-gray-200/50 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 ${textAreaCustomClass}`}
       ></textarea>
-
-      {errors && errors[id] && <p className="text-red-500 text-sm ml-1">{errors[id].message as string}</p>}
+      {errors && errors[id] && (
+        <p className={`text-red-500 text-sm ml-1 ${errorCustomClass}`}>{errors[id].message as string}</p>
+      )}
     </div>
   );
 };

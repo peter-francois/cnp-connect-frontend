@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router";
 import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useForm } from "react-hook-form";
 import PopUp from "../../components/utils/PopUp";
-import { Connection } from "../../api/auth.api";
+import { signin } from "../../api/auth.api";
 import { signinSchema } from "../../types/formData/signinSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ const SigninPage = () => {
   } = useForm<SigninInterface>({ resolver: zodResolver(signinSchema) });
 
   const { isError, isPending, mutate } = useMutation({
-    mutationFn: ({ email, password }: SigninInterface) => Connection(email, password),
+    mutationFn: ({ email, password }: SigninInterface) => signin(email, password),
     onSuccess: (data) => {
       if (data.status && data.authtoken) {
         localStorage.setItem("token", data.authtoken);
@@ -71,6 +71,7 @@ const SigninPage = () => {
             Mot de passe oulié?{" "}
           </NavLink>
         </div>
+
         {isError && <PopUp>L'email et/ou le mot de passe est incorrect !</PopUp>}
         <PrimaryButton type="submit">Se connecter</PrimaryButton>
         {isPending && <span>Connection...</span>}

@@ -66,19 +66,21 @@ const UserDetailsPage = () => {
         </ul>
       </section>
 
-      <section>
-        {/*je doit sortir l'icone et faire une sesction 2 plus propre comme au dessus  */}
-        <ul>
-          <UserField label="Email" value={currentUser.email} icon={<EnvelopeIcon width={20}></EnvelopeIcon>} />
-          <UserField
-            label="Statut"
-            value={
-              <div className="flex gap-3">
-                <p>Connecté</p>
-                <StatusIsConnected status={currentUser.isConnected}></StatusIsConnected>
-              </div>
-            }
-          />
+      <section className="flex justify-between">
+        <ul className=" flex flex-col">
+          <div className="flex">
+            <UserField label="Email" value={currentUser.email} />
+            <Link
+              to={`mailto:${currentUser.email}`}
+              className="w-8 h-8 mt-9 ml-5 bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-3 text-indigo-100 rounded-lg cursor-pointer border-box flex center"
+            >
+              <EnvelopeIcon width={20}></EnvelopeIcon>
+            </Link>
+          </div>
+          <div className="flex items-center">
+            <UserField label="Statut" value={currentUser.isConnected ? "Connecté" : "Non connecté"} />
+            <StatusIsConnected customClass="mt-7 ml-5" status={currentUser.isConnected}></StatusIsConnected>
+          </div>
           <UserField
             label="Affectation"
             value={

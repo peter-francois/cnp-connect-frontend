@@ -1,11 +1,15 @@
-import { EnvelopeIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { Link } from "react-router";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { Link, useParams } from "react-router";
 import StatusIsConnected from "../../components/user/StatusIsConnected";
 import UserField from "../../components/user/UserField";
-import PrimaryButton from "../../components/ui/PrimaryButton";
-import SecondaryTitle from "../../components/ui/SecondaryTitle";
-
+import PrimaryButton from "../../components/utils/PrimaryButton";
+import { useEffect, useState } from "react";
+import { getUsersById } from "../../api/user.api";
+import type { UserInterface } from "../../types/interfaces/UserInterface";
+import Assignment from "../../components/user/Assignment";
+import type { LineInterface } from "../../types/interfaces/LineInterface";
+import { getLines } from "../../api/line.api";
+import { UserRolesEnum } from "../../types/enum/UserEnum";
 // method => PATH
 // path => api/v1/users/:userId
 // method => GET
@@ -18,25 +22,37 @@ import SecondaryTitle from "../../components/ui/SecondaryTitle";
 // Coordinateur : peut sélectionner une ligne et attribuer un train disponible sur cette ligne à un conducteur.
 // Conducteur : peut voir la ligne et le train qui lui sont affectés.
 // Utilisateur connecté voir son profil et peut changer sa photo et son statut
+
 const UserDetailsPage = () => {
-  const user = {
-    name: "Peter",
-    role: "sup",
-    hiredAt: "2025",
-    email: "email",
-    status: true,
-    lignes: [1, 3, 6],
-    train: 56,
-  };
-  const [toggleReassign, setToggleReassign] = useState(false);
-  return (
+  const { id } = useParams();
+  const [currentUser, setCurrentUser] = useState<UserInterface>();
+  const [lines, setLines] = useState<LineInterface[]>([]);
+  const roleUserFromToken: UserRolesEnum = UserRolesEnum.supervisor;
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getLines();
+      setLines(data);
+    };
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      const user = await getUsersById(Number(id));
+      setCurrentUser(user);
+    };
+    getData();
+  }, [id]);
+
+  return currentUser ? (
     <div className="my-3">
       <section className="flex justify-around items-center gap-8 mb-4">
         <div className="flex flex-col gap-3">
           <img
             className="rounded-full shadow-xl shadow-neutral-100/15"
-            src="https://randomuser.me/api/portraits/women/1.jpg"
-            alt="user lastName"
+            src={currentUser.avatar_url}
+            alt={currentUser.firstName}
           />
           {/* input type file pour l'ajout de la nouvelle photo */}
           <Link className="text-sm" to={"/"}>
@@ -44,66 +60,54 @@ const UserDetailsPage = () => {
           </Link>
         </div>
         <ul>
-          <UserField label="Nom" value={user.name} />
-          <UserField label="Rôle" value={user.role} />
-          <UserField label="Embauché depuis le" value={user.hiredAt} />
+          <UserField label="Nom" value={currentUser.firstName} />
+          <UserField label="Rôle" value={currentUser.role} />
+          <UserField
+            label="Embauché depuis le"
+            value={new Date(currentUser.hiringAt).toLocaleDateString("fr-FR", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })}
+          />
         </ul>
       </section>
-      <section>
-        <ul>
-          <UserField label="Email" value={user.email} icon={<EnvelopeIcon width={20}></EnvelopeIcon>} />
-          <UserField
-            label="Statut"
-            value={
-              <div className="flex gap-3">
-                <p>Connecté</p>
-                <StatusIsConnected status={user.status}></StatusIsConnected>
-              </div>
-            }
-          />
+
+      <section className="flex justify-between">
+        <ul className=" flex flex-col">
+          <div className="flex">
+            <UserField label="Email" value={currentUser.email} />
+            <Link
+              to={`mailto:${currentUser.email}`}
+              className="w-8 h-8 mt-9 ml-5 bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-3 text-indigo-100 rounded-lg cursor-pointer border-box flex center"
+            >
+              <EnvelopeIcon width={20}></EnvelopeIcon>
+            </Link>
+          </div>
+          <div className="flex items-center">
+            <UserField label="Statut" value={currentUser.isConnected ? "Connecté" : "Non connecté"} />
+            <StatusIsConnected customClass="mt-7 ml-5" status={currentUser.isConnected}></StatusIsConnected>
+          </div>
           <UserField
             label="Affectation"
             value={
-              user.lignes ? `Ligne${user.lignes.length !== 1 && "s"} ${user.lignes.join(", ")}` : `Train ${user.train}`
+              currentUser.lignesId
+                ? `Ligne${currentUser.lignesId.length == 1 ? "" : "s"} ${currentUser.lignesId.join(", ")}`
+                : `Train ${currentUser.trainsId}`
             }
           />
         </ul>
       </section>
       <div className="flex flex-col gap-6 my-4 mx-auto">
-        {/* boutton asignation: premiere étape affectations de la ligne puis assignation du trains */}
-
-        <PrimaryButton
-          type="button"
-          handleOnCLick={() => {
-            setToggleReassign(!toggleReassign);
-          }}
-          customClass="px-3"
-        >
-          Réasignations
-        </PrimaryButton>
-
-        {toggleReassign && (
-          <div className=" border rounded bg-slate-900 p-3 flex flex-col">
-            <button onClick={() => setToggleReassign(false)} aria-label="Fermer" className="relative ">
-              {<XCircleIcon width={30} className="cursor-pointer absolute -top-7 -left-7" />}
-            </button>
-            <SecondaryTitle customClass="mb-3">Ligne</SecondaryTitle>
-            <div className="gap-3 flex-wrap center">
-              {user.lignes.map((ligne) => (
-                <PrimaryButton
-                  type="button"
-                  customClass="border 
-              w-12"
-                >
-                  {ligne}
-                </PrimaryButton>
-              ))}
-            </div>
-          </div>
+        {roleUserFromToken != UserRolesEnum.conductor && (
+          <Assignment currentUserRole={currentUser.role} lines={lines} />
         )}
+
         <PrimaryButton type="submit">Nouveau message</PrimaryButton>
       </div>
     </div>
+  ) : (
+    <span>Aucun utilisateur touvé</span>
   );
 };
 

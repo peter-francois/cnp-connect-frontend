@@ -10,12 +10,15 @@ interface HeaderUsersInterface {
 
 const HeaderUsersPage = ({ search, setSearch }: HeaderUsersInterface) => {
   const [appUser] = useState(true);
+
   return (
     <div className="flex flex-col items-center relative">
       <span className="absolute top-7 left-2">
         <MagnifyingGlassIcon width={20} />
       </span>
+
       <SearchBar value={search} onChange={setSearch} />
+      
       <div className="w-full">
         {appUser && (
           <Link

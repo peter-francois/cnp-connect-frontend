@@ -28,7 +28,7 @@
 } */
 
 
-.form {
+.authForm {
   @apply flex flex-col max-h-96 max-w-96 w-full px-5 gap-20
 }
 

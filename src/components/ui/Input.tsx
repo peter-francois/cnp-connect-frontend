@@ -14,7 +14,7 @@ interface InputInterface {
 
 const Input = ({ id, type, placeholder, label, errors, customClass, icon, register }: InputInterface) => {
   return (
-    // @dev div in parent page - input, label, errors in different components
+    // @dev div in parent page - input, label, errors in different components cnp-167
     <div className={`flex flex-col items-start gap-2 my-5 ${customClass} ${icon && "relative"}`}>
       {icon && <span className="absolute top-10 left-2">{icon}</span>}
       <label htmlFor={id} className="block font-bold">

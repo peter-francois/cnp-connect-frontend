@@ -25,13 +25,13 @@ const ChangePasswordPage = () => {
     <>
       <PrimaryTitle>Changer le mot de passe</PrimaryTitle>
 
-      <form className="form" onSubmit={handleSubmit(onValidate)}>
+      <form className="authForm" onSubmit={handleSubmit(onValidate)}>
         <div className="card-border px-7 py-5">
           <Input
             id="newPassword"
             label="Nouveau mot de passe"
             type="password"
-            placeholder="Nouveau mot de passe"
+            placeholder="Nouveau mot de passe..."
             register={register}
             errors={errors}
             icon={<LockClosedIcon width={20} />}
@@ -41,7 +41,7 @@ const ChangePasswordPage = () => {
             id="confirmPassword"
             label="Confirmer mot de passe"
             type="password"
-            placeholder="Confirmer mot de passe"
+            placeholder="Confirmer mot de passe..."
             register={register}
             errors={errors}
             icon={<LockClosedIcon width={20} />}

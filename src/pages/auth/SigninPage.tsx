@@ -1,15 +1,15 @@
+import { Link, useNavigate } from "react-router";
+import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
 import Input from "../../components/ui/Input";
 import PrimaryButton from "../../components/ui/PrimaryButton";
-import { NavLink, useNavigate } from "react-router";
-import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
-import { useForm } from "react-hook-form";
 import PopUp from "../../components/ui/PopUp";
+import type { SigninInterface } from "../../types/interfaces/SignInterface";
 import { signin } from "../../api/auth.api";
 import { signinSchema } from "../../types/formSchema/signinSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import type { SigninInterface } from "../../types/interfaces/SignInterface";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -48,29 +48,35 @@ const SigninPage = () => {
             type="email"
             label="Email"
             placeholder="Adresse email"
-            customClass="mt-0 mb-10"
+            customClass="mb-10"
             register={register}
             errors={errors}
             icon={<EnvelopeIcon width={20} />}
           />
-          <Input
-            id="password"
-            type="password"
-            label="Mot de passe"
-            placeholder="Mot de passe"
-            customClass="mt-0 mb-0"
-            register={register}
-            errors={errors}
-            icon={<LockClosedIcon width={20} />}
-          />
-          <NavLink to="/" className="text-xs">
-            Mot de passe oulié?{" "}
-          </NavLink>
+          <div className="mb-5">
+            <Input
+              id="password"
+              type="password"
+              label="Mot de passe"
+              placeholder="Mot de passe"
+              customClass="mb-1"
+              register={register}
+              errors={errors}
+              icon={<LockClosedIcon width={20} />}
+            />
+            <Link to="/reinitialisation-mot-passe" className="text-xs">
+              Mot de passe oulié ?
+            </Link>
+          </div>
         </div>
 
-        {isError && <PopUp>L'email et/ou le mot de passe est incorrect !</PopUp>}
+        {isError && (
+          <PopUp>
+            L'email et/ou le mot de passe est incorrect !
+          </PopUp>
+        )}
+        {isPending && <p>Connection...</p>}
         <PrimaryButton type="submit">Se connecter</PrimaryButton>
-        {isPending && <span>Connection...</span>}
       </form>
     </>
   );

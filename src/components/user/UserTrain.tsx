@@ -1,5 +1,5 @@
 interface UserTrainInterface {
-  train: number | null | undefined;
+  train: number | undefined;
 }
 const UserTrain = ({ train }: UserTrainInterface) => {
   return <>{train && <span className="pl-2">{train}</span>}</>;

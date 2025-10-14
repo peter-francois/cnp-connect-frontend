@@ -1,5 +1,5 @@
 interface UserLignInterface {
-  lignesId: number[] | null | undefined;
+  lignesId: number[] | undefined;
 }
 
 const UserLines = ({ lignesId }: UserLignInterface) => {

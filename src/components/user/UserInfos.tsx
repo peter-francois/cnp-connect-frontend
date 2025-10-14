@@ -9,8 +9,8 @@ import SecondaryTitle from "../ui/SecondaryTitle";
 
 interface UserPropsInterface {
   userData: UserInterface;
-  currentUser: number | null;
-  setCurrentUser: (id: number | null) => void;
+  currentUser: number | undefined;
+  setCurrentUser: React.Dispatch<React.SetStateAction<number | undefined>>
 }
 
 const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => {
@@ -20,7 +20,7 @@ const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface
         className={`flex items-center justify-between gap-4 py-2 px-7 relative cursor-pointer ${
           currentUser == userData.id ? "bg-indigo-300" : "hover:bg-indigo-300"
         } `}
-        onClick={() => setCurrentUser(currentUser === userData.id ? null : userData.id)}
+        onClick={() => setCurrentUser(currentUser === userData.id ? undefined : userData.id)}
       >
         <div className="flex items-center gap-4">
           <img className="rounded-full w-10" src={userData.avatar_url} alt={userData.lastName} />
@@ -30,9 +30,11 @@ const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface
         </div>
 
         <span>{userData.role}</span>
+
         {currentUser == userData.id && (
           <div className="absolute border rounded w-full bg-indigo-600  top-11 left-0 z-20 p-3 flex justify-between">
-            <CloseButton onClose={() => setCurrentUser(null)} />
+            <CloseButton onClose={() => setCurrentUser(undefined)} />
+              
             <div className="flex">
               <SecondaryTitle>Statut:</SecondaryTitle>
               <StatusIsConnected status={userData.isConnected} />

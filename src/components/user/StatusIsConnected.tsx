@@ -1,6 +1,6 @@
 interface StatusIsConnectInterface {
   status: boolean;
-  customClass: string;
+  customClass?: string;
 }
 
 const StatusIsConnected = ({ status, customClass }: StatusIsConnectInterface) => {

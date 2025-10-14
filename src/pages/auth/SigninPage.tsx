@@ -1,19 +1,15 @@
-import PrimaryTitle from "../../components/utils/PrimaryTitle";
-import Input from "../../components/utils/Input";
-import PrimaryButton from "../../components/utils/PrimaryButton";
+import PrimaryTitle from "../../components/ui/PrimaryTitle";
+import Input from "../../components/ui/Input";
+import PrimaryButton from "../../components/ui/PrimaryButton";
 import { NavLink, useNavigate } from "react-router";
 import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useForm } from "react-hook-form";
-import PopUp from "../../components/utils/PopUp";
-import { Connection } from "../../api/auth.api";
-import { signinSchema } from "../../types/formData/signinSchema";
+import PopUp from "../../components/ui/PopUp";
+import { signin } from "../../api/auth.api";
+import { signinSchema } from "../../types/formSchema/signinSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-
-export interface SigninInterface {
-  email: string;
-  password: string;
-}
+import type { SigninInterface } from "../../types/interfaces/SignInterface";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -24,7 +20,7 @@ const SigninPage = () => {
   } = useForm<SigninInterface>({ resolver: zodResolver(signinSchema) });
 
   const { isError, isPending, mutate } = useMutation({
-    mutationFn: ({ email, password }: SigninInterface) => Connection(email, password),
+    mutationFn: ({ email, password }: SigninInterface) => signin(email, password),
     onSuccess: (data) => {
       if (data.status && data.authtoken) {
         localStorage.setItem("token", data.authtoken);
@@ -71,6 +67,7 @@ const SigninPage = () => {
             Mot de passe oulié?{" "}
           </NavLink>
         </div>
+
         {isError && <PopUp>L'email et/ou le mot de passe est incorrect !</PopUp>}
         <PrimaryButton type="submit">Se connecter</PrimaryButton>
         {isPending && <span>Connection...</span>}

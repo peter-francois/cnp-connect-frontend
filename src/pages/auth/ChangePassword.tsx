@@ -2,12 +2,19 @@ import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
+<<<<<<<< HEAD:src/pages/auth/ChangePassword.tsx
 import Input from "../../components/utils/Input";
 import PrimaryButton from "../../components/utils/PrimaryButton";
 import PrimaryTitle from "../../components/utils/PrimaryTitle";
 import { changePasswordSchema, type UseForm } from "../../types/formData/changePasswordSchema";
+========
+import Input from "../../components/ui/Input";
+import PrimaryButton from "../../components/ui/PrimaryButton";
+import PrimaryTitle from "../../components/ui/PrimaryTitle";
+import { changePasswordSchema, type UseForm } from "../../types/formSchema/changePasswordSchema";
+>>>>>>>> develop:src/pages/auth/ChangePasswordPage.tsx
 
-const ChangePassword = () => {
+const ChangePasswordPage = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -54,4 +61,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default ChangePasswordPage;

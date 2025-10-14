@@ -3,9 +3,9 @@ import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router";
 import StatusIsConnected from "./StatusIsConnected";
 import UserLines from "./UserLines";
-import CloseButton from "../utils/CloseButton";
+import CloseButton from "../ui/CloseButton";
 import UserTrain from "./UserTrain";
-import SecondaryTitle from "../utils/SecondaryTitle";
+import SecondaryTitle from "../ui/SecondaryTitle";
 
 interface UserPropsInterface {
   userData: UserInterface;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { links } from "../../utils/links";
-import PrimaryButton from "../utils/PrimaryButton";
+import PrimaryButton from "../ui/PrimaryButton";
 import AlertsItem from "./AlertsItem";
 import Menu from "./Menu";
 

@@ -1,15 +1,11 @@
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import { Link, useParams } from "react-router";
+import { EnvelopeIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import { Link } from "react-router";
 import StatusIsConnected from "../../components/user/StatusIsConnected";
 import UserField from "../../components/user/UserField";
-import PrimaryButton from "../../components/utils/PrimaryButton";
-import { useEffect, useState } from "react";
-import { getUsersById } from "../../api/user.api";
-import type { UserInterface } from "../../types/interfaces/UserInterface";
-import Assignment from "../../components/user/Assignment";
-import type { LineInterface } from "../../types/interfaces/LineInterface";
-import { getLines } from "../../api/line.api";
-import { UserRolesEnum } from "../../types/enum/UserEnum";
+import PrimaryButton from "../../components/ui/PrimaryButton";
+import SecondaryTitle from "../../components/ui/SecondaryTitle";
+
 // method => PATH
 // path => api/v1/users/:userId
 // method => GET

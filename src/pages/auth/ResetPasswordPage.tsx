@@ -15,7 +15,7 @@ const ResetPasswordPage = () => {
   const navigate = useNavigate();
   const [isValided, setIsValided] = useState(false);
   const [user, setUser] = useState<UserInterface | null>(null);
-
+  const token = "1950";
   const {
     register,
     handleSubmit,
@@ -23,14 +23,16 @@ const ResetPasswordPage = () => {
   } = useForm({
     resolver: zodResolver(resetPasswordSchema),
   });
+
   const onValidate: SubmitHandler<UseFormResetPassword> = async (data) => {
+    // @dev ici on va envoyé en post l'adresse email dans le back,
+    //  on affiche la popup pour l'utilisateur puis tempo 5s et
+    // redirect vers /signin
     const users = await getUsers();
     const userByMail = users.find((u) => u.email === data.email);
-
-    const token = "1950";
+    setIsValided(true);
 
     if (userByMail) {
-      setIsValided(true);
       setUser(userByMail);
       const navigation = () => {
         navigate("/nouveau-mot-de-passe", { state: { user, token } });
@@ -39,28 +41,32 @@ const ResetPasswordPage = () => {
     }
     console.log(user);
   };
+
   return (
     <>
       <PrimaryTitle>Réinitialiser mot de passe</PrimaryTitle>
 
-      <form className="form" onSubmit={handleSubmit(onValidate)}>
-        <div className="card-border relative">
+      <form className="authForm" onSubmit={handleSubmit(onValidate)}>
+        <div className="card-border relative px-7 py-5">
           <Input
             label="Email"
             id="email"
             type="email"
-            placeholder="Veuillez rentrer votre email"
+            placeholder="Veuillez rentrer votre email..."
             register={register}
             errors={errors}
             icon={<EnvelopeIcon width={20} />}
           />
         </div>
+
         {isValided && (
           <PopUp customClass="flex-col">
-            <p className="w-full">Merci {user && user.firstName} !</p>
-            <p className="w-full">Tu vas recevoir un email afin que tu puisse changer ton mot de passe.</p>
+            <p className="w-full">
+              Si vous avez un compte, un e-mail de réinitialisation de mot de passe a été envoyé.
+            </p>
           </PopUp>
         )}
+
         <PrimaryButton type="submit">Envoyer</PrimaryButton>
       </form>
     </>

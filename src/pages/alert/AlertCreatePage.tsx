@@ -21,6 +21,7 @@ const AlerCreatetPage = () => {
     resolver: zodResolver(newAlertSchema),
   });
   const selectedPriority = watch("priority");
+  // @dev mettre un store zustand pour le texte de l'alerte
 
   //submit and form validate = use createAlertMutation with data
   const onValidate: SubmitHandler<UseFormNewAlert> = (data) => {

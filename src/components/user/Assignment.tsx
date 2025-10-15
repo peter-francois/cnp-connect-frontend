@@ -17,6 +17,7 @@ const Assignment = ({ currentUserRole, lines }: AssignmentInterface) => {
   if (currentUserRole === UserRolesEnum.supervisor) {
     return null;
   }
+  
   return (
     <>
       <PrimaryButton type="button" handleOnCLick={() => setToggleReassign(!toggleReassign)} customClass="px-3">

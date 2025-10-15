@@ -4,15 +4,17 @@ import { getUsers } from "../../api/user.api";
 import HeaderUsersPage from "../../components/user/HeaderUsersPage";
 import UserInfos from "../../components/user/UserInfos";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
+import { useUsersList } from "../../hooks/useUsersList";
 
 const UsersListPage = () => {
   const [search, setSearch] = useState("");
   const [currentUser, setCurrentUser] = useState<number | undefined>(undefined);
 
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ["users"],
-    queryFn: getUsers,
-  });
+  // const { isPending, isError, data, error } = useQuery({
+  //   queryKey: ["users"],
+  //   queryFn: getUsers,
+  // });
+  const { isPending, isError, data, error } = useUsersList();
 
   if (isPending) {
     return <span>Loading...</span>;

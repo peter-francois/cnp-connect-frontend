@@ -4,12 +4,12 @@ import StatusIsConnected from "../../components/user/StatusIsConnected";
 import UserField from "../../components/user/UserField";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import { useEffect, useState } from "react";
-import { getUsersById } from "../../api/user.api";
 import type { UserInterface } from "../../types/interfaces/UserInterface";
 import Assignment from "../../components/user/Assignment";
 import type { LineInterface } from "../../types/interfaces/LineInterface";
 import { getLines } from "../../api/line.api";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
+import { useUserDetails } from "../../hooks/useUserDetails";
 // method => PATH
 // path => api/v1/users/:userId
 // method => GET
@@ -25,7 +25,6 @@ import { UserRolesEnum } from "../../types/enum/UserEnum";
 
 const UserDetailsPage = () => {
   const { id } = useParams();
-  const [currentUser, setCurrentUser] = useState<UserInterface>();
   const [lines, setLines] = useState<LineInterface[]>([]);
   const roleUserFromToken: UserRolesEnum = UserRolesEnum.coordinator;
 
@@ -38,13 +37,24 @@ const UserDetailsPage = () => {
     getData();
   }, []);
 
-  useEffect(() => {
-    const getData = async () => {
-      const user = await getUsersById(Number(id));
-      setCurrentUser(user);
-    };
-    getData();
-  }, [id]);
+  // const {
+  //   isPending,
+  //   isError,
+  //   data: currentUser,
+  //   error,
+  // } = useQuery({
+  //   queryKey: [`user${id}`],
+  //   queryFn: () => getUsersById(Number(id)),
+  // });
+  const { isPending, isError, data: currentUser, error } = useUserDetails(Number(id));
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return currentUser ? (
     <div className="my-3">
@@ -63,6 +73,7 @@ const UserDetailsPage = () => {
 
         <ul>
           <UserField label="Nom" value={currentUser.firstName} />
+          {/* @dev faire le changement de Supervisor a superviseur */}
           <UserField label="Rôle" value={currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)} />
           <UserField
             label="Date d'embauche"

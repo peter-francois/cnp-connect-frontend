@@ -8,9 +8,8 @@ export const getUsers = async (): Promise<UserInterface[]> => {
   try {
     const res = await axios.get<UserInterface[]>(url);
     return res.data;
-  } catch (error) {
-    console.log(error);
-    return [];
+  } catch {
+    throw new Error("Not found");
   }
 };
 

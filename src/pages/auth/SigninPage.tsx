@@ -22,13 +22,14 @@ const SigninPage = () => {
   const { isError, isPending, mutate } = useMutation({
     mutationFn: ({ email, password }: SigninInterface) => signin(email, password),
     onSuccess: (data) => {
-      if (data.status && data.authtoken) {
-        localStorage.setItem("token", data.authtoken);
+      const tokens = data.data;
+      
+      if (tokens.accessToken && tokens.refreshToken) {
+        localStorage.setItem("accessToken", tokens.accessToken);
+        localStorage.setItem("refreshToken", tokens.refreshToken);
+        console.log(data.message);
         navigate("/utilisateurs");
       }
-    },
-    onError: (data) => {
-      console.log(data.message);
     },
   });
 
@@ -70,11 +71,7 @@ const SigninPage = () => {
           </div>
         </div>
 
-        {isError && (
-          <PopUp>
-            L'email et/ou le mot de passe est incorrect !
-          </PopUp>
-        )}
+        {isError && <PopUp>L'email et/ou le mot de passe est incorrect !</PopUp>}
         {isPending && <p>Connection...</p>}
         <PrimaryButton type="submit">Se connecter</PrimaryButton>
       </form>

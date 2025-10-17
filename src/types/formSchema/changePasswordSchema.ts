@@ -12,5 +12,5 @@ export const changePasswordSchema = z
     message: "Les mots de passe ne sont pas identiques.",
     path: ["confirmPassword"],
   });
-
+// @dev change name
 export type UseForm = z.infer<typeof changePasswordSchema>;

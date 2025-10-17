@@ -8,6 +8,7 @@ import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import SigninPage from "./pages/auth/SigninPage";
 import UsersListPage from "./pages/user/UsersListPage";
 import UserDetailsPage from "./pages/user/UserDetailsPage";
+import UserCreatePage from "./pages/user/UserCreatePage";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/utilisateurs" element={<UsersListPage />} />
           <Route path="/utilisateurs/:id" element={<UserDetailsPage />} />
           <Route path="/nouvelle-alert" element={<AlerCreatetPage />} />
+          <Route path="/nouvel-utilisateur" element={<UserCreatePage />} />
         </Route>
       </Routes>
       <ReactQueryDevtools />

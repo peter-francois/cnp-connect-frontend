@@ -1,5 +1,5 @@
 import { useApi } from "../hooks/useApi";
-import { getUsers } from "./user.api";
+
 
 interface LoginResponceInterface {
   accessToken: string;
@@ -44,4 +44,10 @@ export const signin = async (email: string, password: string): Promise<AuthRespo
   const body: SigninInterface = { email, password };
   const { data } = await api.post<AuthResponse>("/auth/signin", body);
   return data;
+};
+
+export const forgotPassword = async (email: string): Promise<void> => {
+  const body = { email };
+  await api.post("/auth/forgot-password", body);
+  
 };

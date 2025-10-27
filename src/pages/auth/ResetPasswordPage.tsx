@@ -4,7 +4,6 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
 import Input from "../../components/ui/Input";
 import PrimaryButton from "../../components/ui/PrimaryButton";
-import { useNavigate } from "react-router";
 import { resetPasswordSchema, type UseFormResetPassword } from "../../types/formSchema/resetPasswordSchema";
 import { useState } from "react";
 import PopUp from "../../components/ui/PopUp";
@@ -12,7 +11,6 @@ import { useMutation } from "@tanstack/react-query";
 import { forgotPassword } from "../../api/auth.api";
 
 const ResetPasswordPage = () => {
-  const navigate = useNavigate();
   const [isValided, setIsValided] = useState(false);
 
   const {
@@ -25,27 +23,18 @@ const ResetPasswordPage = () => {
 
   const onValidate: SubmitHandler<UseFormResetPassword> = async (data) => {
     // @dev ici on va envoyé en post l'adresse email dans le back,
-    createAlertMutation.mutate(data);
+    createMutation.mutate(data);
   };
-  const createAlertMutation = useMutation({
+  const createMutation = useMutation({
     mutationFn: (data: UseFormResetPassword) => forgotPassword(data.email),
 
-    onSuccess: () => {
+    onSettled: () => {
       //  on affiche la popup pour l'utilisateur puis tempo 5s et
       setIsValided(true);
       // redirect vers /changer-mot-de-passe
-      setTimeout(navigation, 5000);
     },
-    onError: ()=> {
-      console.error("Erreur pendant l'envoi:");
-    },
+    
   });
-  
-  
-
-  const navigation = () => {
-    navigate("/nouveau-mot-de-passe");
-  };
 
   return (
     <>

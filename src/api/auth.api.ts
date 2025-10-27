@@ -46,8 +46,8 @@ export const signin = async (email: string, password: string): Promise<AuthRespo
   return data;
 };
 
-export const forgotPassword = async (email: string): Promise<{ email: string }> => {
+export const forgotPassword = async (email: string): Promise<void> => {
   const body = { email };
-  const { data } = await api.post("/auth/forgot-password", body);
-  return data;
+  await api.post("/auth/forgot-password", body);
+  
 };

@@ -1,14 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { getLines } from "../../api/line.api";
-import Line from "./Line";
 import { useState } from "react";
 import type { LineInterface } from "../../types/interfaces/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
-import { useLinesList } from "../../hooks/useLinesList";
-import { UserRolesEnum } from "../../types/enum/UserEnum";
 import { useTrainsList } from "../../hooks/useTrainsList";
 import type { TrainInterface } from "../../types/interfaces/TrainInterface";
-import Train from "./Train";
 import SelectableInput from "../ui/SelectableInput";
 
 interface TrainListInterface {

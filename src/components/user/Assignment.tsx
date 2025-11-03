@@ -26,14 +26,13 @@ interface AssignmentInterface {
 const Assignment = ({ currentUserRole }: AssignmentInterface) => {
   const [toggleReassign, setToggleReassign] = useState(false);
   const [selectedLine, setSelectedLine] = useState<LineInterface[]>([]);
+  const isConductor: boolean = currentUserRole === UserRolesEnum.conductor;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(
-      currentUserRole === UserRolesEnum.conductor ? newAssigmentConductorSchema : newAssigmentCoordinatorSchema
-    ),
+    resolver: zodResolver(isConductor ? newAssigmentConductorSchema : newAssigmentCoordinatorSchema),
   });
 
   const onValidate: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema> = (data) => {
@@ -43,10 +42,14 @@ const Assignment = ({ currentUserRole }: AssignmentInterface) => {
   const handleSelectedLineFromChild = (data: LineInterface[] | []) => {
     setSelectedLine(data);
   };
+
   const assignment = useMutation({
-    mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema) => update(data),
-    onSuccess: (data) => {
-      console.log("success", data);
+    mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema) => {
+      console.log(data);
+      update(data);
+    },
+    onSuccess: () => {
+      console.log("success");
     },
   });
 
@@ -59,39 +62,32 @@ const Assignment = ({ currentUserRole }: AssignmentInterface) => {
       <PrimaryButton type="button" handleOnCLick={() => setToggleReassign(!toggleReassign)} customClass="px-3">
         Réasignations
       </PrimaryButton>
+
       {toggleReassign && (
         <div className="border rounded bg-slate-900 p-3 flex flex-col">
           <button onClick={() => setToggleReassign(false)} aria-label="Fermer" className="relative ">
             <XCircleIcon width={30} className="cursor-pointer absolute -top-7 -left-7" />
           </button>
+
           <form onSubmit={handleSubmit(onValidate)}>
-            {currentUserRole == UserRolesEnum.conductor ? (
-              <>
-                <SecondaryTitle customClass="mb-3 center">Sélectionnez une ligne puis un train</SecondaryTitle>
-                <LinesList
-                  register={register}
-                  type="radio"
-                  currentUserRole={currentUserRole}
-                  handleSelectedLineFromChild={handleSelectedLineFromChild}
-                  isAlerts={false}
-                  registerError={errors}
-                />
-                {selectedLine.length == 1 && (
-                  <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
-                )}
-              </>
-            ) : (
-              <>
-                <SecondaryTitle customClass="mb-3">Sélectionnez une ou plusieurs lignes</SecondaryTitle>
-                <LinesList
-                  register={register}
-                  type="checkbox"
-                  currentUserRole={currentUserRole}
-                  isAlerts={false}
-                  registerError={errors}
-                />
-              </>
-            )}
+            <>
+              <SecondaryTitle customClass="mb-3 center">
+                {isConductor ? "Sélectionnez une ligne puis un train" : "Sélectionnez une ou plusieurs lignes"}
+              </SecondaryTitle>
+
+              <LinesList
+                register={register}
+                type={isConductor ? "radio" : "checkbox"}
+                currentUserRole={currentUserRole}
+                handleSelectedLineFromChild={isConductor ? handleSelectedLineFromChild : () => null}
+                isAlerts={false}
+                registerError={errors}
+              />
+
+              {selectedLine.length == 1 && isConductor && (
+                <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
+              )}
+            </>
             <div className="w-full flex justify-center">
               <PrimaryButton customClass="w-50 mx-auto mt-5 px-5 py-2 text-center" type="submit">
                 Envoyer

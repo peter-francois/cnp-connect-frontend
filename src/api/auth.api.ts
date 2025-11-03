@@ -1,10 +1,5 @@
 import { useApi } from "../hooks/useApi";
 
-
-interface LoginResponceInterface {
-  accessToken: string;
-  refreshToken: string;
-}
 const api = useApi();
 
 interface SigninInterface {
@@ -12,28 +7,7 @@ interface SigninInterface {
   password: string;
 }
 
-// ici on envoie pass et email au back qui nous retourn un object avec data{accessToken , refreshToken} et message
-export const signin = async (email: string, password: string): Promise<LoginResponceInterface> => {
-  // axios.post
-  //if (!data) return message: "Connexion refusée"
-  //stockage des tokens dans les cookies
-  const users = await getUsers();
-  // @dev changé pour findbyemail
-  const user = users.find((item) => item.email === email);
-
-//   if (user && user.password == password) {
-//     return { status: true, message: "Connexion établie", authtoken: "fake-token", user: user.lastName };
-//   }
-//   return { status: false, message: "Connexion refusée" };
-// };
-
 export interface AuthResponse {
-  // user: {
-  //   id: string;
-  //   email: string;
-  //   firstName: string;
-  //   lastName: string;
-  // };
   data: {
     accessToken: string;
     refreshToken: string;
@@ -51,4 +25,4 @@ export const forgotPassword = async (email: string): Promise<void> => {
   const body = { email };
   await api.post("/auth/forgot-password", body);
   
-};
+}

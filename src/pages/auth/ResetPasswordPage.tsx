@@ -7,9 +7,8 @@ import { resetPasswordSchema, type UseFormResetPassword } from "../../types/form
 import { useState } from "react";
 import PopUp from "../../components/ui/PopUp";
 import { useMutation } from "@tanstack/react-query";
-import { forgotPassword } from "../../api/auth.api";
-import type { UserInterface } from "../../types/interfaces/UserInterface";
 import TextInput from "../../components/ui/TextInput";
+import {forgotPassword} from "../../api/auth.api";
 
 const ResetPasswordPage = () => {
   const [isValided, setIsValided] = useState(false);
@@ -34,7 +33,6 @@ const ResetPasswordPage = () => {
       setIsValided(true);
       // redirect vers /changer-mot-de-passe
     },
-    
   });
 
   return (

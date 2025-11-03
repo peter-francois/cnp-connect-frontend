@@ -7,6 +7,7 @@ import PrimaryButton from "../../components/ui/PrimaryButton";
 import Label from "../../components/ui/Label";
 import RadioInput from "../../components/ui/RadioInput";
 import ErrorMessage from "../../components/ui/ErrorMessage";
+import TextInput from "../../components/ui/TextInput";
 
 const UserCreatePage = () => {
   const {
@@ -29,7 +30,7 @@ const UserCreatePage = () => {
 
       <form className="authForm self-center" onSubmit={handleSubmit(onValidate)}>
         <div className="card-border px-7 py-5">
-          <Input
+          <TextInput
             id="lastname"
             label="Nom"
             type="text"
@@ -38,7 +39,7 @@ const UserCreatePage = () => {
             errors={errors}
             icon={<UserIcon width={20} />}
           />
-          <Input
+          <TextInput
             id="firstname"
             label="Prénom"
             type="text"
@@ -47,7 +48,7 @@ const UserCreatePage = () => {
             errors={errors}
             icon={<UserIcon width={20} />}
           />
-          <Input
+          <TextInput
             id="email"
             label="Email"
             type="email"

@@ -1,6 +1,8 @@
-import axios from "axios";
+import axios, { type AxiosResponse } from "axios";
 import { type UserInterface } from "../types/interfaces/UserInterface";
 import { UserRolesEnum } from "../types/enum/UserEnum";
+import type { UseFormNewAssigmentConductorSchema } from "../types/formSchema/newAssigmentConductorSchema";
+import type { UseFormAssigmentCoordinator } from "../types/formSchema/newAssigmentCoordinatorSchema";
 
 const url = "/data/user.json";
 
@@ -17,6 +19,17 @@ export const getUsersById = async (id: number): Promise<UserInterface> => {
   try {
     const users = await getUsers();
     const user = users.find((item) => item.id === id)!; // The ! is to force to return UserInterface
+    return user;
+  } catch {
+    throw new Error("Not found");
+  }
+};
+
+export const update = async (
+  data: UseFormNewAssigmentConductorSchema | UseFormAssigmentCoordinator
+): Promise<UserInterface> => {
+  try {
+    const user = await axios.patch<UserInterface>(url, data);
     return user;
   } catch {
     throw new Error("Not found");

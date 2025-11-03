@@ -6,22 +6,10 @@ import PrimaryButton from "../../components/ui/PrimaryButton";
 import Assignment from "../../components/user/Assignment";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
 import { useUserDetails } from "../../hooks/useUserDetails";
-// method => PATH
-// path => api/v1/users/:userId
-// method => GET
-// path => api/v1/users/:userId
-
-// -------
-// Comments:
-// Superviseur : peut sélectionner une ligne et attribuer un train disponible sur cette ligne à un conducteur.
-// Superviseur : peut sélectionner des lignes disponibles pour un coordinateur.
-// Coordinateur : peut sélectionner une ligne et attribuer un train disponible sur cette ligne à un conducteur.
-// Conducteur : peut voir la ligne et le train qui lui sont affectés.
-// Utilisateur connecté voir son profil et peut changer sa photo et son statut
 
 const UserDetailsPage = () => {
   const { id } = useParams();
-  const roleUserFromToken: UserRolesEnum = UserRolesEnum.coordinator;
+  const roleUserFromToken: UserRolesEnum = UserRolesEnum.supervisor;
   const { isPending, isError, data: currentUser, error } = useUserDetails(Number(id));
 
   if (isPending) {

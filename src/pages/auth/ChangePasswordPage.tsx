@@ -2,10 +2,11 @@ import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
-import Input from "../../components/ui/Input";
+
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
 import { changePasswordSchema, type UseForm } from "../../types/formSchema/changePasswordSchema";
+import TextInput from "../../components/ui/TextInput";
 
 const ChangePasswordPage = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const ChangePasswordPage = () => {
 
       <form className="authForm" onSubmit={handleSubmit(onValidate)}>
         <div className="card-border px-7 py-5">
-          <Input
+          <TextInput
             id="newPassword"
             label="Nouveau mot de passe"
             type="password"
@@ -37,7 +38,7 @@ const ChangePasswordPage = () => {
             icon={<LockClosedIcon width={20} />}
           />
 
-          <Input
+          <TextInput
             id="confirmPassword"
             label="Confirmer mot de passe"
             type="password"

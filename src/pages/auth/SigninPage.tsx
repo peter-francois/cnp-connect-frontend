@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
-import Input from "../../components/ui/Input";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import PopUp from "../../components/ui/PopUp";
 import type { SigninInterface } from "../../types/interfaces/SignInterface";
 import { signin } from "../../api/auth.api";
 import { signinSchema } from "../../types/formSchema/signinSchema";
+import TextInput from "../../components/ui/TextInput";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const SigninPage = () => {
       <PrimaryTitle>Connexion</PrimaryTitle>
       <form onSubmit={handleSubmit(sendDataToBack)} className="authForm">
         <div className="card-border px-7 py-5">
-          <Input
+          <TextInput
             id="email"
             type="email"
             label="Email"
@@ -54,7 +54,7 @@ const SigninPage = () => {
             icon={<EnvelopeIcon width={20} />}
           />
           <div className="mb-5">
-            <Input
+            <TextInput
               id="password"
               type="password"
               label="Mot de passe"
@@ -70,11 +70,7 @@ const SigninPage = () => {
           </div>
         </div>
 
-        {isError && (
-          <PopUp>
-            L'email et/ou le mot de passe est incorrect !
-          </PopUp>
-        )}
+        {isError && <PopUp>L'email et/ou le mot de passe est incorrect !</PopUp>}
         {isPending && <p>Connection...</p>}
         <PrimaryButton type="submit">Se connecter</PrimaryButton>
       </form>

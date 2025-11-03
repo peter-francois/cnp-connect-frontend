@@ -4,14 +4,8 @@ import PrimaryButton from "../ui/PrimaryButton";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
 import type { LineInterface } from "../../types/interfaces/LineInterface";
 import { useState } from "react";
-//import { useEffect, useState } from "react";
-//import { getLines } from "../../api/line.api";
-import { useForm, useWatch, type SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-//import { useLinesList } from "../../hooks/useLinesList";
-//import Line from "../alert/Line";
-import LinesList from "../alert/LinesList";
-//import { newAssigmentSchema } from "../../types/formSchema/newAssigmentSchema";
 import {
   newAssigmentCoordinatorSchema,
   type UseFormAssigmentCoordinator,
@@ -20,6 +14,10 @@ import {
   newAssigmentConductorSchema,
   type UseFormNewAssigmentConductorSchema,
 } from "../../types/formSchema/newAssigmentConductorSchema";
+import { useMutation } from "@tanstack/react-query";
+import { update } from "../../api/user.api";
+import LinesList from "../ui/LinesList";
+import TrainsList from "../ui/TrainsList";
 
 interface AssignmentInterface {
   currentUserRole: UserRolesEnum;
@@ -28,34 +26,29 @@ interface AssignmentInterface {
 const Assignment = ({ currentUserRole }: AssignmentInterface) => {
   const [toggleReassign, setToggleReassign] = useState(false);
   const [selectedLine, setSelectedLine] = useState<LineInterface[]>([]);
-  console.log("🚀 ~ Assignment.tsx:31 ~ Assignment ~ selectedLine:", selectedLine)
   const {
-    register: coordinatorRegister,
+    register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(
-      currentUserRole == UserRolesEnum.conductor ? newAssigmentCoordinatorSchema : newAssigmentConductorSchema
+      currentUserRole === UserRolesEnum.conductor ? newAssigmentConductorSchema : newAssigmentCoordinatorSchema
     ),
   });
 
   const onValidate: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema> = (data) => {
-    console.log(data);
+    assignment.mutate(data);
   };
-
-  // const {
-  //   register: driverRegister,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: zodResolver(newAssigmentDriverSchema),
-  // });
 
   const handleSelectedLineFromChild = (data: LineInterface[] | []) => {
     setSelectedLine(data);
   };
+  const assignment = useMutation({
+    mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema) => update(data),
+    onSuccess: (data) => {
+      console.log("success", data);
+    },
+  });
 
   if (currentUserRole === UserRolesEnum.supervisor) {
     return null;
@@ -68,7 +61,6 @@ const Assignment = ({ currentUserRole }: AssignmentInterface) => {
       </PrimaryButton>
       {toggleReassign && (
         <div className="border rounded bg-slate-900 p-3 flex flex-col">
-          {/* ici ce doit étre une form car je vais envoyé les donné au back useform et zod */}
           <button onClick={() => setToggleReassign(false)} aria-label="Fermer" className="relative ">
             <XCircleIcon width={30} className="cursor-pointer absolute -top-7 -left-7" />
           </button>
@@ -77,17 +69,27 @@ const Assignment = ({ currentUserRole }: AssignmentInterface) => {
               <>
                 <SecondaryTitle customClass="mb-3 center">Sélectionnez une ligne puis un train</SecondaryTitle>
                 <LinesList
-                  register={coordinatorRegister}
+                  register={register}
                   type="radio"
                   currentUserRole={currentUserRole}
                   handleSelectedLineFromChild={handleSelectedLineFromChild}
+                  isAlerts={false}
+                  registerError={errors}
                 />
-                {selectedLine.length == 1 && <p>hello</p>}
+                {selectedLine.length == 1 && (
+                  <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
+                )}
               </>
             ) : (
               <>
                 <SecondaryTitle customClass="mb-3">Sélectionnez une ou plusieurs lignes</SecondaryTitle>
-                <LinesList register={coordinatorRegister} type="checkbox" currentUserRole={currentUserRole} />
+                <LinesList
+                  register={register}
+                  type="checkbox"
+                  currentUserRole={currentUserRole}
+                  isAlerts={false}
+                  registerError={errors}
+                />
               </>
             )}
             <div className="w-full flex justify-center">

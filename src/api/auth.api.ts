@@ -13,6 +13,7 @@ export const signin = async (email: string, password: string): Promise<LoginResp
   //if (!data) return message: "Connexion refusée"
   //stockage des tokens dans les cookies
   const users = await getUsers();
+  // @dev changé pour findbyemail
   const user = users.find((item) => item.email === email);
 
   if (user && user.password == password) {

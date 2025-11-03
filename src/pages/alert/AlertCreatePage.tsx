@@ -1,4 +1,3 @@
-import LinesList from "../../components/alert/LinesList";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import Textarea from "../../components/ui/Textarea";
 import PrimaryButton from "../../components/ui/PrimaryButton";
@@ -9,9 +8,12 @@ import Priority from "../../components/alert/Priority";
 import { useMutation } from "@tanstack/react-query";
 import type { AlertInterface } from "../../types/interfaces/AlertInterface";
 import { addAlert } from "../../api/alert.api";
+import { UserRolesEnum } from "../../types/enum/UserEnum";
+import LinesList from "../../components/ui/LinesList";
 
 const AlerCreatetPage = () => {
   const navigate = useNavigate();
+  const currentUserRole: UserRolesEnum = UserRolesEnum.conductor;
   const {
     register,
     handleSubmit,
@@ -70,7 +72,13 @@ const AlerCreatetPage = () => {
           isSelected={selectedPriority === "urgent"}
         />
       </div>
-      <LinesList register={register} type="checkbox" />
+      <LinesList
+        register={register}
+        type="checkbox"
+        currentUserRole={currentUserRole}
+        isAlerts={true}
+        registerError={errors}
+      />
       <div className="w-full flex justify-center">
         <PrimaryButton customClass="w-50 mx-auto mt-5 px-5 py-2 text-center" type="submit">
           Envoyer

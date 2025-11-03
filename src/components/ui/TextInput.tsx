@@ -9,10 +9,10 @@ interface InputInterface {
   errors?: FieldErrors;
   customClass?: string;
   icon?: ReactNode;
-  register: UseFormRegister<any>; // @dev find right type '--'
+  register: UseFormRegister<any>;
 }
 
-const Input = ({ id, type, placeholder, label, errors, customClass, icon, register }: InputInterface) => {
+const TextInput = ({ id, type, placeholder, label, errors, customClass, icon, register }: InputInterface) => {
   return (
     // @dev div in parent page - input, label, errors in different components cnp-167
     <div className={`flex flex-col items-start gap-2 my-5 ${customClass} ${icon && "relative"}`}>
@@ -34,4 +34,4 @@ const Input = ({ id, type, placeholder, label, errors, customClass, icon, regist
   );
 };
 
-export default Input;
+export default TextInput;

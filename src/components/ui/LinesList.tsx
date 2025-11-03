@@ -1,0 +1,90 @@
+import { useState } from "react";
+import type { LineInterface } from "../../types/interfaces/LineInterface";
+import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { useLinesList } from "../../hooks/useLinesList";
+import { UserRolesEnum } from "../../types/enum/UserEnum";
+import SelectableInput from "../ui/SelectableInput";
+
+interface LinesListInterface {
+  register: UseFormRegister<any>; // @dev find right type '--'
+  type: string; // @dev enum
+  currentUserRole?: UserRolesEnum;
+  handleSelectedLineFromChild?: (data: LineInterface[] | []) => void | null;
+  isAlerts: boolean;
+  registerError: FieldErrors;
+}
+
+const LinesList = ({
+  register,
+  type,
+  currentUserRole,
+  handleSelectedLineFromChild,
+  isAlerts,
+  registerError,
+}: LinesListInterface) => {
+  const [selectLines, setSelectLines] = useState<LineInterface[]>([]);
+  const { isPending, isError, data, error: fetchError } = useLinesList();
+  // const { data: trains } = useTrainsList();
+
+  const handleSelectLines = (line: LineInterface) => {
+    if (!selectLines.some((item) => item.id === line.id)) {
+      if (currentUserRole != UserRolesEnum.conductor) {
+        setSelectLines((prev) => [...prev, line]);
+      } else {
+        setSelectLines([line]);
+        if (handleSelectedLineFromChild) handleSelectedLineFromChild([line]);
+      }
+    } else {
+      if (currentUserRole != UserRolesEnum.conductor) {
+        setSelectLines((prev) => prev.filter((item) => item.id !== line.id));
+        if (handleSelectedLineFromChild) handleSelectedLineFromChild([]);
+      } else {
+        setSelectLines([]);
+      }
+    }
+  };
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {fetchError.message}</span>;
+  }
+
+  return (
+    <>
+      {isAlerts && currentUserRole != UserRolesEnum.conductor && (
+        <div className="flex gap-2">
+          <button
+            type="button"
+            className="border border-indigo-600 cursor-pointer rounded-2xl py-2 px-3 my-3 text-center hover:bg-indigo-400 hover:text-gray-900 active:text-gray-900 active:bg-indigo-400"
+            onClick={() => (selectLines.length === data.length ? setSelectLines([]) : setSelectLines(data))}
+          >
+            {selectLines.length === data.length ? "Tout désélectionner" : "Tout sélectionner"}
+          </button>
+        </div>
+      )}
+
+      <div className="card-border justify-around relative grid grid-flow-col grid-rows-3 gap-y-7 gap-x-2 p-5">
+        {data.map((line) => (
+          <SelectableInput
+            key={line.id}
+            label="lines"
+            data={line}
+            onClick={() => handleSelectLines(line)}
+            isSelected={selectLines.some((item) => item.id === line.id)}
+            register={register}
+            type={type}
+            customClass="size-10"
+          />
+        ))}
+      </div>
+      {registerError && registerError["lines"] && (
+        <p className="text-red-500 text-sm ml-1">{registerError["lines"].message as string}</p>
+      )}
+    </>
+  );
+};
+
+export default LinesList;

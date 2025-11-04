@@ -4,6 +4,7 @@ import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { useLinesList } from "../../hooks/useLinesList";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
 import SelectableInput from "../ui/SelectableInput";
+import ErrorMessage from "./ErrorMessage";
 
 interface LinesListInterface {
   register: UseFormRegister<any>; // @dev find right type '--'
@@ -28,20 +29,22 @@ const LinesList = ({
   const { isPending, isError, data, error: fetchError } = useLinesList();
 
   const handleSelectLines = (line: LineInterface) => {
-    if (!selectLines.some((item) => item.id === line.id)) {
-      if (selectedUserRole != UserRolesEnum.conductor) {
-        setSelectLines((prev) => [...prev, line]);
-      } else {
-        setSelectLines([line]);
-        if (handleSelectedLineFromChild) handleSelectedLineFromChild([line]);
+    const isAlreadySelected = selectLines.some((item) => item.id === line.id);
+    const isDriver = selectedUserRole === UserRolesEnum.DRIVER;
+
+    if (isDriver) {
+      const newSelection = isAlreadySelected ? [] : [line];
+      setSelectLines(newSelection);
+      if (!isAlreadySelected && handleSelectedLineFromChild) {
+        handleSelectedLineFromChild(newSelection);
       }
+      return;
+    }
+
+    if (isAlreadySelected) {
+      setSelectLines((prev) => prev.filter((item) => item.id !== line.id));
     } else {
-      if (selectedUserRole != UserRolesEnum.conductor) {
-        setSelectLines((prev) => prev.filter((item) => item.id !== line.id));
-        if (handleSelectedLineFromChild) handleSelectedLineFromChild([]);
-      } else {
-        setSelectLines([]);
-      }
+      setSelectLines((prev) => [...prev, line]);
     }
   };
 
@@ -55,7 +58,8 @@ const LinesList = ({
 
   return (
     <>
-      {isAlerts && authenticateUserRole == UserRolesEnum.conductor && (
+      {isAlerts && authenticateUserRole == UserRolesEnum.DRIVER && (
+        // @dev créé un boutton selectAll générique
         <div className="flex gap-2">
           <button
             type="button"
@@ -81,9 +85,8 @@ const LinesList = ({
           />
         ))}
       </div>
-      {registerError && registerError["lines"] && (
-        <p className="text-red-500 text-sm ml-1">{registerError["lines"].message as string}</p>
-      )}
+      
+      <ErrorMessage id="lines" errors={registerError} />
     </>
   );
 };

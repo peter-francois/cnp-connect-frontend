@@ -11,9 +11,9 @@ import {
   type UseFormAssigmentCoordinator,
 } from "../../types/formSchema/newAssigmentCoordinatorSchema";
 import {
-  newAssigmentConductorSchema,
-  type UseFormNewAssigmentConductorSchema,
-} from "../../types/formSchema/newAssigmentConductorSchema";
+  newAssigmentDriverSchema,
+  type UseFormNewAssigmentDriverSchema,
+} from "../../types/formSchema/newAssigmentDriverSchema";
 import { useMutation } from "@tanstack/react-query";
 import { update } from "../../api/user.api";
 import LinesList from "../ui/LinesList";
@@ -27,16 +27,17 @@ interface AssignmentInterface {
 const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterface) => {
   const [toggleReassign, setToggleReassign] = useState(false);
   const [selectedLine, setSelectedLine] = useState<LineInterface[]>([]);
-  const isConductor: boolean = selectedUserRole === UserRolesEnum.conductor;
+  const isDriver: boolean = selectedUserRole === UserRolesEnum.DRIVER;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(isConductor ? newAssigmentConductorSchema : newAssigmentCoordinatorSchema),
+    resolver: zodResolver(isDriver ? newAssigmentDriverSchema : newAssigmentCoordinatorSchema),
   });
 
-  const onValidate: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema> = (data) => {
+  const onValidate: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema> = (data) => {
     assignment.mutate(data);
   };
 
@@ -45,7 +46,7 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
   };
 
   const assignment = useMutation({
-    mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentConductorSchema) => {
+    mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema) => {
       console.log(data);
       update(data);
     },
@@ -54,40 +55,52 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
     },
   });
 
-  if (selectedUserRole === UserRolesEnum.supervisor) return null;
+  const toogleAssignment = () => {
+    if (toggleReassign) {
+      setToggleReassign(false);
+      setSelectedLine([]);
+      reset();
+    }
+    setToggleReassign(!toggleReassign);
+  };
+
+  if (selectedUserRole === UserRolesEnum.SUPERVISOR) return null;
 
   return (
     <>
-      <PrimaryButton type="button" handleOnCLick={() => setToggleReassign(!toggleReassign)} customClass="px-3">
+      <PrimaryButton type="button" handleOnCLick={() => toogleAssignment()} customClass="px-3">
         Réasignations
       </PrimaryButton>
 
       {toggleReassign && (
         <div className="border rounded bg-slate-900 p-3 flex flex-col">
-          <button onClick={() => setToggleReassign(false)} aria-label="Fermer" className="relative ">
+          {/* @dev changé pour le close boutton de Nico */}
+          <button onClick={() => toogleAssignment()} aria-label="Fermer" className="relative ">
             <XCircleIcon width={30} className="cursor-pointer absolute -top-7 -left-7" />
           </button>
 
           <form onSubmit={handleSubmit(onValidate)}>
-            <>
               <SecondaryTitle customClass="mb-3 center">
-                {isConductor ? "Sélectionnez une ligne puis un train" : "Sélectionnez une ou plusieurs lignes"}
+                {isDriver ? "Sélectionnez une ligne" : "Sélectionnez une ou plusieurs lignes"}
               </SecondaryTitle>
 
               <LinesList
                 register={register}
-                type={isConductor ? "radio" : "checkbox"}
+                type={isDriver ? "radio" : "checkbox"}
                 authenticateUserRole={authenticateUserRole}
                 selectedUserRole={selectedUserRole}
-                handleSelectedLineFromChild={isConductor ? handleSelectedLineFromChild : () => null}
+                handleSelectedLineFromChild={isDriver ? handleSelectedLineFromChild : () => null}
                 isAlerts={false}
                 registerError={errors}
               />
 
-              {selectedLine.length == 1 && isConductor && (
-                <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
+              {selectedLine.length == 1 && isDriver && (
+                <>
+                  <SecondaryTitle customClass="my-3 center">Sélectionnez un train</SecondaryTitle>
+                  <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
+                </>
               )}
-            </>
+
             <div className="w-full flex justify-center">
               <PrimaryButton customClass="w-50 mx-auto mt-5 px-5 py-2 text-center" type="submit">
                 Envoyer

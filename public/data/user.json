@@ -10,7 +10,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": true,
-    "role": "supervisor",
+    "role": "SUPERVISOR",
     "lignesId": [1, 2],
     "trainsId": null
   },
@@ -25,7 +25,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": true,
-    "role": "supervisor",
+    "role": "SUPERVISOR",
     "lignesId": [3],
     "trainsId": null
   },
@@ -40,7 +40,7 @@
     "isConnected": true,
     "isAvailable": false,
     "isActif": true,
-    "role": "coordinator",
+    "role": "COORDINATOR",
     "lignesId": [1],
     "trainsId": null
   },
@@ -55,7 +55,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": true,
-    "role": "coordinator",
+    "role": "COORDINATOR",
     "lignesId": [2, 4],
     "trainsId": null
   },
@@ -70,7 +70,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": false,
-    "role": "coordinator",
+    "role": "COORDINATOR",
     "lignesId": [3],
     "trainsId": null
   },
@@ -85,7 +85,7 @@
     "isConnected": false,
     "isAvailable": false,
     "isActif": true,
-    "role": "coordinator",
+    "role": "COORDINATOR",
     "lignesId": [1, 5],
     "trainsId": null
   },
@@ -100,7 +100,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": true,
-    "role": "coordinator",
+    "role": "COORDINATOR",
     "lignesId": [2],
     "trainsId": null
   },
@@ -115,7 +115,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 101
   },
@@ -130,7 +130,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": false,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 102
   },
@@ -145,7 +145,7 @@
     "isConnected": true,
     "isAvailable": false,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 103
   },
@@ -160,7 +160,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 106
   },
@@ -175,7 +175,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": false,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 107
   },
@@ -190,7 +190,7 @@
     "isConnected": false,
     "isAvailable": false,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 108
   },
@@ -205,7 +205,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 109
   },
@@ -220,7 +220,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 110
   },
@@ -235,7 +235,7 @@
     "isConnected": true,
     "isAvailable": false,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 111
   },
@@ -250,7 +250,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 112
   },
@@ -265,7 +265,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 113
   },
@@ -280,7 +280,7 @@
     "isConnected": false,
     "isAvailable": false,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 114
   },
@@ -295,7 +295,7 @@
     "isConnected": true,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 115
   },
@@ -310,7 +310,7 @@
     "isConnected": false,
     "isAvailable": true,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 104
   },
@@ -325,7 +325,7 @@
     "isConnected": true,
     "isAvailable": false,
     "isActif": true,
-    "role": "conductor",
+    "role": "DRIVER",
     "lignesId": null,
     "trainsId": 105
   }

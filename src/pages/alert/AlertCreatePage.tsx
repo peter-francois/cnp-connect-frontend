@@ -13,7 +13,7 @@ import LinesList from "../../components/ui/LinesList";
 
 const AlerCreatetPage = () => {
   const navigate = useNavigate();
-  const currentUserRole: UserRolesEnum = UserRolesEnum.conductor;
+  const currentUserRole: UserRolesEnum = UserRolesEnum.DRIVER;
   const {
     register,
     handleSubmit,

@@ -1,7 +1,7 @@
 import axios, { type AxiosResponse } from "axios";
 import { type UserInterface } from "../types/interfaces/UserInterface";
 import { UserRolesEnum } from "../types/enum/UserEnum";
-import type { UseFormNewAssigmentDriverSchema } from "../types/formSchema/newAssigmentConductorSchema";
+import type { UseFormNewAssigmentConductorSchema } from "../types/formSchema/newAssigmentConductorSchema";
 import type { UseFormAssigmentCoordinator } from "../types/formSchema/newAssigmentCoordinatorSchema";
 
 const url = "/data/user.json";
@@ -26,7 +26,7 @@ export const getUsersById = async (id: number): Promise<UserInterface> => {
 };
 
 export const update = async (
-  data: UseFormNewAssigmentDriverSchema | UseFormAssigmentCoordinator
+  data: UseFormNewAssigmentConductorSchema | UseFormAssigmentCoordinator
 ): Promise<UserInterface> => {
   try {
     const user = await axios.patch<UserInterface>(url, data);
@@ -49,7 +49,7 @@ export const addUser = async (): Promise<UserInterface[]> => {
     isConnected: true,
     isAvailable: true,
     isActif: false,
-    role: UserRolesEnum.SUPERVISOR,
+    role: UserRolesEnum.supervisor,
     lignesId: [1, 2],
     trainsId: 1,
   };

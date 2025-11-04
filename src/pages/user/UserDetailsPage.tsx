@@ -9,9 +9,8 @@ import { useUserDetails } from "../../hooks/useUserDetails";
 
 const UserDetailsPage = () => {
   const { id } = useParams();
-  const authenticateUserRole: UserRolesEnum = UserRolesEnum.SUPERVISOR;
+  const authenticateUserRole: UserRolesEnum = UserRolesEnum.supervisor;
   const { isPending, isError, data: selectedUser, error } = useUserDetails(Number(id));
-
   if (isPending) {
     return <span>Loading...</span>;
   }
@@ -37,6 +36,7 @@ const UserDetailsPage = () => {
 
         <ul>
           <UserField label="Nom" value={selectedUser.firstName} />
+          {/* @dev faire le changement de Supervisor a superviseur */}
           <UserField label="Rôle" value={selectedUser.role.charAt(0).toUpperCase() + selectedUser.role.slice(1)} />
           <UserField
             label="Date d'embauche"
@@ -78,7 +78,7 @@ const UserDetailsPage = () => {
       </section>
 
       <div className="flex flex-col gap-6 my-4 mx-auto">
-        {authenticateUserRole != UserRolesEnum.DRIVER && (
+        {authenticateUserRole != UserRolesEnum.conductor && (
           <Assignment selectedUserRole={selectedUser.role} authenticateUserRole={authenticateUserRole} />
         )}
 

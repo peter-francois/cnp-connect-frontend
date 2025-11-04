@@ -1,5 +1,5 @@
 export enum UserRolesEnum {
-  SUPERVISOR = "SUPERVISOR",
-  COORDINATOR = "COORDINATOR",
-  DRIVER = "DRIVER",
+  supervisor = "supervisor",
+  coordinator = "coordinator",
+  conductor = "conductor",
 }

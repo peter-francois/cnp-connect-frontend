@@ -40,7 +40,9 @@ const SigninPage = () => {
 
   const sendDataToBack = (data: SigninInterface): void => {
     const email = data.email;
+    console.log("🚀 ~ SigninPage.tsx:43 ~ sendDataToBack ~ email:", email);
     const password = data.password;
+    console.log("🚀 ~ SigninPage.tsx:45 ~ sendDataToBack ~ password:", password);
     mutate({ email, password });
   };
 

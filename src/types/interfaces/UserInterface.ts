@@ -1,17 +1,18 @@
 import type { UserRolesEnum } from "../enum/UserEnum";
+import type { AssignedLineInterface } from "./AssignedLine";
+import type { AssignedTrain } from "./AssignedTrain";
 
 export interface UserInterface {
   id: number;
   email: string;
-  password: string;
   firstName: string;
   lastName: string;
-  avatar_url?: string;
-  hiringAt: Date;
+  avatarUrl?: string;
+  hiredAt: Date;
   isConnected: boolean;
   isAvailable: boolean;
   isActif: boolean;
   role: UserRolesEnum;
-  lignesId?: number[];
-  trainsId?: number;
+  assignedLines?: AssignedLineInterface[];
+  assignedTrains?: AssignedTrain[];
 }

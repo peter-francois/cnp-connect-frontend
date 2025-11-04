@@ -3,8 +3,10 @@ import { type UserInterface } from "../types/interfaces/UserInterface";
 import { UserRolesEnum } from "../types/enum/UserEnum";
 import type { UseFormNewAssigmentDriverSchema } from "../types/formSchema/newAssigmentConductorSchema";
 import type { UseFormAssigmentCoordinator } from "../types/formSchema/newAssigmentCoordinatorSchema";
+import { useApi } from "../hooks/useApi";
 
 const url = "/data/user.json";
+const api = useApi();
 
 export const getUsers = async (): Promise<UserInterface[]> => {
   try {
@@ -15,14 +17,9 @@ export const getUsers = async (): Promise<UserInterface[]> => {
   }
 };
 
-export const getUsersById = async (id: number): Promise<UserInterface> => {
-  try {
-    const users = await getUsers();
-    const user = users.find((item) => item.id === id)!; // The ! is to force to return UserInterface
-    return user;
-  } catch {
-    throw new Error("Not found");
-  }
+export const getUsersById = async (id: string): Promise<UserInterface> => {
+  const { data } = await api.get<UserInterface>(`/users/${id}`);
+  return data;
 };
 
 export const update = async (
@@ -44,7 +41,7 @@ export const addUser = async (): Promise<UserInterface[]> => {
     password: "Password123!",
     firstName: "Claire",
     lastName: "Royer",
-    avatar_url: "https://randomuser.me/api/portraits/women/1.jpg",
+    avatarUrl: "https://randomuser.me/api/portraits/women/1.jpg",
     hiringAt: new Date(),
     isConnected: true,
     isAvailable: true,

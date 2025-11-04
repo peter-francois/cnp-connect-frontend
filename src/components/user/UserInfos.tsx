@@ -10,7 +10,7 @@ import SecondaryTitle from "../ui/SecondaryTitle";
 interface UserPropsInterface {
   userData: UserInterface;
   currentUser: number | undefined;
-  setCurrentUser: React.Dispatch<React.SetStateAction<number | undefined>>
+  setCurrentUser: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
 const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => {
@@ -23,7 +23,7 @@ const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface
         onClick={() => setCurrentUser(currentUser === userData.id ? undefined : userData.id)}
       >
         <div className="flex items-center gap-4">
-          <img className="rounded-full w-10" src={userData.avatar_url} alt={userData.lastName} />
+          <img className="rounded-full w-10" src={userData.avatarUrl} alt={userData.lastName} />
           <span>
             {userData.firstName} {userData.lastName}
           </span>
@@ -34,7 +34,7 @@ const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface
         {currentUser == userData.id && (
           <div className="absolute border rounded w-full bg-indigo-600  top-11 left-0 z-20 p-3 flex justify-between">
             <CloseButton onClose={() => setCurrentUser(undefined)} />
-              
+
             <div className="flex">
               <SecondaryTitle>Statut:</SecondaryTitle>
               <StatusIsConnected status={userData.isConnected} />

@@ -10,7 +10,24 @@ import { useUserDetails } from "../../hooks/useUserDetails";
 const UserDetailsPage = () => {
   const { id } = useParams();
   const authenticateUserRole: UserRolesEnum = UserRolesEnum.SUPERVISOR;
-  const { isPending, isError, data: selectedUser, error } = useUserDetails(Number(id));
+  const frenchRole = () => {
+    switch (selectedUser?.role) {
+      case UserRolesEnum.SUPERVISOR:
+        return "Superviseur";
+
+      case UserRolesEnum.COORDINATOR:
+        return "Coordinateur";
+
+      case UserRolesEnum.DRIVER:
+        return "Conducteur";
+
+      default:
+        return "";
+    }
+  };
+
+  const { isPending, isError, data: selectedUser, error } = useUserDetails(String(id));
+  const isNotSupervisor = selectedUser?.role !== UserRolesEnum.SUPERVISOR;
 
   if (isPending) {
     return <span>Loading...</span>;
@@ -18,6 +35,7 @@ const UserDetailsPage = () => {
 
   if (isError) {
     return <span>Error: {error.message}</span>;
+    // @dev notFound page?? ou ce sera géré avec le useApi?
   }
 
   return selectedUser ? (
@@ -26,7 +44,7 @@ const UserDetailsPage = () => {
         <div className="flex flex-col gap-3">
           <img
             className="rounded-full shadow-xl shadow-neutral-100/15"
-            src={selectedUser.avatar_url}
+            src={selectedUser.avatarUrl}
             alt={selectedUser.firstName}
           />
           {/* @dev input type file pour l'ajout de la nouvelle photo */}
@@ -37,10 +55,11 @@ const UserDetailsPage = () => {
 
         <ul>
           <UserField label="Nom" value={selectedUser.firstName} />
-          <UserField label="Rôle" value={selectedUser.role.charAt(0).toUpperCase() + selectedUser.role.slice(1)} />
+          <UserField label="Prenom" value={selectedUser.lastName} />
+          <UserField label="Rôle" value={frenchRole()} />
           <UserField
             label="Date d'embauche"
-            value={new Date(selectedUser.hiringAt).toLocaleDateString("fr-FR", {
+            value={new Date(selectedUser.hiredAt).toLocaleDateString("fr-FR", {
               day: "2-digit",
               month: "2-digit",
               year: "numeric",
@@ -65,15 +84,22 @@ const UserDetailsPage = () => {
             <UserField label="Statut" value={selectedUser.isConnected ? "Connecté" : "Non connecté"} />
             <StatusIsConnected customClass="mt-7 ml-5" status={selectedUser.isConnected} />
           </div>
-
-          <UserField
-            label="Affectation"
-            value={
-              selectedUser.lignesId
-                ? `Ligne${selectedUser.lignesId.length == 1 ? "" : "s"} ${selectedUser.lignesId.join(", ")}`
-                : `Train ${selectedUser.trainsId}`
-            }
-          />
+          <div className="flex gap-10">
+            {isNotSupervisor && selectedUser.assignedLines && (
+              <UserField
+                label="Lines"
+                value={selectedUser.assignedLines.map((assignedLine) => assignedLine.line.name).join(", ")}
+                customClass="flex gap-3"
+              />
+            )}
+            {isNotSupervisor && selectedUser.assignedTrains && (
+              <UserField
+                label="Train"
+                value={selectedUser.assignedTrains.map((assignedTrain) => assignedTrain.train.name).join(", ")}
+                customClass="flex gap-3"
+              />
+            )}
+          </div>
         </ul>
       </section>
 

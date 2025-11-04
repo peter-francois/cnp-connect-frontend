@@ -1,8 +1,8 @@
-import axios, { type AxiosResponse } from "axios";
+import axios from "axios";
 import { type UserInterface } from "../types/interfaces/UserInterface";
 import { UserRolesEnum } from "../types/enum/UserEnum";
-import type { UseFormNewAssigmentDriverSchema } from "../types/formSchema/newAssigmentConductorSchema";
 import type { UseFormAssigmentCoordinator } from "../types/formSchema/newAssigmentCoordinatorSchema";
+import type { UseFormNewAssigmentDriverSchema } from "../types/formSchema/newAssigmentDriverSchema";
 
 const url = "/data/user.json";
 

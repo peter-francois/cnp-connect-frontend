@@ -1,18 +1,15 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import PrimaryTitle from "../../components/ui/PrimaryTitle";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router";
+
 import PrimaryButton from "../../components/ui/PrimaryButton";
+import PrimaryTitle from "../../components/ui/PrimaryTitle";
 import { resetPasswordSchema, type UseFormResetPassword } from "../../types/formSchema/resetPasswordSchema";
-import { useState } from "react";
-import PopUp from "../../components/ui/PopUp";
-import { useMutation } from "@tanstack/react-query";
 import TextInput from "../../components/ui/TextInput";
-import {forgotPassword} from "../../api/auth.api";
 
 const ResetPasswordPage = () => {
-  const [isValided, setIsValided] = useState(false);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,46 +18,38 @@ const ResetPasswordPage = () => {
     resolver: zodResolver(resetPasswordSchema),
   });
 
-  const onValidate: SubmitHandler<UseFormResetPassword> = async (data) => {
-    // @dev ici on va envoyé en post l'adresse email dans le back,
-    createMutation.mutate(data);
+  const onValidate: SubmitHandler<UseFormResetPassword> = (data) => {
+    if (data.newPassword === data.confirmPassword) navigate("/signin");
   };
-  const createMutation = useMutation({
-    mutationFn: (data: UseFormResetPassword) => forgotPassword(data.email),
-
-    onSettled: () => {
-      //  on affiche la popup pour l'utilisateur puis tempo 5s et
-      setIsValided(true);
-      // redirect vers /changer-mot-de-passe
-    },
-  });
 
   return (
     <>
-      <PrimaryTitle>Réinitialiser mot de passe</PrimaryTitle>
+      <PrimaryTitle>Changer le mot de passe</PrimaryTitle>
 
       <form className="authForm" onSubmit={handleSubmit(onValidate)}>
-        <div className="card-border relative px-7 py-5">
+        <div className="card-border px-7 py-5">
           <TextInput
-            label="Email"
-            id="email"
-            type="email"
-            placeholder="Veuillez rentrer votre email..."
+            id="newPassword"
+            label="Nouveau mot de passe"
+            type="password"
+            placeholder="Nouveau mot de passe..."
             register={register}
             errors={errors}
-            icon={<EnvelopeIcon width={20} />}
+            icon={<LockClosedIcon width={20} />}
+          />
+
+          <TextInput
+            id="confirmPassword"
+            label="Confirmer mot de passe"
+            type="password"
+            placeholder="Confirmer mot de passe..."
+            register={register}
+            errors={errors}
+            icon={<LockClosedIcon width={20} />}
           />
         </div>
 
-        {isValided && (
-          <PopUp customClass="flex-col">
-            <p className="w-full">
-              Si vous avez un compte, un e-mail de réinitialisation de mot de passe a été envoyé.
-            </p>
-          </PopUp>
-        )}
-
-        <PrimaryButton type="submit">Envoyer</PrimaryButton>
+        <PrimaryButton type="submit">Confirmer</PrimaryButton>
       </form>
     </>
   );

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  type SafeUserResponseWithLinesAndTrainsInterface,
+  type SafeUserWithLinesAndTrainsInterface,
   type SafeUserInterface,
   type createUserInterface,
 } from "../types/interfaces/UserInterface";
@@ -11,17 +11,17 @@ import { axiosClient } from "../utils/axiosClient";
 const url = "/data/user.json";
 const api = axiosClient();
 
-export const getUsers = async (): Promise<SafeUserResponseWithLinesAndTrainsInterface[]> => {
+export const getUsers = async (): Promise<SafeUserWithLinesAndTrainsInterface[]> => {
   try {
-    const res = await axios.get<SafeUserResponseWithLinesAndTrainsInterface[]>(url);
+    const res = await axios.get<SafeUserWithLinesAndTrainsInterface[]>(url);
     return res.data;
   } catch {
     throw new Error("Not found");
   }
 };
 
-export const getUsersById = async (id: string): Promise<SafeUserInterface> => {
-  const { data } = await api.get<SafeUserInterface>(`/users/${id}`);
+export const getUsersById = async (id: string): Promise<SafeUserWithLinesAndTrainsInterface> => {
+  const { data } = await api.get<SafeUserWithLinesAndTrainsInterface>(`/users/${id}`);
   return data;
 };
 

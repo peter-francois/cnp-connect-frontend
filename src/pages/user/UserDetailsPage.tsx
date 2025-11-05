@@ -10,6 +10,9 @@ import { useUserDetails } from "../../hooks/useUserDetails";
 const UserDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const authenticateUserRole: UserRolesEnum = UserRolesEnum.SUPERVISOR;
+  const { isPending, isError, data: selectedUser, error } = useUserDetails(String(id));
+  const isNotSupervisor = selectedUser?.role !== UserRolesEnum.SUPERVISOR;
+
   const frenchRole = () => {
     switch (selectedUser?.role) {
       case UserRolesEnum.SUPERVISOR:
@@ -25,9 +28,6 @@ const UserDetailsPage = () => {
         return "";
     }
   };
-
-  const { isPending, isError, data: selectedUser, error } = useUserDetails(String(id));
-  const isNotSupervisor = selectedUser?.role !== UserRolesEnum.SUPERVISOR;
 
   if (isPending) {
     return <span>Loading...</span>;

@@ -23,8 +23,8 @@ export default tseslint.config([
       "@typescript-eslint/no-explicit-any": "warn",
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "warn",
-      // "react-hooks/rules-of-hooks": "off", // Checks rules of Hooks
-      // "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+      "react-hooks/rules-of-hooks": "off", // Checks rules of Hooks
+      "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     },
   },
 ]);

@@ -1,9 +1,9 @@
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 import { getUsers } from "../api/user.api";
-import type { SafeUserResponseWithLinesAndTrainsInterface } from "../types/interfaces/UserInterface";
+import type { SafeUserWithLinesAndTrainsInterface } from "../types/interfaces/UserInterface";
 
 class UserService {
-  findManyWithLinesAndTrains(): UseQueryResult<SafeUserResponseWithLinesAndTrainsInterface[], Error> {
+  findManyWithLinesAndTrains(): UseQueryResult<SafeUserWithLinesAndTrainsInterface[], Error> {
     return useQuery({
       queryKey: ["users"],
       queryFn: getUsers,

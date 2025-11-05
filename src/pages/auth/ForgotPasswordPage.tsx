@@ -53,7 +53,7 @@ const ForgotPasswordPage = () => {
         </div>
 
         {isValided && (
-          <PopUp customClass="flex-col">
+          <PopUp customClass="flex-col bg-green-700/40 border-green-700">
             <p className="w-full">
               Si vous avez un compte, un e-mail de réinitialisation de mot de passe a été envoyé.
             </p>

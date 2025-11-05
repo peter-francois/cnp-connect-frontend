@@ -77,7 +77,10 @@ const SigninPage = () => {
           </div>
         </div>
 
-        {isError && <PopUp>L'email et/ou le mot de passe est incorrect !</PopUp>}
+        {isError && (
+          <PopUp customClass="bg-red-700/40 border-red-700">L'email et/ou le mot de passe est incorrect !</PopUp>
+        )}
+
         {isPending && <p>Connection...</p>}
         <PrimaryButton type="submit">Se connecter</PrimaryButton>
       </form>

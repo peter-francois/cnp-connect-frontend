@@ -1,10 +1,10 @@
 import type { LineInterface } from "./LineInterface";
 
-export interface AssignedLineInterface {
+export interface AssignedLinesInterface {
   lineId: number;
   userId: string;
   assignmentStartDate: Date;
   assignmentEndDate: Date;
   createdAt: Date;
-  line: LineInterface
+  line: LineInterface;
 }

@@ -1,6 +1,6 @@
 import type { TrainInterface } from "./TrainInterface";
 
-export interface AssignedTrainInterface {
+export interface AssignedTrainsInterface {
   trainId: number;
   userId: string;
   assignmentStartDate: Date;

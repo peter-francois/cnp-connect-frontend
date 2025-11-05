@@ -1,10 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { getUsers } from "../../api/user.api";
 import HeaderUsersPage from "../../components/user/HeaderUsersPage";
 import UserInfos from "../../components/user/UserInfos";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
-import { useUsersList } from "../../hooks/useUsersList";
+import { userService } from "../../services/user.service";
 
 const UsersListPage = () => {
   const [search, setSearch] = useState("");
@@ -14,7 +12,8 @@ const UsersListPage = () => {
   //   queryKey: ["users"],
   //   queryFn: getUsers,
   // });
-  const { isPending, isError, data, error } = useUsersList();
+
+  const { isPending, isError, data, error } = userService.findManyWithLinesAndTrains();
 
   if (isPending) {
     return <span>Loading...</span>;

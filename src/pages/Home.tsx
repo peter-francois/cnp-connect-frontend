@@ -1,9 +1,9 @@
-import type { UserInterface } from "../types/interfaces/UserInterface";
+import type { SafeUserInterface } from "../types/interfaces/UserInterface";
 import { addUser, getUsers, getUsersById } from "../api/user.api";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [users, setUsers] = useState<UserInterface[]>([]);
+  const [users, setUsers] = useState<SafeUserInterface[]>([]);
 
   useEffect(() => {
     const getData = async () => {

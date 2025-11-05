@@ -1,4 +1,4 @@
-import type { UserInterface } from "../../types/interfaces/UserInterface";
+import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router";
 import StatusIsConnected from "./StatusIsConnected";
@@ -8,7 +8,7 @@ import UserTrain from "./UserTrain";
 import SecondaryTitle from "../ui/SecondaryTitle";
 
 interface UserPropsInterface {
-  userData: UserInterface;
+  userData: SafeUserInterface;
   currentUser: number | undefined;
   setCurrentUser: React.Dispatch<React.SetStateAction<number | undefined>>;
 }

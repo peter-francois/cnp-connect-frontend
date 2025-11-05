@@ -8,7 +8,7 @@ import { UserRolesEnum } from "../../types/enum/UserEnum";
 import { useUserDetails } from "../../hooks/useUserDetails";
 
 const UserDetailsPage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const authenticateUserRole: UserRolesEnum = UserRolesEnum.SUPERVISOR;
   const frenchRole = () => {
     switch (selectedUser?.role) {

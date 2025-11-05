@@ -6,7 +6,8 @@ import PrimaryButton from "../../components/ui/PrimaryButton";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
 import { resetPasswordSchema, type UseFormResetPassword } from "../../types/formSchema/resetPasswordSchema";
 import TextInput from "../../components/ui/TextInput";
-import { userService } from "../../services/user.service";
+import { authService } from "../../services/auth.service";
+import { string } from "zod";
 
 const ResetPasswordPage = () => {
   const navigate = useNavigate();
@@ -18,15 +19,14 @@ const ResetPasswordPage = () => {
   } = useForm({
     resolver: zodResolver(resetPasswordSchema),
   });
-  const resetPasswordMutation = userService.resetPassword();
+  const resetPasswordMutation = authService.resetPassword();
 
   const onValidate: SubmitHandler<UseFormResetPassword> = (data) => {
-    if (!token) return "Délai expiré";
-
-    resetPasswordMutation.mutate(
-      { token, password: data.newPassword, confirmPassword: data.confirmPassword },
-      { onSuccess: () => navigate("/"), onError: (error) => console.error(error) }
-    );
+    if (token === typeof string)
+      resetPasswordMutation.mutate(
+        { token, password: data.newPassword, confirmPassword: data.confirmPassword },
+        { onSuccess: () => navigate("/"), onError: (error) => console.error(error) }
+      );
   };
 
   return (

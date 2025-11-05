@@ -1,6 +1,6 @@
 import type { FieldValues, UseFormRegister } from "react-hook-form";
-import type { LineInterface } from "../../types/interfaces/LineInterface";
-import type { TrainInterface } from "../../types/interfaces/TrainInterface";
+import type { LineInterface } from "../../types/interfaces/line/LineInterface";
+import type { TrainInterface } from "../../types/interfaces/train/TrainInterface";
 
 interface SelectableInputInterface {
   label: string;

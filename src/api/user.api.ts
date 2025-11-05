@@ -2,10 +2,10 @@ import axios from "axios";
 import { type UserInterface } from "../types/interfaces/UserInterface";
 import { UserRolesEnum } from "../types/enum/UserEnum";
 import type { UseFormAssigmentCoordinator } from "../types/formSchema/newAssigmentCoordinatorSchema";
-import { useApi } from "../hooks/useApi";
+import { axiosClient } from "../utils/axiosClient";
 
 const url = "/data/user.json";
-const api = useApi();
+const api = axiosClient();
 
 export const getUsers = async (): Promise<UserInterface[]> => {
   try {

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { LineInterface } from "../../types/interfaces/LineInterface";
+import type { LineInterface } from "../../types/interfaces/line/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
-import type { TrainInterface } from "../../types/interfaces/TrainInterface";
+import type { TrainInterface } from "../../types/interfaces/train/TrainInterface";
 import SelectableInput from "../ui/SelectableInput";
 import ErrorMessage from "./ErrorMessage";
 

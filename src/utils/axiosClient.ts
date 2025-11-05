@@ -1,7 +1,7 @@
 import type { AxiosInstance } from "axios";
 import axios from "axios";
 
-export const useApi = () => {
+export const axiosClient = () => {
   const headers = {
     "Content-Type": "application/json",
     "Access-control-Allow-Origin": "*",

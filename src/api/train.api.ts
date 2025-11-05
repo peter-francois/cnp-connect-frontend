@@ -1,5 +1,6 @@
 import axios from "axios";
-import type { TrainInterface } from "../types/interfaces/TrainInterface";
+import type { TrainInterface } from "../types/interfaces/train/TrainInterface";
+
 const url = "/data/train.json";
 
 export const getTrains = async (): Promise<TrainInterface[]> => {

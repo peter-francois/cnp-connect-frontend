@@ -2,7 +2,7 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import SecondaryTitle from "../ui/SecondaryTitle";
 import PrimaryButton from "../ui/PrimaryButton";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
-import type { LineInterface } from "../../types/interfaces/LineInterface";
+import type { LineInterface } from "../../types/interfaces/line/LineInterface";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -80,26 +80,26 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
           </button>
 
           <form onSubmit={handleSubmit(onValidate)}>
-              <SecondaryTitle customClass="mb-3 center">
-                {isDriver ? "Sélectionnez une ligne" : "Sélectionnez une ou plusieurs lignes"}
-              </SecondaryTitle>
+            <SecondaryTitle customClass="mb-3 center">
+              {isDriver ? "Sélectionnez une ligne" : "Sélectionnez une ou plusieurs lignes"}
+            </SecondaryTitle>
 
-              <LinesList
-                register={register}
-                type={isDriver ? "radio" : "checkbox"}
-                authenticateUserRole={authenticateUserRole}
-                selectedUserRole={selectedUserRole}
-                handleSelectedLineFromChild={isDriver ? handleSelectedLineFromChild : () => null}
-                isAlerts={false}
-                registerError={errors}
-              />
+            <LinesList
+              register={register}
+              type={isDriver ? "radio" : "checkbox"}
+              authenticateUserRole={authenticateUserRole}
+              selectedUserRole={selectedUserRole}
+              handleSelectedLineFromChild={isDriver ? handleSelectedLineFromChild : () => null}
+              isAlerts={false}
+              registerError={errors}
+            />
 
-              {selectedLine.length == 1 && isDriver && (
-                <>
-                  <SecondaryTitle customClass="my-3 center">Sélectionnez un train</SecondaryTitle>
-                  <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
-                </>
-              )}
+            {selectedLine.length == 1 && isDriver && (
+              <>
+                <SecondaryTitle customClass="my-3 center">Sélectionnez un train</SecondaryTitle>
+                <TrainsList register={register} type="radio" line={selectedLine[0]} registerError={errors} />
+              </>
+            )}
 
             <div className="w-full flex justify-center">
               <PrimaryButton customClass="w-50 mx-auto mt-5 px-5 py-2 text-center" type="submit">

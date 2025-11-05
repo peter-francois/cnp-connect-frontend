@@ -1,7 +1,7 @@
-import { useApi } from "../hooks/useApi";
-import type { ResetPasswordResponseInterface } from "../types/interfaces/ResetPasswordInterface";
+import type { ResponseInterfaceMessage } from "../types/interfaces/responseInterface.types";
+import { axiosClient } from "../utils/axiosClient";
 
-const api = useApi();
+const api = axiosClient();
 
 interface SigninInterface {
   email: string;
@@ -31,8 +31,8 @@ export const resetPassword = async (
   token: string,
   password: string,
   confirmPassword: string
-): Promise<ResetPasswordResponseInterface> => {
-  const res = await api.post<ResetPasswordResponseInterface>("/auth/reset-password", {
+): Promise<ResponseInterfaceMessage> => {
+  const res = await api.post<ResponseInterfaceMessage>("/auth/reset-password", {
     token,
     password,
     confirmPassword,

@@ -3,7 +3,3 @@ export interface ResetPasswordInterface {
   password: string;
   confirmPassword: string;
 }
-
-export interface ResetPasswordResponseInterface {
-  message: string;
-}

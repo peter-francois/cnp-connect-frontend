@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { LineInterface } from "../../types/interfaces/LineInterface";
+import type { LineInterface } from "../../types/interfaces/line/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { useLinesList } from "../../hooks/useLinesList";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
@@ -85,7 +85,7 @@ const LinesList = ({
           />
         ))}
       </div>
-      
+
       <ErrorMessage id="lines" errors={registerError} />
     </>
   );

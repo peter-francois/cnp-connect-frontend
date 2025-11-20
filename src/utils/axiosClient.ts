@@ -41,6 +41,7 @@ export const axiosClient = () => {
 
       // prevent infinit loops with refresh token
       if (originalRequest._retry) {
+        // tu n'a pas accés a cette resource
         console.log("test");
         return Promise.reject(error);
       }
@@ -48,20 +49,12 @@ export const axiosClient = () => {
       originalRequest._retry = true;
 
       if (error.response?.status === HttpStatusCode.Unauthorized) {
-        const refreshToken = Cookies.get("refreshToken");
-
-        // @dev ask formateur
-        if (!refreshToken && originalRequest.url == "/auth/refresh-token") {
-          console.log("test");
-          localStorage.clear();
-          window.location.href = "/";
-        }
 
         try {
           const { data } = await axios.post(
             `${import.meta.env.VITE_API_BASE_URL}/auth/refresh-token`,
             {},
-            { withCredentials: true, headers: { Authorization: refreshToken } }
+            { withCredentials: true }
           );
 
           localStorage.setItem("accessToken", data.data.accessToken);

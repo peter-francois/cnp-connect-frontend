@@ -29,7 +29,6 @@ const UsersListPage = () => {
       user.email?.toLowerCase().includes(search.toLowerCase()) ||
       user.role?.toLowerCase().includes(search.toLowerCase())
   );
-  console.log(filteredUsers);
 
   return (
     <>

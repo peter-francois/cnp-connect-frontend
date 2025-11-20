@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
-import { links } from "../../utils/links";
+import { menuLinks } from "../../utils/links";
 import AlertsItem from "./AlertsItem";
 import Menu from "./Menu";
 import { Link } from "react-router";
@@ -30,7 +30,7 @@ const Header = () => {
     <div className="flex justify-between h-20 border-b  border-gray-400 w-full px-4 py-5 fixed bg-slate-950/90 z-30">
       <div>
         <Bars3Icon width={38} onClick={openMenu} />
-        <Menu links={links} isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} menuRef={menuRef} />
+        <Menu links={menuLinks} isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} menuRef={menuRef} />
       </div>
 
       {/* faire un composant pour le link car utilisé dans userDetail aussi */}

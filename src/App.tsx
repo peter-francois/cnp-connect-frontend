@@ -9,6 +9,7 @@ import SigninPage from "./pages/auth/SigninPage";
 import UsersListPage from "./pages/user/UsersListPage";
 import UserDetailsPage from "./pages/user/UserDetailsPage";
 import UserCreatePage from "./pages/user/UserCreatePage";
+import { appLinks, menuLinks } from "./utils/links";
 
 const App = () => {
   return (
@@ -16,14 +17,15 @@ const App = () => {
       <Routes>
         <Route path="/" element={<DisconnectedLayout />}>
           <Route index element={<SigninPage />} />
-          <Route path="nouveau-mot-de-passe/:token" element={<ResetPasswordPage />} />
-          <Route path="reinitialisation-mot-passe" element={<ForgotPasswordPage />} />
+          <Route path={`${appLinks.items.resetPassword.path}/:token`} element={<ResetPasswordPage />} />
+          <Route path={appLinks.items.forgotPassword.path} element={<ForgotPasswordPage />} />
         </Route>
+
         <Route element={<ConnectedLayout />}>
-          <Route path="/utilisateurs" element={<UsersListPage />} />
-          <Route path="/utilisateurs/:id" element={<UserDetailsPage />} />
-          <Route path="/nouvelle-alerte" element={<AlertCreatePage />} />
-          <Route path="/nouvel-utilisateur" element={<UserCreatePage />} />
+          <Route path={menuLinks.items.users.path} element={<UsersListPage />} />
+          <Route path={`${menuLinks.items.users.path}/:id`} element={<UserDetailsPage />} />
+          <Route path={menuLinks.items.newAlert.path} element={<AlertCreatePage />} />
+          <Route path={menuLinks.items.newUser.path} element={<UserCreatePage />} />
         </Route>
       </Routes>
       <ReactQueryDevtools />

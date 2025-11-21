@@ -11,7 +11,6 @@ interface SigninInterface {
 export interface AuthResponse {
   data: {
     accessToken: string;
-    refreshToken: string;
   };
   message: string;
 }

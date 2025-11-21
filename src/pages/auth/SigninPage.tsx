@@ -24,9 +24,8 @@ const SigninPage = () => {
     onSuccess: (data) => {
       const tokens = data.data;
 
-      if (tokens.accessToken && tokens.refreshToken) {
+      if (tokens.accessToken) {
         localStorage.setItem("accessToken", tokens.accessToken);
-        localStorage.setItem("refreshToken", tokens.refreshToken);
         console.log(data.message);
         navigate("/utilisateurs");
       }

@@ -1,9 +1,9 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import type { LinkInterface } from "../../types/interfaces/linkInterfaces.types";
 import ItemLink from "./ItemLink";
-import type { LinkInterface } from "../../types/interfaces/LinkInterface";
 
 interface MenuComponentInterface {
-  links: LinkInterface[];
+  links: LinkInterface;
   isOpen: boolean;
   menuRef: React.RefObject<HTMLDivElement | null>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,11 +28,13 @@ const Menu = ({ links, isOpen, menuRef, setIsOpen }: MenuComponentInterface) => 
           </div>
           <nav>
             <ul className="flex flex-col gap-5 px-5">
-              {links.map((link) => (
-                <ItemLink link={link} key={link.name}>
-                  {link.name}
-                </ItemLink>
-              ))}
+              {Object.entries(links.items).map(([key, item]) => {
+                return (
+                  <ItemLink link={item.path} key={key}>
+                    {item.name}
+                  </ItemLink>
+                );
+              })}
             </ul>
           </nav>
         </div>

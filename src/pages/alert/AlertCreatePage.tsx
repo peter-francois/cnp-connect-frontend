@@ -11,7 +11,7 @@ import { addAlert } from "../../api/alert.api";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
 import LinesList from "../../components/ui/LinesList";
 
-const AlerCreatetPage = () => {
+const AlertCreatePage = () => {
   const navigate = useNavigate();
   const currentUserRole: UserRolesEnum = UserRolesEnum.DRIVER;
   const {
@@ -88,4 +88,4 @@ const AlerCreatetPage = () => {
   );
 };
 
-export default AlerCreatetPage;
+export default AlertCreatePage;

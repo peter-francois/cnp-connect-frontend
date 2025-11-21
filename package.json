@@ -18,6 +18,7 @@
     "@tanstack/react-query-devtools": "^5.87.3",
     "@tanstack/react-query-persist-client": "^5.90.5",
     "axios": "^1.11.0",
+    "js-cookie": "^3.0.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.62.0",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^24.10.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",

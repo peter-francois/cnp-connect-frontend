@@ -41,7 +41,6 @@ export const axiosClient = () => {
       // prevent infinit loops with refresh token
       if (originalRequest._retry) {
         // tu n'a pas accés a cette resource
-        console.log("test");
         return Promise.reject(error);
       }
 
@@ -57,7 +56,6 @@ export const axiosClient = () => {
 
           localStorage.setItem("accessToken", data.data.accessToken);
         } catch {
-          console.log("test2");
           localStorage.clear();
           window.location.href = "/";
         }

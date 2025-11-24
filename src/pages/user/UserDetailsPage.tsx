@@ -6,10 +6,12 @@ import PrimaryButton from "../../components/ui/PrimaryButton";
 import Assignment from "../../components/user/Assignment";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
 import { useUserService } from "../../hooks/useUserService";
+import { queryClient } from "../../utils/queryClient";
+import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
 
 const UserDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
-  const authenticateUserRole: UserRolesEnum = UserRolesEnum.SUPERVISOR;
+  const me: SafeUserInterface | undefined = queryClient.getQueryData(["me"]);
   const { findUserDetails } = useUserService();
   const { isPending, isError, data: selectedUser, error } = findUserDetails(String(id));
 
@@ -109,8 +111,8 @@ const UserDetailsPage = () => {
       </section>
 
       <div className="flex flex-col gap-6 my-4 mx-auto">
-        {authenticateUserRole != UserRolesEnum.DRIVER && (
-          <Assignment selectedUserRole={selectedUser.role} authenticateUserRole={authenticateUserRole} />
+        {me && me.role != UserRolesEnum.DRIVER && (
+          <Assignment selectedUserRole={selectedUser.role} authenticateUserRole={me.role} />
         )}
         <PrimaryButton type="submit">Nouveau message</PrimaryButton>
       </div>

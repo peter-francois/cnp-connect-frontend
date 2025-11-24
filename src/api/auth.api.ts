@@ -1,4 +1,5 @@
 import type { ResponseInterfaceMessage } from "../types/interfaces/responseInterface.types";
+import type { SafeUserInterface } from "../types/interfaces/UserInterface";
 import { axiosClient } from "../utils/axiosClient";
 
 const api = axiosClient();
@@ -38,4 +39,9 @@ export const resetPasswordAuthApi = async (
   });
 
   return res.data;
+};
+
+export const meApi = async (): Promise<SafeUserInterface> => {
+  const { data } = await api.get("/auth/me");
+  return data.data.user;
 };

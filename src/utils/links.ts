@@ -1,3 +1,4 @@
+import { signoutApi } from "../api/auth.api";
 import type { LinkInterface } from "../types/interfaces/linkInterfaces.types";
 
 export const appLinks: LinkInterface = {
@@ -31,5 +32,10 @@ export const menuLinks: LinkInterface = {
       name: "Nouvel utilisateur",
       path: "/nouvel-utilisateur",
     },
+    signout: {
+      name: "Déconnexion",
+      path: "/deconnexion",
+      
+      },
   },
 };

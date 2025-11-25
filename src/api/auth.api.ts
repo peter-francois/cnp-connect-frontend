@@ -22,6 +22,12 @@ export const signinApi = async (email: string, password: string): Promise<AuthRe
   return data;
 };
 
+export const signoutApi = async (): Promise<void> => {
+  const { data } = await api.post("/auth/signout");
+console.log(data);
+
+};
+
 export const forgotPasswordAuthApi = async (email: string): Promise<void> => {
   const body = { email };
   await api.post("/auth/forgot-password", body);
@@ -45,3 +51,4 @@ export const meApi = async (): Promise<SafeUserInterface> => {
   const { data } = await api.get("/auth/me");
   return data.data.user;
 };
+

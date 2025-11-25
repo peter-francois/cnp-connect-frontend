@@ -11,6 +11,7 @@ import UserDetailsPage from "./pages/user/UserDetailsPage";
 import UserCreatePage from "./pages/user/UserCreatePage";
 import { appLinks, menuLinks } from "./utils/links";
 import ProtectedRoute from "./guards/ProtectedRoute.guard";
+import SignoutPage from "./pages/auth/SignoutPage";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path={`${menuLinks.items.users.path}/:id`} element={<UserDetailsPage />} />
             <Route path={menuLinks.items.newAlert.path} element={<AlertCreatePage />} />
             <Route path={menuLinks.items.newUser.path} element={<UserCreatePage />} />
+            <Route path={menuLinks.items.signout.path} element={< SignoutPage />} />
           </Route>
         </Route>
       </Routes>

@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { getUsers, getUsersById } from "../api/user.api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getUsers, getUsersById, updateUserByIdApi } from "../api/user.api";
+import type { SafeUserInterface, SafeUserWithLinesAndTrainsInterface } from "../types/interfaces/UserInterface";
 
 export const useUserService = () => {
   const FindManyWithLinesAndTrains = () =>
@@ -16,5 +17,20 @@ export const useUserService = () => {
       staleTime: 1000 * 60 * 5,
     });
 
-  return { findManyWithLinesAndTrains: FindManyWithLinesAndTrains, findUserDetails: FindUserDetails };
+  // @dev for update trains and/or lines
+  // const UpdateOne = () =>
+  //   useMutation({
+  //     mutationFn: (newData: Partial<SafeUserWithLinesAndTrainsInterface>) => updateOneApi(newData),
+  //   });
+
+  const UpdateProfile = () =>
+    useMutation({
+      mutationFn: (newData: Partial<SafeUserInterface>) => updateUserByIdApi(newData),
+    });
+
+  return {
+    findManyWithLinesAndTrains: FindManyWithLinesAndTrains,
+    findUserDetails: FindUserDetails,
+    updateProfile: UpdateProfile,
+  };
 };

@@ -15,9 +15,10 @@ import {
   type UseFormNewAssigmentDriverSchema,
 } from "../../types/formSchema/newAssigmentDriverSchema";
 import { useMutation } from "@tanstack/react-query";
-import { update } from "../../api/user.api";
 import LinesList from "../ui/LinesList";
 import TrainsList from "../ui/TrainsList";
+import { useNavigate } from "react-router";
+import { menuLinks } from "../../utils/links";
 
 interface AssignmentInterface {
   selectedUserRole: UserRolesEnum;
@@ -25,6 +26,8 @@ interface AssignmentInterface {
 }
 
 const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterface) => {
+  // const navigate = useNavigate();
+  // const links = menuLinks;
   const [toggleReassign, setToggleReassign] = useState(false);
   const [selectedLine, setSelectedLine] = useState<LineInterface[]>([]);
   const isDriver: boolean = selectedUserRole === UserRolesEnum.DRIVER;
@@ -37,6 +40,22 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
     resolver: zodResolver(isDriver ? newAssigmentDriverSchema : newAssigmentCoordinatorSchema),
   });
 
+  // const { assigneLineOrTrainToUser } = useUserService();
+  // const { mutate, isError, isPending } = assigneLineOrTrainToUser();
+  // const sendDataToBack: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema> = (
+  //   data: UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema
+  // ) => {
+  //   mutate(data as Partial<SafeUserWithLinesAndTrainsInterface>, {
+  //     onSuccess: () => {
+  //       console.log("Utilisateur modifié");
+  //       navigate(links.items.users.path);
+  //     },
+  //     onError: () => {
+  //       console.log("Erreur lors de la modification d'un utilisateur");
+  //       navigate(links.items.users.path);
+  //     },
+  //   });
+  // };
   const onValidate: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema> = (data) => {
     assignment.mutate(data);
   };
@@ -44,11 +63,9 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
   const handleSelectedLineFromChild = (data: LineInterface[] | []) => {
     setSelectedLine(data);
   };
-
   const assignment = useMutation({
     mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema) => {
       console.log(data);
-      update(data);
     },
     onSuccess: () => {
       console.log("success");

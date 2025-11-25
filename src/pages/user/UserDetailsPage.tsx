@@ -49,7 +49,7 @@ const UserDetailsPage = () => {
       <section className="flex justify-around items-center gap-8 mb-4">
         <div className="flex flex-col gap-3">
           <img
-            className="rounded-full shadow-xl shadow-neutral-100/15"
+            className="rounded-full w-40 shadow-xl shadow-neutral-100/15"
             src={selectedUser.avatarUrl}
             alt={selectedUser.firstName}
           />
@@ -60,9 +60,9 @@ const UserDetailsPage = () => {
         </div>
 
         <ul>
-          <UserField label="Nom" value={selectedUser.firstName} />
-          <UserField label="Prenom" value={selectedUser.lastName} />
-          <UserField label="Rôle" value={frenchRole()} />
+          <UserField label="Nom" value={selectedUser.firstName} pCustomClass="w-40" />
+          <UserField label="Prenom" value={selectedUser.lastName} pCustomClass="w-40" />
+          <UserField label="Rôle" value={frenchRole()} pCustomClass="w-40" />
           <UserField
             label="Date d'embauche"
             value={new Date(selectedUser.hiredAt).toLocaleDateString("fr-FR", {
@@ -70,6 +70,7 @@ const UserDetailsPage = () => {
               month: "2-digit",
               year: "numeric",
             })}
+            pCustomClass="w-40"
           />
         </ul>
       </section>
@@ -77,7 +78,7 @@ const UserDetailsPage = () => {
       <section className="flex justify-between">
         <ul className="flex flex-col">
           <div className="flex">
-            <UserField label="Email" value={selectedUser.email} />
+            <UserField label="Email" value={selectedUser.email} pCustomClass="w-75" />
             <Link
               to={`mailto:${selectedUser.email}`}
               className="size-8 mt-9 ml-5 bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-3 text-indigo-100 rounded-lg cursor-pointer border-box center"
@@ -97,6 +98,7 @@ const UserDetailsPage = () => {
                 label="Lines"
                 value={selectedUser.assignedLines.map((assignedLine) => assignedLine.line.name).join(", ")}
                 customClass="flex gap-3"
+                pCustomClass="w-20"
               />
             )}
             {isNotSupervisor && selectedUser.assignedTrains && (
@@ -104,6 +106,7 @@ const UserDetailsPage = () => {
                 label="Train"
                 value={selectedUser.assignedTrains.map((assignedTrain) => assignedTrain.train.name).join(", ")}
                 customClass="flex gap-3"
+                pCustomClass="w-20"
               />
             )}
           </div>

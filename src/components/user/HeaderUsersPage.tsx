@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
 import { queryClient } from "../../utils/queryClient";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
+import { menuLinks } from "./utils/links";
 
 interface HeaderUsersInterface {
   search: string;
@@ -24,7 +25,7 @@ const HeaderUsersPage = ({ search, setSearch }: HeaderUsersInterface) => {
       <div className="w-full">
         {me && me.role === UserRolesEnum.SUPERVISOR && (
           <Link
-            to="/"
+            to={menuLinks.items.newUser.path}
             className="w-full mb-6 text-center block bg-indigo-600 hover:bg-indigo-900 active:border active:border-indigo-400 text-base py-2 px-5 text-indigo-100 rounded-lg cursor-pointer"
           >
             + Ajouter un utilisateur

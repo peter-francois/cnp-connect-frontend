@@ -1,4 +1,7 @@
+import { UserRolesEnum } from "../types/enum/UserEnum";
 import type { LinkInterface } from "../types/interfaces/linkInterfaces.types";
+
+const ALL_ROLES: UserRolesEnum[] = Object.values(UserRolesEnum);
 
 export const appLinks: LinkInterface = {
   items: {
@@ -18,18 +21,22 @@ export const menuLinks: LinkInterface = {
     dashboard: {
       name: "Tableau de bord",
       path: "/tableau-de-bord",
+      allowedRoles: ALL_ROLES,
     },
     users: {
       name: "Tous les utilisateurs",
       path: "/utilisateurs",
+      allowedRoles: ALL_ROLES,
     },
     newAlert: {
       name: "Nouvelle alerte",
       path: "/nouvelle-alerte",
+      allowedRoles: ALL_ROLES,
     },
     newUser: {
-      name: "Nouvel utilisateur",
+      name: "Créer un utilisateur",
       path: "/nouvel-utilisateur",
+      allowedRoles: [UserRolesEnum.SUPERVISOR],
     },
   },
 };

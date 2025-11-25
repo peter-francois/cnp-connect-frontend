@@ -14,6 +14,7 @@ export interface SafeUserInterface {
   isActif: boolean;
   role: UserRolesEnum;
 }
+
 export interface createUserInterface extends SafeUserInterface {
   password: string;
 }
@@ -22,4 +23,3 @@ export interface SafeUserWithLinesAndTrainsInterface extends SafeUserInterface {
   assignedLines: AssignedLinesInterface[] | [];
   assignedTrains: AssignedTrainsInterface[] | [];
 }
-

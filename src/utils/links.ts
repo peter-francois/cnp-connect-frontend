@@ -1,7 +1,7 @@
 import { UserRolesEnum } from "../types/enum/UserEnum";
 import type { LinkInterface } from "../types/interfaces/linkInterfaces.types";
 
-const ALL_ROLES: UserRolesEnum[] = [UserRolesEnum.DRIVER, UserRolesEnum.COORDINATOR, UserRolesEnum.SUPERVISOR];
+const ALL_ROLES: UserRolesEnum[] = Object.values(UserRolesEnum);
 
 export const appLinks: LinkInterface = {
   items: {

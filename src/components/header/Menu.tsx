@@ -1,8 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { LinkInterface } from "../../types/interfaces/linkInterfaces.types";
 import ItemLink from "./ItemLink";
-import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
-import { queryClient } from "../../utils/queryClient";
 
 interface MenuComponentInterface {
   links: LinkInterface;
@@ -12,8 +10,6 @@ interface MenuComponentInterface {
 }
 
 const Menu = ({ links, isOpen, menuRef, setIsOpen }: MenuComponentInterface) => {
-  const me: SafeUserInterface | undefined = queryClient.getQueryData(["me"]);
-
   const closeMenu = () => {
     setIsOpen(false);
   };
@@ -32,20 +28,13 @@ const Menu = ({ links, isOpen, menuRef, setIsOpen }: MenuComponentInterface) => 
           </div>
           <nav>
             <ul className="flex flex-col gap-5 px-5">
-              {me &&
-                Object.entries(links.items).map(([key, item]) => {
-                  return (
-                    <ItemLink
-                      link={item.path}
-                      allowedRolesLink={item.allowedRoles}
-                      key={key}
-                      meUser={me}
-                      handleOnClick={closeMenu}
-                    >
-                      {item.name}
-                    </ItemLink>
-                  );
-                })}
+              {Object.entries(links.items).map(([key, item]) => {
+                return (
+                  <ItemLink link={item.path} allowedRolesLink={item.allowedRoles} key={key} handleOnClick={closeMenu}>
+                    {item.name}
+                  </ItemLink>
+                );
+              })}
             </ul>
           </nav>
         </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
 import { queryClient } from "../../utils/queryClient";
 import { UserRolesEnum } from "../../types/enum/UserEnum";
-import { menuLinks } from "./utils/links";
+import { menuLinks } from "../../utils/links";
 
 interface HeaderUsersInterface {
   search: string;

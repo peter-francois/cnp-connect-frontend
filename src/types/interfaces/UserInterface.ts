@@ -3,7 +3,7 @@ import type { AssignedLinesInterface } from "./line/AssignedLineInterface";
 import type { AssignedTrainsInterface } from "./train/AssignedTrainInterface";
 
 export interface SafeUserInterface {
-  id: number;
+  id: string;
   email: string;
   firstName: string;
   lastName: string;
@@ -15,8 +15,13 @@ export interface SafeUserInterface {
   role: UserRolesEnum;
 }
 
-export interface createUserInterface extends SafeUserInterface {
+export interface CreateUserRequestInterface {
+  email: string;
+  firstName: string;
+  lastName: string;
   password: string;
+  hiredAt: Date;
+  role: UserRolesEnum.COORDINATOR | UserRolesEnum.DRIVER;
 }
 
 export interface SafeUserWithLinesAndTrainsInterface extends SafeUserInterface {

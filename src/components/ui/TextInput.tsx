@@ -29,7 +29,11 @@ const TextInput = ({ id, type, placeholder, label, errors, customClass, icon, re
         className="block w-full rounded-md pl-9 pr-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-200/50 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
       />
 
-      {errors && errors[id] && <p className="text-red-500 text-sm ml-1">{errors[id].message as string}</p>}
+      {errors && errors[id] && (
+        <p data-cy={`data-error-${id}`} className="text-red-500 text-sm ml-1">
+          {errors[id].message as string}
+        </p>
+      )}
     </div>
   );
 };

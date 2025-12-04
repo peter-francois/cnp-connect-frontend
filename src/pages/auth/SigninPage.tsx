@@ -43,7 +43,7 @@ const SigninPage = () => {
   return (
     <>
       <PrimaryTitle>Connexion</PrimaryTitle>
-      <form onSubmit={handleSubmit(sendDataToBack)} className="authForm">
+      <form onSubmit={handleSubmit(sendDataToBack)} className="authForm" noValidate>
         <div className="card-border px-7 py-5">
           <TextInput
             id="email"
@@ -78,7 +78,9 @@ const SigninPage = () => {
         )}
 
         {isPending && <p>Connection...</p>}
-        <PrimaryButton type="submit">Se connecter</PrimaryButton>
+        <PrimaryButton data_cy="data-submit-signin" type="submit">
+          Se connecter
+        </PrimaryButton>
       </form>
     </>
   );

@@ -63,7 +63,7 @@ export const axiosClient = () => {
         return api(originalRequest);
       }
       // @dev don't send if conflict
-      // window.location.href = "/page-erreur";
+      window.location.href = "/page-erreur";
     }
   );
 

@@ -5,13 +5,14 @@ import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
 import { queryClient } from "../../utils/queryClient";
 
 interface LinkComponentInterface {
+  key: string;
   link: string;
   allowedRolesLink: UserRolesEnum[] | undefined;
   children: ReactNode;
   handleOnClick: () => void;
 }
 
-const ItemLink = ({ link, children, allowedRolesLink, handleOnClick }: LinkComponentInterface) => {
+const ItemLink = ({ key, link, children, allowedRolesLink, handleOnClick }: LinkComponentInterface) => {
   const me: SafeUserInterface | undefined = queryClient.getQueryData(["me"]);
 
   return (
@@ -23,6 +24,7 @@ const ItemLink = ({ link, children, allowedRolesLink, handleOnClick }: LinkCompo
           me && !allowedRolesLink?.includes(me.role) && "hidden"
         }`
       }
+      data-cy={`data-menu-link-${key}`}
     >
       {children}
     </NavLink>

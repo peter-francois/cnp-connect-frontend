@@ -5,7 +5,7 @@ interface PrimaryButtonInterface {
   handleOnCLick?: () => void;
   customClass?: string;
   type: "submit" | "reset" | "button" | undefined;
-  data_cy: string
+  data_cy?: string
 }
 
 const PrimaryButton = ({ handleOnCLick, children, customClass, type , data_cy}: PrimaryButtonInterface) => {

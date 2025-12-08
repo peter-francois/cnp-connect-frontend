@@ -29,7 +29,9 @@ const Header = () => {
   return (
     <div className="flex justify-between h-20 border-b  border-gray-400 w-full px-4 py-5 fixed bg-slate-950/90 z-30">
       <div>
-        <Bars3Icon width={38} onClick={openMenu} />
+        <button type="button" data-cy="data-menu-button">
+          <Bars3Icon width={38} onClick={openMenu} />
+        </button>
         <Menu links={menuLinks} isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} menuRef={menuRef} />
       </div>
 

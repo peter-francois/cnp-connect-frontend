@@ -6,11 +6,14 @@ interface ErrorMessageInterface {
   customClass?: string;
 }
 
+// @dev to use in other error message
 const ErrorMessage = ({ errors, customClass, id }: ErrorMessageInterface) => {
   return (
     <>
       {errors && errors[id] && (
-        <p className={`text-red-500 text-sm ml-1 ${customClass}`}>{errors[id].message as string}</p>
+        <p data-cy={`data-error-${id}`} className={`text-red-500 text-sm ml-1 ${customClass}`}>
+          {errors[id].message as string}
+        </p>
       )}
     </>
   );

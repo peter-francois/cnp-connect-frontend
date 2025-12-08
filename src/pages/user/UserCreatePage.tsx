@@ -111,13 +111,14 @@ const UserCreatePage = () => {
 
         {isSuccess !== undefined && (
           <PopUp
+            data_cy="data-success-pop-up"
             customClass={`${
               isSuccess ? "bg-green-700/40 border-green-700" : "bg-red-700/40 border-red-700"
             } flex flex-col gap-5`}
           >
             {isSuccess ? (
               <>
-                <p>Utilisateur créer !</p>
+                <p>Utilisateur créé !</p>
 
                 <div className="flex flex-col center gap-2">
                   <p>
@@ -134,7 +135,9 @@ const UserCreatePage = () => {
           </PopUp>
         )}
 
-        <PrimaryButton type="submit">Ajouter</PrimaryButton>
+        <PrimaryButton type="submit" data_cy="data-add-user-button">
+          Ajouter
+        </PrimaryButton>
       </form>
     </>
   );

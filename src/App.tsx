@@ -11,12 +11,10 @@ import UserDetailsPage from "./pages/user/UserDetailsPage";
 import UserCreatePage from "./pages/user/UserCreatePage";
 import { appLinks, menuLinks } from "./utils/links";
 import ProtectedRoute from "./guards/ProtectedRoute.guard";
-import type { SafeUserInterface } from "./types/interfaces/UserInterface";
-import { queryClient } from "./utils/queryClient";
+import SupervisorRoute from "./guards/SupervisorRoute.guard";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
-  const me: SafeUserInterface | undefined = queryClient.getQueryData(["me"]);
-
   return (
     <>
       <Routes>
@@ -24,6 +22,7 @@ const App = () => {
           <Route index element={<SigninPage />} />
           <Route path={`${appLinks.items.resetPassword.path}/:token`} element={<ResetPasswordPage />} />
           <Route path={appLinks.items.forgotPassword.path} element={<ForgotPasswordPage />} />
+          <Route path="/page-erreur" element={<ErrorPage/>} />
         </Route>
 
         <Route element={<ConnectedLayout />}>
@@ -31,9 +30,9 @@ const App = () => {
             <Route path={menuLinks.items.users.path} element={<UsersListPage />} />
             <Route path={`${menuLinks.items.users.path}/:id`} element={<UserDetailsPage />} />
             <Route path={menuLinks.items.newAlert.path} element={<AlertCreatePage />} />
-            {me && menuLinks.items.newUser.allowedRoles?.includes(me.role) && (
+            <Route element={<SupervisorRoute />}>
               <Route path={menuLinks.items.newUser.path} element={<UserCreatePage />} />
-            )}
+            </Route>
           </Route>
         </Route>
       </Routes>

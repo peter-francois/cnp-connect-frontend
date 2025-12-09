@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type HTMLInputTypeAttribute } from "react";
 import type { LineInterface } from "../../types/interfaces/line/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { useLinesList } from "../../hooks/useLinesList";
@@ -8,7 +8,7 @@ import ErrorMessage from "./ErrorMessage";
 
 interface LinesListInterface {
   register: UseFormRegister<any>; // @dev find right type '--'
-  type: string; // @dev enum
+  type: HTMLInputTypeAttribute | undefined;
   handleSelectedLineFromChild?: (data: LineInterface[] | []) => void | null;
   isAlerts: boolean;
   registerError: FieldErrors;

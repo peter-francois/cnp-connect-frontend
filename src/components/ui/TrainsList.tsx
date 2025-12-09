@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type HTMLInputTypeAttribute } from "react";
 import type { LineInterface } from "../../types/interfaces/line/LineInterface";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import type { TrainInterface } from "../../types/interfaces/train/TrainInterface";
@@ -7,7 +7,7 @@ import ErrorMessage from "./ErrorMessage";
 
 interface TrainListInterface {
   register: UseFormRegister<any>; // @dev find right type '--'
-  type: string; // @dev enum
+  type: HTMLInputTypeAttribute | undefined;
   line: LineInterface;
   registerError: FieldErrors;
 }

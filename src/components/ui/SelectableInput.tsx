@@ -1,6 +1,7 @@
 import type { FieldValues, UseFormRegister } from "react-hook-form";
 import type { LineInterface } from "../../types/interfaces/line/LineInterface";
 import type { TrainInterface } from "../../types/interfaces/train/TrainInterface";
+import type { HTMLInputTypeAttribute } from "react";
 
 interface SelectableInputInterface {
   label: string;
@@ -8,7 +9,7 @@ interface SelectableInputInterface {
   onClick: () => void;
   isSelected: boolean;
   register: UseFormRegister<FieldValues>;
-  type: string;
+  type: HTMLInputTypeAttribute | undefined
   customClass?: string;
 }
 

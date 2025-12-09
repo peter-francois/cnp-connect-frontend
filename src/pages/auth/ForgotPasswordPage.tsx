@@ -22,14 +22,11 @@ const ForgotPasswordPage = () => {
   const { mutate } = forgotPassword();
 
   const onValidate: SubmitHandler<UseFormForgotPassword> = async (data) => {
-    // @dev ici on va envoyé en post l'adresse email dans le back,
     mutate(
       { email: data.email },
       {
         onSettled: () => {
-          //  on affiche la popup pour l'utilisateur puis tempo 5s et
           setIsValided(true);
-          // redirect vers /changer-mot-de-passe
         },
       }
     );

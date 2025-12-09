@@ -5,5 +5,4 @@ export const signinSchema = z.object({
   password: z.string().nonempty("Mot de passe requis."),
 });
 
-// @dev change name
-export type UseForm = z.infer<typeof signinSchema>;
+export type SigninUseForm = z.infer<typeof signinSchema>;

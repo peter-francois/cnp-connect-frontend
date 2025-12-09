@@ -41,7 +41,6 @@ const UserDetailsPage = () => {
 
   if (isError) {
     return <span>Error: {error.message}</span>;
-    // @dev notFound page?? ou ce sera géré avec le useApi?
   }
 
   return (

@@ -9,6 +9,7 @@ import type { SigninInterface } from "../../types/interfaces/auth/SignInterface"
 import { signinSchema } from "../../types/formSchema/signinSchema";
 import TextInput from "../../components/ui/TextInput";
 import { useAuthService } from "../../hooks/useAuthService";
+import { AxiosError } from "axios";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -35,7 +36,9 @@ const SigninPage = () => {
             navigate("/utilisateurs");
           }
         },
-        onError: (error) => console.log("onError", error.response.data.message),
+        onError: (error) => {
+          if (error instanceof AxiosError) console.log("onError", error.response?.data.message);
+        },
       }
     );
   };

@@ -67,7 +67,7 @@ export const axiosClient = () => {
         window.location.href = "/page-erreur-404";
       }
 
-      if (error.response?.status >= 500 || error.code === "ERR_NETWORK") {
+      if (error.response?.status === HttpStatusCode.InternalServerError || error.code === "ERR_NETWORK") {
         window.location.href = "/page-erreur-500";
       }
 

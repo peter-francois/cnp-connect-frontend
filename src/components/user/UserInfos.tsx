@@ -9,8 +9,8 @@ import SecondaryTitle from "../ui/SecondaryTitle";
 
 interface UserPropsInterface {
   userData: SafeUserWithLinesAndTrainsInterface;
-  currentUser: number | undefined;
-  setCurrentUser: React.Dispatch<React.SetStateAction<number | undefined>>;
+  currentUser: string | undefined;
+  setCurrentUser: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface) => {

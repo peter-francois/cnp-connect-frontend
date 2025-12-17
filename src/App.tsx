@@ -13,6 +13,7 @@ import { appLinks, menuLinks } from "./utils/links";
 import ProtectedRoute from "./guards/ProtectedRoute.guard";
 import SupervisorRoute from "./guards/SupervisorRoute.guard";
 import ErrorPage from "./pages/ErrorPage";
+import ChatWebSocket from "./pages/conversation/ConversationDetailsPage";
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
           <Route index element={<SigninPage />} />
           <Route path={`${appLinks.items.resetPassword.path}/:token`} element={<ResetPasswordPage />} />
           <Route path={appLinks.items.forgotPassword.path} element={<ForgotPasswordPage />} />
-          <Route path="/page-erreur" element={<ErrorPage/>} />
+          <Route path="/chat" element={<ChatWebSocket />} />
+          <Route path="/page-erreur" element={<ErrorPage />} />
         </Route>
 
         <Route element={<ConnectedLayout />}>

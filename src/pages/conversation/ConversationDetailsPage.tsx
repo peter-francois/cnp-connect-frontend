@@ -1,12 +1,45 @@
+import { useEffect, useRef } from "react";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
 import { queryClient } from "../../utils/queryClient";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
 const ConversationDetailsPage = () => {
   const me: SafeUserInterface | undefined = queryClient.getQueryData(["me"]);
-  const socket = io("http://localhost:3000");
+  const socketRef = useRef<Socket | null>(null);
 
+  useEffect(() => {
+    socketRef.current = io("http://localhost:3001", {
+      transports: ["websocket"],
+    });
+
+    socketRef.current.on("connect", () => {
+      console.log("✅ Connected socketIO");
+    });
+
+    socketRef.current.on("message", (data) => {
+      console.log("📩 message reçu", data);
+      // displayMessage(data.username, data.text);
+    });
+
+    return () => {
+      socketRef.current?.disconnect();
+    };
+  }, []);
+
+  const sendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3001/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        conversationId: "yfcgvuhb",
+        content: "Hello",
+        senderId: "123",
+      }),
+    });
+  };
   return (
     <>
       <ul id="messages" className="list-none m-0 p-0">
@@ -15,7 +48,11 @@ const ConversationDetailsPage = () => {
         <li className="px-4 py-2 bg-gray-100 text-black">Message 3</li>
       </ul>
 
-      <form id="form" className="fixed bottom-0 left-0 right-0 flex h-12 p-1 bg-black/15 backdrop-blur-md box-border">
+      <form
+        onSubmit={sendMessage}
+        id="form"
+        className="fixed bottom-0 left-0 right-0 flex h-12 p-1 bg-black/15 backdrop-blur-md box-border"
+      >
         <input
           id="input"
           className="flex-grow border-none px-4 rounded-full m-1 focus:outline-none"

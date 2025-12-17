@@ -18,12 +18,12 @@ export interface AuthResponse {
 
 export const signinApi = async (email: string, password: string): Promise<AuthResponse> => {
   const body: SigninInterface = { email, password };
-  const { data } = await api.post<AuthResponse>("/auth/signin", body);
+  const { data } = await api.post<AuthResponse>("/api/auth/signin", body);
   return data;
 };
 
 export const signoutApi = async (): Promise<void> => {
-  await api.post("/auth/signout");
+  await api.post("/api/auth/signout");
 };
 
 export const resetPasswordAuthApi = async (
@@ -31,7 +31,7 @@ export const resetPasswordAuthApi = async (
   password: string,
   confirmPassword: string
 ): Promise<ResponseInterfaceMessage> => {
-  const res = await api.post<ResponseInterfaceMessage>("/auth/reset-password", {
+  const res = await api.post<ResponseInterfaceMessage>("/api/auth/reset-password", {
     token,
     password,
     confirmPassword,
@@ -42,10 +42,10 @@ export const resetPasswordAuthApi = async (
 
 export const forgotPasswordAuthApi = async (email: string): Promise<void> => {
   const body = { email };
-  await api.post("/auth/forgot-password", body);
+  await api.post("/api/auth/forgot-password", body);
 };
 
 export const meApi = async (): Promise<SafeUserInterface> => {
-  const { data } = await api.get("/auth/me");
+  const { data } = await api.get("/api/auth/me");
   return data.data.user;
 };

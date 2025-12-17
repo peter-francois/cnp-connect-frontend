@@ -12,7 +12,7 @@ export const axiosClient = () => {
   };
 
   const api: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL || "",
     withCredentials: true,
     headers,
   });
@@ -49,7 +49,7 @@ export const axiosClient = () => {
       if (error.response?.status === HttpStatusCode.Unauthorized) {
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}/auth/refresh-token`,
+            `${import.meta.env.VITE_API_BASE_URL || ""}/api/auth/refresh-token`,
             {},
             { withCredentials: true }
           );

@@ -1,5 +1,7 @@
+import ErrorPageContent from "../../components/ui/ErrorPageContent";
+
 const ErrorPage500 = () => {
-  return <div>Error 500 : Un problème est survenue ! </div>;
+  return <ErrorPageContent>Error 500 : Un problème est survenue !</ErrorPageContent>;
 };
 
 export default ErrorPage500;

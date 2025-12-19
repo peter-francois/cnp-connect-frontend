@@ -1,5 +1,7 @@
+import ErrorPageContent from "../../components/ui/ErrorPageContent";
+
 const ErrorPage404 = () => {
-  return <div>Error 404 : Page non trouvé ! </div>;
+  return <ErrorPageContent>Error 404 : Page non trouvé !</ErrorPageContent>;
 };
 
 export default ErrorPage404;

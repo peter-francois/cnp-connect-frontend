@@ -3,6 +3,7 @@ import { io, Socket } from "socket.io-client";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import { queryClient } from "../../utils/queryClient";
 import type { SafeUserInterface } from "../../types/interfaces/UserInterface";
+import { socketIoClient } from "../../utils/socketIoClient";
 
 interface Message {
   id?: string;
@@ -13,6 +14,7 @@ interface Message {
 }
 
 const ConversationDetailsPage = () => {
+  const webSocket: Socket | null = socketIoClient();
   const me = queryClient.getQueryData<SafeUserInterface>(["me"]);
   const socketRef = useRef<Socket | null>(null);
 
@@ -29,29 +31,26 @@ const ConversationDetailsPage = () => {
 
   useEffect(() => {
     // Connexion Socket.IO avec token auth
-    socketRef.current = io("http://localhost:3001", {
-      transports: ["websocket"],
-      auth: { token: "SECRET_TOKEN_123" },
-    });
+    socketRef.current = webSocket;
+    if (socketRef.current) {
+      socketRef.current.on("connect", () => {
+        console.log("✅ Connected socketIO");
 
-    socketRef.current.on("connect", () => {
-      console.log("✅ Connected socketIO");
-
-      // Rejoindre la conversation
-      socketRef.current?.emit("joinConversation", conversationId);
-    });
-
-    // Écouter les messages de la conversation
-    socketRef.current.on("message", (data: Message) => {
-      if (data.conversationId === conversationId) {
-        setMessages((prev) => [...prev, data]);
-      }
-    });
+        // Rejoindre la conversation
+        socketRef.current?.emit("joinConversation", conversationId);
+      });
+      // Écouter les messages de la conversation
+      socketRef.current.on("message", (data: Message) => {
+        if (data.conversationId === conversationId) {
+          setMessages((prev) => [...prev, data]);
+        }
+      });
+    }
 
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [conversationId]);
+  }, [conversationId, webSocket]);
 
   const sendMessage = (e: React.FormEvent) => {
     e.preventDefault();

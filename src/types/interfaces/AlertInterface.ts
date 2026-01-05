@@ -1,5 +1,7 @@
+import type { PriorityEnum } from "../enum/UserEnum";
+
 export interface AlertInterface {
   content: string;
-  priority: string;
-  lines: string[];
+  priority: PriorityEnum;
+  lines: number[];
 }

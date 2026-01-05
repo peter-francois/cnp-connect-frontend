@@ -13,7 +13,7 @@ describe("Should signin", () => {
   beforeEach("Should load website", () => {
     localStorage.clear();
     cy.visit("/");
-    cy.intercept("POST", "auth/signin" ).as("login");
+    cy.intercept("POST", "/api/auth/signin" ).as("login");
   });
 
   describe("Should accept a valid email", () => {

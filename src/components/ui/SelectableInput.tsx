@@ -21,18 +21,29 @@ const SelectableInput = ({
   type,
   customClass,
 }: SelectableInputInterface) => {
+
   return (
     <>
       <label
-        htmlFor={data.name}
+        htmlFor={`line-${data.id}`}
         onClick={onClick}
         className={`border border-indigo-600 rounded-2xl text-center cursor-pointer center ${
           isSelected && "bg-indigo-400 text-gray-900"
         } ${customClass}`}
+        aria-checked={isSelected}
       >
         {data && data.name}
       </label>
-      <input className="sr-only" type={type} id={data.name} checked={isSelected} value={data.id} {...register(label)} />
+      <input
+        className="sr-only"
+        type={type}
+        id={`line-${data.id}`}
+        checked={isSelected}
+        value={data.id}
+        {...register(label, {
+          setValueAs: (v) => Number(v),
+        })}
+      />
     </>
   );
 };

@@ -3,3 +3,9 @@ export enum UserRolesEnum {
   COORDINATOR = "COORDINATOR",
   DRIVER = "DRIVER",
 }
+
+export enum PriorityEnum {
+  SOFT = "SOFT",
+  MEDIUM = "MEDIUM",
+  URGENT = "URGENT",
+}

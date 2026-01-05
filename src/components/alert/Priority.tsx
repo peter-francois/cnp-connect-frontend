@@ -1,8 +1,9 @@
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import type { UseFormNewAlert } from "../../types/formSchema/newAlertSchema";
+import type { PriorityEnum } from "../../types/enum/UserEnum";
 
 interface PriorityInterface {
-  priority: string;
+  priority: PriorityEnum;
   label: string;
   name: keyof UseFormNewAlert;
   errors?: FieldErrors;
@@ -10,18 +11,28 @@ interface PriorityInterface {
   isSelected: boolean;
 }
 const Priority = ({ label, priority, name, register, errors, isSelected }: PriorityInterface) => {
+  const id = `${name}-${priority}`;
   return (
-    <>
+    <div>
+      <input
+        type="radio"
+        id={id}
+        value={priority}
+        className="sr-only"
+        {...register(name, {
+          setValueAs: (value) => value as PriorityEnum,
+        })}
+      />
       <label
-        className={`border border-indigo-600 cursor-pointer rounded-2xl py-3 gap-1 w-25 text-center ${
+        htmlFor={id}
+        className={`border border-indigo-600 cursor-pointer rounded-2xl py-3 px-5 gap-1 w-25 text-center ${
           isSelected && "bg-indigo-400 text-gray-900"
         }`}
       >
-        <input type="radio" id={name} value={priority} className="hidden" {...register(name)} />
         {label}
       </label>
       {errors && errors[name] && <p className="text-red-500 text-sm ml-1">{errors[name].message as string}</p>}
-    </>
+    </div>
   );
 };
 

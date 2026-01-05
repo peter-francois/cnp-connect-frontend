@@ -17,7 +17,7 @@ export const axiosClient = () => {
     headers,
   });
 
-  // interceptors for request to add accessToken if it existe in localStorage
+  // interceptors for request to add accessToken if it exist in local storage
   api.interceptors.request.use((config) => {
     const token = localStorage.getItem("accessToken");
 
@@ -40,7 +40,7 @@ export const axiosClient = () => {
 
       // prevent infinit loops with refresh token
       if (originalRequest._retry) {
-        // tu n'a pas accés a cette resource
+        // you don't have access to this ressource
         return Promise.reject(error);
       }
 

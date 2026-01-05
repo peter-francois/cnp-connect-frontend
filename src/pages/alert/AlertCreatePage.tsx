@@ -29,15 +29,14 @@ const AlertCreatePage = () => {
   const onValidate: SubmitHandler<UseFormNewAlert> = (data): void => {
     mutate(data, {
       onSuccess: () => {
-        navigate("/utilisateurs");
+      
       },
     });
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onValidate, () => {
-      })}
+      onSubmit={handleSubmit(onValidate)}
       aria-labelledby="alert-form-title"
       aria-describedby="alert-form-description"
     >
@@ -48,6 +47,7 @@ const AlertCreatePage = () => {
       <p id="alert-form-description" className="sr-only">
         Formulaire permettant de créer une alerte avec priorité et lignes concernées
       </p>
+    
 
       <Textarea
         id="content"

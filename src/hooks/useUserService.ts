@@ -1,19 +1,19 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addUser, getUsers, getUsersById, updateUserByIdApi } from "../api/user.api";
+import { addUserApi, getUsersApi, getUsersByIdApi, updateUserByIdApi } from "../api/user.api";
 import type { CreateUserRequestInterface, SafeUserInterface } from "../types/interfaces/UserInterface";
 
 export const useUserService = () => {
   const FindManyWithLinesAndTrains = () =>
     useQuery({
       queryKey: ["users"],
-      queryFn: getUsers,
+      queryFn: getUsersApi,
       staleTime: 1000 * 60 * 5,
     });
 
   const FindUserDetails = (id: string) =>
     useQuery({
       queryKey: [`user${id}`],
-      queryFn: () => getUsersById(id),
+      queryFn: () => getUsersByIdApi(id),
       staleTime: 1000 * 60 * 5,
     });
 
@@ -30,7 +30,7 @@ export const useUserService = () => {
 
   const CreateUser = () =>
     useMutation({
-      mutationFn: (data: CreateUserRequestInterface) => addUser(data),
+      mutationFn: (data: CreateUserRequestInterface) => addUserApi(data),
     });
 
   return {

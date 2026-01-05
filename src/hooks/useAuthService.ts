@@ -30,8 +30,8 @@ export const useAuthService = () => {
     useQuery({
       queryKey: ["me"],
       queryFn: () => meApi(),
-      staleTime: Infinity, // recharge que si on refresh la page
-      retry: false, // evite la boucle infiny si unauthorize
+      staleTime: Infinity, // recharge only if refresh page
+      retry: false, // prevent infinit loop if unauthorize
     });
 
   return { resetPassword: ResetPassword, forgotPassword: ForgotPassword, signin: Signin, me: Me, signout: Signout };

@@ -1,12 +1,11 @@
 import { Link, useNavigate } from "react-router";
 import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PrimaryTitle from "../../components/ui/PrimaryTitle";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import PopUp from "../../components/ui/PopUp";
-import type { SigninInterface } from "../../types/interfaces/auth/SignInterface";
-import { signinSchema } from "../../types/formSchema/signinSchema";
+import { signinSchema, type UseFormSigninIn } from "../../types/formSchema/signinSchema";
 import TextInput from "../../components/ui/TextInput";
 import { useAuthService } from "../../hooks/useAuthService";
 import { AxiosError } from "axios";
@@ -17,11 +16,11 @@ const SigninPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SigninInterface>({ resolver: zodResolver(signinSchema) });
+  } = useForm({ resolver: zodResolver(signinSchema) });
   const { signin } = useAuthService();
   const { mutate, isError, isPending } = signin();
 
-  const sendDataToBack = (data: SigninInterface): void => {
+  const onValidate: SubmitHandler<UseFormSigninIn> = (data): void => {
     const email = data.email;
     const password = data.password;
 
@@ -46,7 +45,7 @@ const SigninPage = () => {
   return (
     <>
       <PrimaryTitle>Connexion</PrimaryTitle>
-      <form onSubmit={handleSubmit(sendDataToBack)} className="authForm" noValidate>
+      <form onSubmit={handleSubmit(onValidate)} className="authForm" noValidate>
         <div className="card-border px-7 py-5">
           <TextInput
             id="email"

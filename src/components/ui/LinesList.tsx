@@ -33,6 +33,7 @@ const LinesList = ({
   const id = me?.id;
   const { findUserDetails } = useUserService();
   const { isPending, isError, data, error: fetchError } = findUserDetails(String(id));
+
   const handleSelectLines = (line: LineInterface) => {
     const isAlreadySelected = selectLines.some((item) => item.id === line.id);
     const isDriver = selectedUserRole === UserRolesEnum.DRIVER;
@@ -72,7 +73,7 @@ const LinesList = ({
             onClick={() =>
               selectLines.length === data?.assignedLines.length
                 ? setSelectLines([])
-                : setSelectLines(data?.assignedLines.map(al => al.line))
+                : setSelectLines(data?.assignedLines.map((al) => al.line))
             }
           >
             {selectLines.length === data?.assignedLines.length ? "Tout désélectionner" : "Tout sélectionner"}
@@ -86,7 +87,7 @@ const LinesList = ({
           return (
             <SelectableInput
               key={line.line.id}
-              label="lines"
+              label="linesIds"
               data={line.line}
               onClick={() => handleSelectLines(line.line)}
               isSelected={selectLines.some((item) => item.id === line.line.id)}

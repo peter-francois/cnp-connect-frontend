@@ -21,7 +21,6 @@ const SelectableInput = ({
   type,
   customClass,
 }: SelectableInputInterface) => {
-
   return (
     <>
       <label
@@ -34,6 +33,7 @@ const SelectableInput = ({
       >
         {data && data.name}
       </label>
+
       <input
         className="sr-only"
         type={type}

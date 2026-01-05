@@ -11,7 +11,6 @@ import { useAlertService } from "../../hooks/useAlertService";
 
 const AlertCreatePage = () => {
   const navigate = useNavigate();
-
   const currentUserRole: UserRolesEnum = UserRolesEnum.DRIVER;
   const {
     register,
@@ -25,34 +24,31 @@ const AlertCreatePage = () => {
   // @dev mettre un store zustand pour le texte de l'alerte
   const { newAlert } = useAlertService();
   const { mutate } = newAlert();
-  console.log(`🚀 ~ :28 ~ AlertCreatePage ~ mutate:`, mutate);
 
   //submit and form validate = use createAlertMutation with data
   const onValidate: SubmitHandler<UseFormNewAlert> = (data): void => {
-    console.log("data", data);
     mutate(data, {
       onSuccess: () => {
         navigate("/utilisateurs");
       },
     });
   };
-console.log("errors", errors);
-  return (
-<form
-  onSubmit={handleSubmit(onValidate, (formErrors) => {
-  console.log(`🚀 ~ :43 ~ AlertCreatePage ~ formErrors:`, formErrors)
-  })}
-  
-  aria-labelledby="alert-form-title"
-  aria-describedby="alert-form-description"
->
-  <h2 id="alert-form-title" className="sr-only">
-    Création d’une alerte
-  </h2>
 
-  <p id="alert-form-description" className="sr-only">
-    Formulaire permettant de créer une alerte avec priorité et lignes concernées
-  </p>
+  return (
+    <form
+      onSubmit={handleSubmit(onValidate, () => {
+      })}
+      aria-labelledby="alert-form-title"
+      aria-describedby="alert-form-description"
+    >
+      <h2 id="alert-form-title" className="sr-only">
+        Création d’une alerte
+      </h2>
+
+      <p id="alert-form-description" className="sr-only">
+        Formulaire permettant de créer une alerte avec priorité et lignes concernées
+      </p>
+
       <Textarea
         id="content"
         placeholder="Decrivez l'alerte"
@@ -61,7 +57,8 @@ console.log("errors", errors);
         rows={5}
         textAreaCustomClass="px-5 py-3"
       />
-       <fieldset>
+
+      <fieldset>
         <legend className="sr-only">Niveau de priorité</legend>
         <div className="w-full flex justify-between my-5" role="radiogroup">
           <Priority
@@ -87,6 +84,7 @@ console.log("errors", errors);
           />
         </div>
       </fieldset>
+
       <fieldset>
         <legend className="sr-only">Sélectionnez les lignes</legend>
         <LinesList
@@ -97,6 +95,7 @@ console.log("errors", errors);
           registerError={errors}
         />
       </fieldset>
+
       <div className="w-full flex justify-center">
         <PrimaryButton customClass="w-50 mx-auto mt-5 px-5 py-2 text-center" type="submit">
           Envoyer

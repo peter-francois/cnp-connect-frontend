@@ -1,7 +1,7 @@
-import type { AssignedTrainsInterface } from "../../types/interfaces/train/AssignedTrainInterface";
+import type { TrainTravelInterface } from "../../types/interfaces/train/AssignedTrainInterface";
 
 interface UserTrainInterface {
-  assignedTrains: AssignedTrainsInterface[];
+  assignedTrains: TrainTravelInterface[];
 }
 const UserTrain = ({ assignedTrains }: UserTrainInterface) => {
   return (
@@ -9,9 +9,10 @@ const UserTrain = ({ assignedTrains }: UserTrainInterface) => {
       {assignedTrains && (
         <span className="flex">
           <ul className=" px-2 flex flex-wrap justify-around gap-2">
-            {assignedTrains.map((assignedTrain) => (
+            {assignedTrains[0].train.name}
+            {/* {assignedTrains.map((assignedTrain) => (
               <li key={assignedTrain.train.id}>{assignedTrain.train.name}</li>
-            ))}
+            ))} */}
           </ul>
         </span>
       )}

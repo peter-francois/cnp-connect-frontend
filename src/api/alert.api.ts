@@ -1,20 +1,11 @@
-import axios from "axios";
+import type { UseFormNewAlert } from "../types/formSchema/newAlertSchema";
 import type { AlertInterface } from "../types/interfaces/AlertInterface";
+import type { ResponseInterface } from "../types/interfaces/responseInterface.types";
+import { axiosClient } from "../utils/axiosClient";
 
-const url = "/data/alert.json";
+const api = axiosClient();
 
-export const addAlert = async (data: AlertInterface) => {
-  await axios
-    .post(url, data, {
-      headers: {
-        Authorization: "Bearer your_token_here",
-        "Content-Type": "application/json",
-      },
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+export const addAlertApi = async (body: UseFormNewAlert): Promise<ResponseInterface<AlertInterface>> => {
+  const { data } = await api.post<ResponseInterface<AlertInterface>>("/api/alerts", body);
+  return data;
 };

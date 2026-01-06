@@ -17,8 +17,6 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import LinesList from "../ui/LinesList";
 import TrainsList from "../ui/TrainsList";
-import { useNavigate } from "react-router";
-import { menuLinks } from "../../utils/links";
 
 interface AssignmentInterface {
   selectedUserRole: UserRolesEnum;
@@ -56,6 +54,7 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
   //     },
   //   });
   // };
+
   const onValidate: SubmitHandler<UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema> = (data) => {
     assignment.mutate(data);
   };
@@ -63,8 +62,9 @@ const Assignment = ({ selectedUserRole, authenticateUserRole }: AssignmentInterf
   const handleSelectedLineFromChild = (data: LineInterface[] | []) => {
     setSelectedLine(data);
   };
+
   const assignment = useMutation({
-    mutationFn: (data: UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema) => {
+    mutationFn: async (data: UseFormAssigmentCoordinator | UseFormNewAssigmentDriverSchema): Promise<void> => {
       console.log(data);
     },
     onSuccess: () => {

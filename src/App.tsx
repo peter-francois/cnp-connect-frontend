@@ -12,7 +12,8 @@ import UserCreatePage from "./pages/user/UserCreatePage";
 import { appLinks, menuLinks } from "./utils/links";
 import ProtectedRoute from "./guards/ProtectedRoute.guard";
 import SupervisorRoute from "./guards/SupervisorRoute.guard";
-import ErrorPage from "./pages/ErrorPage";
+import ErrorPage500 from "./pages/error/ErrorPage500";
+import ErrorPage404 from "./pages/error/ErrorPage404";
 import ChatWebSocket from "./pages/conversation/ConversationDetailsPage";
 
 const App = () => {
@@ -23,7 +24,9 @@ const App = () => {
           <Route index element={<SigninPage />} />
           <Route path={`${appLinks.items.resetPassword.path}/:token`} element={<ResetPasswordPage />} />
           <Route path={appLinks.items.forgotPassword.path} element={<ForgotPasswordPage />} />
-          <Route path="/page-erreur" element={<ErrorPage />} />
+          <Route path="/page-erreur-404" element={<ErrorPage404 />} />
+          <Route path="/page-erreur-500" element={<ErrorPage500 />} />
+          <Route path="*" element={<ErrorPage404 />} />
         </Route>
 
         <Route element={<ConnectedLayout />}>

@@ -8,20 +8,20 @@ import type { ResponseInterface } from "../types/interfaces/responseInterface.ty
 
 const api = axiosClient();
 
-export const getUsers = async (): Promise<ResponseInterface<SafeUserWithLinesAndTrainsInterface[]>> => {
-  const { data } = await api.get<ResponseInterface<SafeUserWithLinesAndTrainsInterface[]>>("users");
+export const getUsersApi = async (): Promise<ResponseInterface<SafeUserWithLinesAndTrainsInterface[]>> => {
+  const { data } = await api.get<ResponseInterface<SafeUserWithLinesAndTrainsInterface[]>>("/api/users");
   return data;
 };
 
-export const getUsersById = async (id: string): Promise<SafeUserWithLinesAndTrainsInterface> => {
-  const { data } = await api.get<SafeUserWithLinesAndTrainsInterface>(`/users/${id}`);
+export const getUsersByIdApi = async (id: string): Promise<SafeUserWithLinesAndTrainsInterface> => {
+  const { data } = await api.get<SafeUserWithLinesAndTrainsInterface>(`/api/users/${id}`);
   return data;
 };
 
 export const updateUserByIdApi = async (
   dataToUpdate: Partial<SafeUserInterface>
 ): Promise<ResponseInterface<SafeUserInterface>> => {
-  const { data } = await api.patch<ResponseInterface<SafeUserInterface>>(`/users/${dataToUpdate.id}`);
+  const { data } = await api.patch<ResponseInterface<SafeUserInterface>>(`/api/users/${dataToUpdate.id}`);
   return data;
 };
 
@@ -36,7 +36,7 @@ export const updateUserByIdApi = async (
 //   }
 // };
 
-export const addUser = async (body: CreateUserRequestInterface): Promise<ResponseInterface<SafeUserInterface>> => {
-  const { data } = await api.post<ResponseInterface<SafeUserInterface>>("/users", body);
+export const addUserApi = async (body: CreateUserRequestInterface): Promise<ResponseInterface<SafeUserInterface>> => {
+  const { data } = await api.post<ResponseInterface<SafeUserInterface>>("/api/users", body);
   return data;
 };

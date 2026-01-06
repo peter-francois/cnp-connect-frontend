@@ -12,7 +12,7 @@ export const axiosClient = () => {
   };
 
   const api: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL || "",
     withCredentials: true,
     headers,
   });
@@ -49,7 +49,7 @@ export const axiosClient = () => {
       if (error.response?.status === HttpStatusCode.Unauthorized) {
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}/auth/refresh-token`,
+            `${import.meta.env.VITE_API_BASE_URL || ""}/auth/refresh-token`,
             {},
             { withCredentials: true }
           );
@@ -62,8 +62,16 @@ export const axiosClient = () => {
 
         return api(originalRequest);
       }
-      // @dev don't send if conflict
-      window.location.href = "/page-erreur";
+
+      if (error.response?.status === HttpStatusCode.NotFound) {
+        window.location.href = "/page-erreur-404";
+      }
+
+      if (error.response?.status === HttpStatusCode.InternalServerError || error.code === "ERR_NETWORK") {
+        window.location.href = "/page-erreur-500";
+      }
+
+      return Promise.reject(error);
     }
   );
 

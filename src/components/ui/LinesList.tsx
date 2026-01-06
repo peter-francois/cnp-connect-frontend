@@ -12,7 +12,7 @@ interface LinesListInterface {
   handleSelectedLineFromChild?: (data: LineInterface[] | []) => void | null;
   isAlerts: boolean;
   registerError: FieldErrors;
-  selectedUserRole: UserRolesEnum;
+  selectedUserRole?: UserRolesEnum;
   authenticateUserRole?: UserRolesEnum;
 }
 

@@ -52,7 +52,13 @@ const Menu = ({ links, isOpen, menuRef, setIsOpen }: MenuComponentInterface) => 
               <ul className="flex flex-col gap-5 px-5">
                 {Object.entries(links.items).map(([key, item]) => {
                   return (
-                    <ItemLink key={key} link={item.path} allowedRolesLink={item.allowedRoles} handleOnClick={closeMenu}>
+                    <ItemLink
+                      key={key}
+                      name={key}
+                      link={item.path}
+                      allowedRolesLink={item.allowedRoles}
+                      handleOnClick={closeMenu}
+                    >
                       {item.name}
                     </ItemLink>
                   );

@@ -5,15 +5,16 @@ interface UserTrainInterface {
 }
 const UserTrain = ({ assignedTrains }: UserTrainInterface) => {
   return (
-    <>{assignedTrains && (
-          <span className="flex">
-            <ul className=" px-2 flex flex-wrap justify-around gap-2">
-              {assignedTrains.map((assignedTrain) => (
-                <li key={assignedTrain.train.id}>{assignedTrain.train.name}</li>
-              ))}
-            </ul>
-          </span>
-        )}
+    <>
+      {assignedTrains && (
+        <span className="flex">
+          <ul className=" px-2 flex flex-wrap justify-around gap-2">
+            {assignedTrains.map((assignedTrain) => (
+              <li key={assignedTrain.train.id}>{assignedTrain.train.name}</li>
+            ))}
+          </ul>
+        </span>
+      )}
     </>
   );
 };

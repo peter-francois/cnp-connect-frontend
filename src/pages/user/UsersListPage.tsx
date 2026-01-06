@@ -7,7 +7,7 @@ import { useUserService } from "../../hooks/useUserService";
 
 const UsersListPage = () => {
   const [search, setSearch] = useState("");
-  const [currentUser, setCurrentUser] = useState<number | undefined>(undefined);
+  const [currentUser, setCurrentUser] = useState<string | undefined>(undefined);
   const { findManyWithLinesAndTrains } = useUserService();
   const { isPending, isError, data, error } = findManyWithLinesAndTrains();
 

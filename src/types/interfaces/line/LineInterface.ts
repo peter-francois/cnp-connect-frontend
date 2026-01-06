@@ -5,5 +5,5 @@ export interface LineInterface {
   name: string;
   createdAt: Date;
   updatedAt: Date;
-  trains: TrainInterface[];
+  trains?: TrainInterface[];
 }

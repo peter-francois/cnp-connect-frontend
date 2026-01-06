@@ -44,13 +44,13 @@ const UserInfos = ({ userData, currentUser, setCurrentUser }: UserPropsInterface
                 <SecondaryTitle>
                   Ligne{userData.assignedLines && userData.assignedLines.length >= 2 && "s"}:
                 </SecondaryTitle>
-                <UserLines assignedLines={userData.assignedLines} />
+                <UserLines assignedLines={userData.assignedLines} role={userData.role} />
               </div>
             )}
-            {userData.assignedTrains!.length > 0 && (
+            {userData.trainTravel!.length > 0 && (
               <div className="flex">
-                <SecondaryTitle>Train:</SecondaryTitle>
-                <UserTrain assignedTrains={userData.assignedTrains} />
+                
+                <UserTrain assignedTrains={userData.trainTravel} />
               </div>
             )}
             <Link to={`/utilisateurs/${userData.id}`}>

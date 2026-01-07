@@ -19,6 +19,11 @@ interface WelcomePayload {
   username: string;
 }
 
+interface JoinPayload {
+  type: string;
+  username: string;
+}
+
 const ConversationDetailsPage = () => {
   const webSocket: Socket | null = socketIoClient();
   const me = queryClient.getQueryData<SafeUserInterface>(["me"]);
@@ -37,7 +42,6 @@ const ConversationDetailsPage = () => {
 
   useEffect(() => {
     if (!webSocket || !me) return;
-
     socketRef.current = webSocket;
     const socket = socketRef.current;
 
@@ -64,6 +68,33 @@ const ConversationDetailsPage = () => {
       ]);
     };
 
+    const onJoin = (data: JoinPayload) => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          messageId: uuid(),
+          type: "user_joined",
+          content: `${data.username} a regoind la conversation`,
+          senderId: "system",
+          timestamp: new Date().toISOString(),
+        },
+      ]);
+    };
+
+    const onLeft = (data: JoinPayload) => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          messageId: uuid(),
+          type: "user_joined",
+          content: `${data.username} a quité la conversation`,
+          senderId: "system",
+          timestamp: new Date().toISOString(),
+        },
+      ]);
+    };
+
+
     if (socket.connected) {
       onConnect();
     } else {
@@ -72,11 +103,16 @@ const ConversationDetailsPage = () => {
 
     socket.on("message", onMessage);
     socket.on("welcome", onWelcome);
+    socket.on("user_joined", onJoin);
+    socket.on("user_left", onLeft);
 
     return () => {
       socket.off("connect", onConnect);
       socket.off("message", onMessage);
       socket.off("welcome", onWelcome);
+      socket.off("user_joined", onJoin);
+      socket.off("user_left", onLeft);
+      socketRef.current = null;
     };
   }, [conversationId, me, webSocket]);
 

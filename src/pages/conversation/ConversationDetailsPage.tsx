@@ -93,7 +93,6 @@ const ConversationDetailsPage = () => {
     };
 
     socketRef.current?.emit("message", msg);
-    setMessages((prev) => [...prev, msg]); // Afficher immédiatement côté front
     setMessageInput("");
   };
 

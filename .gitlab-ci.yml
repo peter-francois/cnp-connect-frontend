@@ -9,4 +9,5 @@ build-push-app:
     - docker build -t $CI_REGISTRY_IMAGE:$TAG_BUILD .
     - docker push $CI_REGISTRY_IMAGE:$TAG_BUILD
   rules:
+    - if: $CI_COMMIT_BRANCH == "main"
     - when: manual

@@ -1,10 +1,7 @@
 import type { TrainInterface } from "./TrainInterface";
 
-export interface AssignedTrainsInterface {
+export interface TrainTravelInterface {
   trainId: number;
   userId: string;
-  assignmentStartDate: Date;
-  assignmentEndDate?: Date;
-  createdAt: Date;
   train: TrainInterface;
 }

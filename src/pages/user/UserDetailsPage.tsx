@@ -101,10 +101,10 @@ const UserDetailsPage = () => {
                 pCustomClass="w-20"
               />
             )}
-            {isNotSupervisor && selectedUser.assignedTrains && (
+            {isNotSupervisor && selectedUser.trainTravel && (
               <UserField
                 label="Train"
-                value={selectedUser.assignedTrains.map((assignedTrain) => assignedTrain.train.name).join(", ")}
+                value={selectedUser.trainTravel.map((trainTravel) => trainTravel.train.name).join(", ")}
                 customClass="flex gap-3"
                 pCustomClass="w-20"
               />

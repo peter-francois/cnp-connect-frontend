@@ -9,7 +9,6 @@ import { signinSchema, type UseFormSigninIn } from "../../types/formSchema/signi
 import TextInput from "../../components/ui/TextInput";
 import { useAuthService } from "../../hooks/useAuthService";
 import { AxiosError } from "axios";
-import { queryClient } from "../../utils/queryClient";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -29,11 +28,10 @@ const SigninPage = () => {
       { email, password },
       {
         onSuccess: async (data) => {
-          const {accessToken, userSigninResponse} = data.data;
+          const { accessToken } = data.data;
 
           if (accessToken) {
             localStorage.setItem("accessToken", accessToken);
-            queryClient.setQueryData(["me"], userSigninResponse);
             navigate("/utilisateurs");
           }
         },

@@ -12,7 +12,6 @@ interface SigninInterface {
 interface AuthResponseInterface {
   data: {
     accessToken: string;
-    userSigninResponse: SafeUserInterface;
   };
   message: string;
 }

@@ -20,7 +20,6 @@ export const axiosClient = () => {
   // interceptors for request to add accessToken if it exist in local storage
   api.interceptors.request.use((config) => {
     const token = localStorage.getItem("accessToken");
-
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -49,7 +48,7 @@ export const axiosClient = () => {
       if (error.response?.status === HttpStatusCode.Unauthorized) {
         try {
           const { data } = await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL || ""}/auth/refresh-token`,
+            `${import.meta.env.VITE_API_BASE_URL || ""}/api/auth/refresh-token`,
             {},
             { withCredentials: true }
           );

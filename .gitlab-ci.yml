@@ -4,7 +4,7 @@ build-push-app:
   services:
     - docker:dind
   before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --build-arg VITE_API_BASE_URL=https://cnp-connect-back.duckdns.org/api -t $CI_REGISTRY_IMAGE:$TAG_BUILD .
   script:
     - docker build -t $CI_REGISTRY_IMAGE:$TAG_BUILD .
     - docker push $CI_REGISTRY_IMAGE:$TAG_BUILD

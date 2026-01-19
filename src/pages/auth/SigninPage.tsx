@@ -28,8 +28,7 @@ const SigninPage = () => {
       { email, password },
       {
         onSuccess: async (data) => {
-          const { accessToken } = data.data;
-
+          const accessToken = data.data.accessToken
           if (accessToken) {
             localStorage.setItem("accessToken", accessToken);
             navigate("/utilisateurs");

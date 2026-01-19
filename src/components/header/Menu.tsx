@@ -47,7 +47,7 @@ const Menu = ({ links, isOpen, menuRef, setIsOpen }: MenuComponentInterface) => 
             <XMarkIcon width={30} className="bg-red-600 hover:bg-red-900 rounded-full" onClick={closeMenu} />
           </div>
 
-          <div className="flex flex-col justify-between h-5/6">
+          <div className="flex flex-col justify-between h-5/6 pb-5">
             <nav>
               <ul className="flex flex-col gap-5 px-5">
                 {Object.entries(links.items).map(([key, item]) => {

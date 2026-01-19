@@ -1,4 +1,4 @@
-import type { ResponseInterfaceMessage } from "../types/interfaces/responseInterface.types";
+import type { ResponseInterface, ResponseInterfaceMessage } from "../types/interfaces/responseInterface.types";
 import type { SafeUserInterface } from "../types/interfaces/UserInterface";
 import { axiosClient } from "../utils/axiosClient";
 
@@ -9,16 +9,9 @@ interface SigninInterface {
   password: string;
 }
 
-interface AuthResponseInterface {
-  data: {
-    accessToken: string;
-  };
-  message: string;
-}
-
-export const signinApi = async (email: string, password: string): Promise<AuthResponseInterface> => {
+export const signinApi = async (email: string, password: string): Promise<ResponseInterface<string>> => {
   const body: SigninInterface = { email, password };
-  const { data } = await api.post<AuthResponseInterface>("/auth/signin", body);
+  const { data } = await api.post<ResponseInterface<string>>("/auth/signin", body);
   return data;
 };
 

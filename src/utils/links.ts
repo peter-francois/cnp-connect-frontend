@@ -18,11 +18,11 @@ export const appLinks: LinkInterface = {
 
 export const menuLinks: LinkInterface = {
   items: {
-    dashboard: {
-      name: "Tableau de bord",
-      path: "/tableau-de-bord",
-      allowedRoles: ALL_ROLES,
-    },
+    // dashboard: {
+    //   name: "Tableau de bord",
+    //   path: "/tableau-de-bord",
+    //   allowedRoles: ALL_ROLES,
+    // },
     users: {
       name: "Tous les utilisateurs",
       path: "/utilisateurs",

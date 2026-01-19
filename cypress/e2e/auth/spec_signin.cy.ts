@@ -61,7 +61,7 @@ describe("Should signin", () => {
       cy.get('input[id="email"]').type(validUser.email);
       cy.get('input[id="password"]').type(invalidUser.password);
       cy.get('[data-cy="data-submit-signin"]').click();
-      cy.wait("@login").its("response.statusCode").should("eq", 412);
+      cy.wait("@login").its("response.statusCode").should("eq", 401);
     });
 
     it("Should signin", () => {

@@ -122,3 +122,13 @@ npm run dev
 ```
 
 Puis ouvrir : [http://localhost:5173](http://localhost:5173)
+
+## 🧪 Tests E2E (Cypress)
+
+Le projet contient une suite de tests End-to-End avec **Cypress**, permettant de tester les parcours utilisateurs principaux directement dans le navigateur.
+Les tests sont situés dans le dossier `cypress/`.
+
+Pour lancer les tests :
+```bash
+npm run cy:open
+```

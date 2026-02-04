@@ -144,3 +144,17 @@ Pour lancer les tests :
 ```bash
 npm run cy:open
 ```
+
+---
+
+## 📬 Contact
+
+Si vous avez des questions, des suggestions ou souhaitez échanger sur le projet, vous pouvez me contacter :
+
+Email : contact@peterfrancois.dev
+
+LinkedIn : https://www.linkedin.com/in/peterfrancois/
+
+GitHub : https://github.com/peter-francois/
+
+N’hésitez pas à ouvrir une issue ou une pull request si vous souhaitez contribuer au projet.
